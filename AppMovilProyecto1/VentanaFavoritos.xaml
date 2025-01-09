@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMovilProyecto1.VentanaFavoritos"
+             Title="VentanaFavoritos">
+    
+    
+    <ContentPage.Resources>
+
+        <!--Estilo para los recuadors principales.-->
+        <Style TargetType="Border">
+
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="2" />
+            <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
+
+        </Style>
+
+        <!--Ejemplo sobre como definir un estilo a un elemento en especifico, se ingresa un nombre clave para el estylo y se ingresa un typo de elementos especifico.-->
+        <Style x:Key="EspecialBorderStyle" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="2" />
+            <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
+
+        </Style>
+
+        <!--Estilo para los label, para todos.-->
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="17"/>
+        </Style>
+
+        <!--Estilos para los Picker-->
+        <Style TargetType="Picker">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <!--Estilos para los Entry-->
+        <Style TargetType="Entry">
+
+            <Setter Property="FontSize" Value="17"/>
+
+        </Style>
+
+        <!--Estilos para los Botones-->
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="WidthRequest" Value="200" />
+        </Style>
+
+    </ContentPage.Resources>
+
+    <ScrollView>
+
+        <StackLayout Padding ="20" BackgroundColor ="#E6F4E6" Margin="30">
+
+            <!-- Recuadro superior para la seccion de la divisa base y destino. -->
+            <Border>
+                <StackLayout>
+                    <Label Text="Selecciona la divisa de origen: "/>
+                    <Border>
+                        <Picker x:Name="DivisaOrigenPicker"/>
+                    </Border>
+
+                    <Image x:Name="FlechaImagenSuperior" Source="flecha_conversor.png" HeightRequest="50"/>
+
+                    <Label Text="Selecciona la divisa de destino:" />
+
+                    <Border>
+                        <Picker x:Name="DivisaDestinoPicker" />
+                    </Border>
+                </StackLayout>
+            </Border>
+
+            <!-- Recuadro inferior para ingresar el monto y mostrar el valor de la conversion. Style="{StaticResource EspecialBorderStyle}"-->
+            <Border>
+                <StackLayout>
+                    <Label Text="Monto a convertir:" />
+
+                    <Border>
+                        <Entry x:Name="MontoEntry" Placeholder="Ingresa el monto" Keyboard="Numeric"  VerticalOptions="CenterAndExpand"/>
+                    </Border>
+
+                    <Image x:Name="FlechaImagenInferior" Source="flecha_conversor.png" HeightRequest="50"/>
+
+                    <Label Text="Monto convertido:" />
+                    <Border>
+                        <Label x:Name="ResultadoLabel" Text="Monto Final" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                    </Border>
+                </StackLayout>
+            </Border>
+
+            <Button x:Name="ConvertirBtn" Text="Convertir"  BackgroundColor="Green" TextColor="White" />
+            <!--Clicked="RealizarConvercion"-->
+
+        </StackLayout>
+
+
+    </ScrollView>
+</ContentPage>
