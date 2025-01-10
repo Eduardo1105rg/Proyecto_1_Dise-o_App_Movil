@@ -21,6 +21,7 @@
             <Setter Property="Stroke" Value="Black" />
             <Setter Property="StrokeThickness" Value="2" />
             <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+            <Setter Property="Padding" Value="0,10,0,10"/>
         </Style>
 
 
@@ -29,6 +30,8 @@
         <Style x:Key="BarraBusqueda" TargetType="SearchBar">
             <Setter Property="Margin" Value="2"/>
             <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="CancelButtonColor" Value="red"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
         </Style>
         
         <!--Estilo del boton de buscar-->
@@ -53,7 +56,7 @@
             <Setter Property="BackgroundColor" Value="#CCFFCC" />
             <Setter Property="Stroke" Value="Transparent" />
             <Setter Property="StrokeShape" Value="RoundRectangle 20" />
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Margin" Value="10,5,10,5"/>
         </Style>
 
         <!-- Estilo para el recuadro interno blanco -->
@@ -119,8 +122,10 @@
                 <StackLayout Margin="10">
                     <!-- Barra de búsqueda -->
                     <StackLayout Orientation="Horizontal">
-                        <SearchBar x:Name="BusquedaSearchBar" Placeholder="Buscar divisa..." HorizontalOptions="FillAndExpand" Style="{StaticResource BarraBusqueda}"/>
-                        <Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/>
+                        <SearchBar x:Name="BusquedaSearchBar" Placeholder="Buscar divisa..." Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />
+                        <!--<Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/>-->
+                        <Button Text="Buscar" Clicked="GuardarElementoEnRegistros" Style="{StaticResource BuscarBtn}"/>
+                        
                     </StackLayout>
 
                     <!-- Label de elementos favoritos -->

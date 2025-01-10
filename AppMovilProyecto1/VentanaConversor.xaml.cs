@@ -87,45 +87,127 @@ public partial class VentanaConversor : ContentPage
         { "South Africa", "ZAR" }, { "Zambia", "ZMW" }, { "Zimbabwe", "ZWL" }
     };
 
+    public Dictionary<String, String> AccederInfoDivisasPorCodigo = new Dictionary<string, string>();
+
+
+    public Dictionary<string, Dictionary<string, double>> DatosFavoritosCargados;
 
     public VentanaConversor()
     {
         InitializeComponent();
         AsignarValoresPickerDefault();
+        DatosFavoritosCargados = new Dictionary<string, Dictionary<string, double>>();
+        AccederInfoDivisasPorCodigo = AccederInfoDivisas.ToDictionary(item => item.Value, item => item.Key);
     }
 
+    // Asignar los valores por defecto al picker.
     private void AsignarValoresPickerDefault()
     {
         DivisaOrigenPicker.ItemsSource = datosDivisasPicker;//new string[] { "USD", "EUR", "CRC" }; // Añadir más divisas según sea necesario
         DivisaDestinoPicker.ItemsSource = datosDivisasPicker;//new string[] { "USD", "EUR", "CRC" };
     }
 
-    private void AsignarValoresPickerFavoritos(object sender, EventArgs e)
+    // Asignar los valores al picker despues de cambiar a favoritos.
+    private void AsignarValoresPickerDefaultActualizacion(object sender, EventArgs e)
     {
+        DivisaOrigenPicker.ItemsSource = null; 
+        DivisaOrigenPicker.SelectedIndex = -1;
+
+        DivisaOrigenPicker.ItemsSource = datosDivisasPicker;//new string[] { "USD", "EUR", "CRC" }; // Añadir más divisas según sea necesario
+        DivisaDestinoPicker.ItemsSource = datosDivisasPicker;
+
+        ModificarBtn.Clicked -= AsignarValoresPickerDefaultActualizacion;
+        ModificarBtn.Clicked += AsignarValoresPickerFavoritos;
+        ModificarBtn.Text = "Elementos favoritos";
+
+        // Modifcar los datos del boton que inicia el proceso de conversion.
+        ConvertirBtn.Clicked -= RealizarConvercionFavoritos;
+        ConvertirBtn.Clicked += RealizarConvercion;
 
     }
 
-
-    private async void VolversAtras(object sender, EventArgs e)
+    // 
+    private async void AsignarValoresPickerFavoritos(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//MainPage");
+        DatosFavoritosCargados = new Dictionary<string, Dictionary<string, double>>();
+        var elementosRegistrado = await FavoritosService.LeerTodoLosArchivosExistentesLista();
+
+        // Vaciar los datos del picker.
+        DivisaOrigenPicker.ItemsSource = null; 
+        DivisaOrigenPicker.SelectedIndex = -1;
+
+        if (elementosRegistrado.Count() == 0)
+        {
+            await DisplayAlert("Informacion", "Actualmente no hay elementos guardados en favoritos.", "OK");
+            return;
+        }
+
+
+        List<string> divisaRegistradasEnFavoritos = new List<string>();
+        Dictionary<string, Dictionary<string, double>> valoresConversionDvisas = new Dictionary<string, Dictionary<string, double>>();
+        foreach (var favorito in elementosRegistrado)
+        {
+
+            string codigoDivisa = favorito.CodigoDivisa;
+
+            divisaRegistradasEnFavoritos.Add(AccederInfoDivisasPorCodigo[codigoDivisa]);
+
+            Dictionary<string, double> valoresConversion = favorito.ValoresConversion;
+            DatosFavoritosCargados.Add(codigoDivisa, valoresConversion);
+        }
+
+        //DatosFavoritosCargados.Add(valoresConversionDvisas);
+
+        string[] listaDeDivisasRegistradas = divisaRegistradasEnFavoritos.ToArray();
+
+
+        if (listaDeDivisasRegistradas.Any())
+        {
+            DivisaOrigenPicker.ItemsSource = listaDeDivisasRegistradas; 
+        } else { 
+            await DisplayAlert("Error", "No se encontraron divisas registradas en favoritos.", "OK"); 
+            return; 
+        }
+
+
+
+        //DivisaOrigenPicker.ItemsSource = listaDeDivisasRegistradas;
+
+        //DivisaDestinoPicker.ItemsSource = datosDivisasPicker;
+
+
+        // Modificar los datos del boton que actualiza los valores del picker.
+        ModificarBtn.Clicked -= AsignarValoresPickerFavoritos;
+        ModificarBtn.Clicked += AsignarValoresPickerDefaultActualizacion;
+        ModificarBtn.Text = "Elementos default";
+
+        // Modifcar los datos del boton que inicia el proceso de conversion.
+        ConvertirBtn.Clicked -= RealizarConvercion;
+        ConvertirBtn.Clicked += RealizarConvercionFavoritos;
+
+
+        //AccederInfoDivisasPorCodigo = AccederInfoDivisas.ToDictionary(item => item.Value, item => item.Key);
+
     }
 
 
     private async void RealizarConvercion(object sender, EventArgs e)
     {
-        ResultadoLabel.Text = ""; // Limpiar el lugar en donde se muestran los datos.
+        // Limpiar el lugar en donde se muestran los datos.
+
+        // Validar que si se selecciono un elemento.
+        if (DivisaOrigenPicker.SelectedItem == null || DivisaDestinoPicker == null)
+        {
+            await DisplayAlert("Error", "Debes de seleccionar una divisa origen y destino.", "OK");
+            return;
+        }
+
 
         string paisSeleccionadoOrigen = DivisaOrigenPicker.SelectedItem.ToString(); // Obtener la divisa origen. -> Corregir para el caso de que no se tenga un valor elegido.
 
         string paisSeleccionadoDestino = DivisaDestinoPicker.SelectedItem.ToString(); // Obtener la divisa destino.
 
-        // Validar que si se selecciono un elemento.
-        if (paisSeleccionadoOrigen == null || paisSeleccionadoDestino == null)
-        {
-            await DisplayAlert("Error", "Debes de seleccionar una divisa origen y destino.", "OK");
-            return;
-        }
+
         // Validar que el monto no este vacio.
         if (string.IsNullOrWhiteSpace(MontoEntry.Text))
         {
@@ -150,6 +232,7 @@ public partial class VentanaConversor : ContentPage
             return;
         }
 
+        ResultadoLabel.Text = "";
 
         string divisaOrigen = AccederInfoDivisas[paisSeleccionadoOrigen]; // Acceder a su respectivo codigo de divisa.
 
@@ -177,4 +260,85 @@ public partial class VentanaConversor : ContentPage
     // Otro metodo para acceder a los datos del diccionario "AccederInfoDivisas"
     // AccederInfoDivisas.TryGetValue(pais, out string codigoDivisa)
     // Pais es la clase de acceso al elementos, codigo divisa es lo que se devuelve.
+
+
+
+    private async void RealizarConvercionFavoritos(object sender, EventArgs e)
+    {
+        // Limpiar el lugar en donde se muestran los datos.
+
+        // Validar que si se selecciono un elemento.
+        if (DivisaOrigenPicker.SelectedItem == null || DivisaDestinoPicker == null)
+        {
+            await DisplayAlert("Error", "Debes de seleccionar una divisa origen y destino.", "OK");
+            return;
+        }
+
+
+        string paisSeleccionadoOrigen = DivisaOrigenPicker.SelectedItem.ToString(); // Obtener la divisa origen. -> Corregir para el caso de que no se tenga un valor elegido.
+
+        string paisSeleccionadoDestino = DivisaDestinoPicker.SelectedItem.ToString(); // Obtener la divisa destino.
+
+
+        // Validar que el monto no este vacio.
+        if (string.IsNullOrWhiteSpace(MontoEntry.Text))
+        {
+            await DisplayAlert("Error", "Debes de ingresar un monto a convertir.", "OK");
+            return;
+        }
+
+        double montoIngresado; // Obtener el monto ingresado.  = double.Parse(MontoEntry.Text)
+
+        // Validar que sea un numero.
+        if (!double.TryParse(MontoEntry.Text, out montoIngresado))
+        {
+            await DisplayAlert("Error", "El monto ingresado debe de ser un valor numerico entero.", "OK");
+            return;
+
+        }
+
+        // Validar que no sea menor que 0.
+        if (montoIngresado < 0)
+        {
+            await DisplayAlert("Error", "El monto ingresado debe de ser un valor numerico entero positivo.", "OK");
+            return;
+        }
+
+        ResultadoLabel.Text = "";
+
+        string divisaOrigen = AccederInfoDivisas[paisSeleccionadoOrigen]; // Acceder a su respectivo codigo de divisa.
+
+        string divisaDestino = AccederInfoDivisas[paisSeleccionadoDestino];
+
+
+        Dictionary<string, double> diccionarioValoresDeconversion = DatosFavoritosCargados[divisaOrigen];
+
+
+        double? datosConvercion = diccionarioValoresDeconversion[divisaDestino];
+
+        //decimal montoConvertido = montoIngresado * (decimal)datosConvercion.Value;
+        //var montoIngresado = MontoEntry.GetValue;
+
+        decimal montoConvertido = 0;
+        if (datosConvercion.HasValue)
+        {
+
+            montoConvertido = (decimal)montoIngresado * (decimal)datosConvercion.Value;
+        }
+
+        ResultadoLabel.Text = $"{montoConvertido}";
+
+        //var datosConvercion = ExchangeService.Import();
+
+        //DisplayAlert("Error", "No se pudo realizar la conversión.", "OK");
+    }
+
+
+    private async void VolversAtras(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//MainPage");
+    }
+
+
+
 }
