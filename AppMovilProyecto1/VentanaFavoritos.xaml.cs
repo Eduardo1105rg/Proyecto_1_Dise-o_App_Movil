@@ -6,4 +6,11 @@ public partial class VentanaFavoritos : ContentPage
 	{
 		InitializeComponent();
 	}
+
+
+	private void IniciarBusqueda(object sender, EventArgs e)
+	{
+
+	}
+
 }

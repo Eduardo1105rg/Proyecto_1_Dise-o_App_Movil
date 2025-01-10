@@ -116,7 +116,7 @@ public partial class VentanaConversor : ContentPage
     {
         ResultadoLabel.Text = ""; // Limpiar el lugar en donde se muestran los datos.
 
-        string paisSeleccionadoOrigen = DivisaOrigenPicker.SelectedItem.ToString(); // Obtener la divisa origen.
+        string paisSeleccionadoOrigen = DivisaOrigenPicker.SelectedItem.ToString(); // Obtener la divisa origen. -> Corregir para el caso de que no se tenga un valor elegido.
 
         string paisSeleccionadoDestino = DivisaDestinoPicker.SelectedItem.ToString(); // Obtener la divisa destino.
 

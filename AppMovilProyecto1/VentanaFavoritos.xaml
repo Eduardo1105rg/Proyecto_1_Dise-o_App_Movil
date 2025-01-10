@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMovilProyecto1.VentanaFavoritos"
@@ -6,101 +6,222 @@
     
     
     <ContentPage.Resources>
-
-        <!--Estilo para los recuadors principales.-->
-        <Style TargetType="Border">
-
-            <Setter Property="BackgroundColor" Value="White"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="Margin" Value="10"/>
+        
+        <!-- Estilo para el recuadro principal -->
+        <Style x:Key="RecuadroPrincipal" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="#E6F4E6" /> 
             <Setter Property="Stroke" Value="Black" />
             <Setter Property="StrokeThickness" Value="2" />
-            <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
-
+            <Setter Property="StrokeShape" Value="RoundRectangle 10" />
         </Style>
 
-        <!--Ejemplo sobre como definir un estilo a un elemento en especifico, se ingresa un nombre clave para el estylo y se ingresa un typo de elementos especifico.-->
-        <Style x:Key="EspecialBorderStyle" TargetType="Border">
+        <!-- Estilo para el recuadro de contenedor gris -->
+        <Style x:Key="RecuadroContenedor" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="#D9D9D9" />
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="2" />
+            <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+        </Style>
+
+
+
+        <!--Estilo de la barra de busqueda.-->
+        <Style x:Key="BarraBusqueda" TargetType="SearchBar">
+            <Setter Property="Margin" Value="2"/>
             <Setter Property="BackgroundColor" Value="White"/>
+        </Style>
+        
+        <!--Estilo del boton de buscar-->
+        <Style x:Key="BuscarBtn" TargetType="Button">
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        
+
+        
+        <!--Estilos del label que dice Elementos Favoritos.-->
+        <Style x:Key="FavoritosLabel" TargetType="Label">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+
+        
+        <!-->>>>Estilos para un elemento favorito.-->
+
+        <!-- Estilo para el recuadro de elementos favoritos -->
+        <Style x:Key="RecuadroElemento" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="#CCFFCC" />
+            <Setter Property="Stroke" Value="Transparent" />
+            <Setter Property="StrokeShape" Value="RoundRectangle 20" />
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <!-- Estilo para el recuadro interno blanco -->
+        <Style x:Key="RecuadroInterno" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="2" />
+            <Setter Property="StrokeShape" Value="RoundRectangle 20" />
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="Margin" Value="5,5,0,0"/>
+            <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        </Style>
+
+        <Style x:Key="StackLayouHorizontal" TargetType="StackLayout">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            
+        </Style>
+        
+        <Style x:Key="StackLayouVerticalEspecial" TargetType="StackLayout">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+
+        </Style>
+        <!--Estilo del boton de opciones.-->
+        <Style x:Key="OpcionesBtn" TargetType="Button">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="30"/>
             <Setter Property="Padding" Value="0"/>
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="Stroke" Value="Black" />
-            <Setter Property="StrokeThickness" Value="2" />
-            <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
-
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
         </Style>
 
-        <!--Estilo para los label, para todos.-->
-        <Style TargetType="Label">
-            <Setter Property="FontSize" Value="17"/>
+        <Style x:Key="PaisLabel" TargetType="Label">
+            <Setter Property="Margin" Value="10,5,0,0"/>
         </Style>
 
-        <!--Estilos para los Picker-->
-        <Style TargetType="Picker">
-            <Setter Property="FontSize" Value="20"/>
+        <Style x:Key="CodigoLabel" TargetType="Label">
+            <Setter Property="Margin" Value="10,5,0,5"/>
         </Style>
 
-        <!--Estilos para los Entry-->
-        <Style TargetType="Entry">
-
-            <Setter Property="FontSize" Value="17"/>
-
+        <Style x:Key="ValorLabel" TargetType="Label">
+            <Setter Property="Margin" Value="10,0,0,5"/>
+            <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+            <Setter Property="VerticalOptions" Value="EndAndExpand"/>
         </Style>
-
-        <!--Estilos para los Botones-->
-        <Style TargetType="Button">
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="CornerRadius" Value="8" />
-            <Setter Property="WidthRequest" Value="200" />
-        </Style>
+        <!-- Fin estilos para un elemento favorito.<<<<<-->
 
     </ContentPage.Resources>
+    <!-- Style="{StaticResource }" 
+    
+        <Setter Property="" Value=""/>
+    
+    -->
 
     <ScrollView>
+        <StackLayout Padding="10">
 
-        <StackLayout Padding ="20" BackgroundColor ="#E6F4E6" Margin="30">
+            <!-- Recuadro principal -->
+            <Border Style="{StaticResource RecuadroPrincipal}">
+                <StackLayout Margin="10">
+                    <!-- Barra de búsqueda -->
+                    <StackLayout Orientation="Horizontal">
+                        <SearchBar x:Name="BusquedaSearchBar" Placeholder="Buscar divisa..." HorizontalOptions="FillAndExpand" Style="{StaticResource BarraBusqueda}"/>
+                        <Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/>
+                    </StackLayout>
 
-            <!-- Recuadro superior para la seccion de la divisa base y destino. -->
-            <Border>
-                <StackLayout>
-                    <Label Text="Selecciona la divisa de origen: "/>
-                    <Border>
-                        <Picker x:Name="DivisaOrigenPicker"/>
-                    </Border>
+                    <!-- Label de elementos favoritos -->
+                    <Label Text="Elementos favoritos:" Style="{StaticResource FavoritosLabel}" />
 
-                    <Image x:Name="FlechaImagenSuperior" Source="flecha_conversor.png" HeightRequest="50"/>
+                    <!-- Recuadro contenedor gris -->
+                    <Border Style="{StaticResource RecuadroContenedor}">
+                        <StackLayout>
+                            <!--Elemento Favorito, Recuadro verde-->
+                            <Border Style="{StaticResource RecuadroElemento}">
 
-                    <Label Text="Selecciona la divisa de destino:" />
+                                <!--Elemento Favorito, Recuadro blanco-->
+                                <Border Style="{StaticResource RecuadroInterno}">
 
-                    <Border>
-                        <Picker x:Name="DivisaDestinoPicker" />
+                                    <!--Elemento Favorito, Ordenar los elementos en horizontal.-->
+                                    <StackLayout Style="{StaticResource StackLayouHorizontal}"  >
+                                        <StackLayout>
+
+                                            <Label Text="Costa Rica" Style="{StaticResource PaisLabel}" />
+                                            <Label Text="CRC" Style="{StaticResource CodigoLabel}" />
+
+                                        </StackLayout>
+
+                                        <Label Text="1 USD"  Style="{StaticResource ValorLabel}" />
+
+                                        <StackLayout Style="{StaticResource StackLayouVerticalEspecial}">
+
+                                            <Button Text="⋮"  Style="{StaticResource OpcionesBtn}"/>
+
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                </Border>
+
+                            </Border>
+                            <!--Fin del elemento favorito.-->
+
+
+                            <!--Elemento Favorito, Recuadro verde-->
+                            <Border Style="{StaticResource RecuadroElemento}">
+
+                                <!--Elemento Favorito, Recuadro blanco-->
+                                <Border Style="{StaticResource RecuadroInterno}">
+
+                                    <!--Elemento Favorito, Ordenar los elementos en horizontal.-->
+                                    <StackLayout Style="{StaticResource StackLayouHorizontal}"  >
+                                        <StackLayout>
+
+                                            <Label Text="Costa Rica" Style="{StaticResource PaisLabel}" />
+                                            <Label Text="CRC" Style="{StaticResource CodigoLabel}" />
+                                                
+                                        </StackLayout>
+
+                                        <Label Text="1 USD"  Style="{StaticResource ValorLabel}" />
+
+                                        <StackLayout Style="{StaticResource StackLayouVerticalEspecial}">
+
+                                            <Button Text="⋮"  Style="{StaticResource OpcionesBtn}"/>
+                                                
+                                        </StackLayout>
+                                    
+                                    </StackLayout>
+                                        
+                                </Border>
+                                
+                            </Border> <!--Fin del elemento favorito.-->
+                            <!--Elemento Favorito, Recuadro verde-->
+                            <Border Style="{StaticResource RecuadroElemento}">
+
+                                <!--Elemento Favorito, Recuadro blanco-->
+                                <Border Style="{StaticResource RecuadroInterno}">
+
+                                    <!--Elemento Favorito, Ordenar los elementos en horizontal.-->
+                                    <StackLayout Style="{StaticResource StackLayouHorizontal}"  >
+                                        <StackLayout>
+
+                                            <Label Text="Costa Rica" Style="{StaticResource PaisLabel}" />
+                                            <Label Text="CRC" Style="{StaticResource CodigoLabel}" />
+
+                                        </StackLayout>
+
+                                        <Label Text="1 USD"  Style="{StaticResource ValorLabel}" />
+
+                                        <StackLayout Style="{StaticResource StackLayouVerticalEspecial}">
+
+                                            <Button Text="⋮"  Style="{StaticResource OpcionesBtn}"/>
+
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                </Border>
+
+                            </Border>
+                            <!--Fin del elemento favorito.-->
+                        </StackLayout>
                     </Border>
                 </StackLayout>
             </Border>
-
-            <!-- Recuadro inferior para ingresar el monto y mostrar el valor de la conversion. Style="{StaticResource EspecialBorderStyle}"-->
-            <Border>
-                <StackLayout>
-                    <Label Text="Monto a convertir:" />
-
-                    <Border>
-                        <Entry x:Name="MontoEntry" Placeholder="Ingresa el monto" Keyboard="Numeric"  VerticalOptions="CenterAndExpand"/>
-                    </Border>
-
-                    <Image x:Name="FlechaImagenInferior" Source="flecha_conversor.png" HeightRequest="50"/>
-
-                    <Label Text="Monto convertido:" />
-                    <Border>
-                        <Label x:Name="ResultadoLabel" Text="Monto Final" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
-                    </Border>
-                </StackLayout>
-            </Border>
-
-            <Button x:Name="ConvertirBtn" Text="Convertir"  BackgroundColor="Green" TextColor="White" />
-            <!--Clicked="RealizarConvercion"-->
 
         </StackLayout>
-
-
     </ScrollView>
 </ContentPage>
