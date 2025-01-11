@@ -43,6 +43,7 @@ namespace AppMovilProyecto1
             }
 
             await Application.Current.MainPage.DisplayAlert("Login Message", "Welcome " + loggedUser.FullName, "Ok");
+            //await DisplayAlert("Login Message", "Welcome " + loggedUser.FullName, "Ok");
         }
 
         private async void LogoutBtn_Clicked(object sender, EventArgs e)
@@ -50,6 +51,7 @@ namespace AppMovilProyecto1
             await _googleAuthService?.LogoutAsync();
 
             await Application.Current.MainPage.DisplayAlert("Login Message", "Goodbye", "Ok");
+            //await DisplayAlert("Login Message", "Goodbye", "Ok");
         }
     }
 

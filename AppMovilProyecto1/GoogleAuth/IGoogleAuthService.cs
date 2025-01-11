@@ -1,4 +1,5 @@
-﻿
+﻿using AppMovilProyecto1.Models;
+
 namespace AppMovilProyecto1.GoogleAuth
 {
     public interface IGoogleAuthService

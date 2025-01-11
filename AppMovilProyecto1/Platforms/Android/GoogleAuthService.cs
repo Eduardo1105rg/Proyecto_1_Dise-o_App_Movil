@@ -1,12 +1,12 @@
 ﻿using Android.App;
 using Android.Gms.Auth.Api.SignIn;
+using AppMovilProyecto1.Models;
 
 namespace AppMovilProyecto1.GoogleAuth
 {
-    public partial class GoogleAuthService
+    public class GoogleAuthService : IGoogleAuthService
     {
-        //private const string WebApiKey = "13014203953 - 35so8asr9id1mlrjtr0lvj8cbegpekl1.apps.googleusercontent.com";
-
+        private const string WebApiKey = "13014203953 - 35so8asr9id1mlrjtr0lvj8cbegpekl1.apps.googleusercontent.com";
         public static Activity _activity;
         public static GoogleSignInOptions _gso;
         public static GoogleSignInClient _googleSignInClient;
