@@ -1,8 +1,12 @@
-﻿namespace AppMovilProyecto1
+﻿using AppMovilProyecto1.GoogleAuth;
+
+namespace AppMovilProyecto1
 {
     public partial class MainPage : ContentPage
     {
         int count = 0;
+
+        private readonly IGoogleAuthService _googleAuthService = new GoogleAuthService(); //probar lo del inicio de sesion
 
         public MainPage()
         {
@@ -25,6 +29,27 @@
         {
 
             await Shell.Current.GoToAsync("//VentanaConversor");
+        }
+
+        
+        //Para el inicio de sesion
+        private async void LoginBtn_Clicked(object sender, EventArgs e)
+        {
+            var loggedUser = await _googleAuthService.GetCurrentUserAsync();
+
+            if (loggedUser == null)
+            {
+                loggedUser = await _googleAuthService.AuthenticateAsync();
+            }
+
+            await Application.Current.MainPage.DisplayAlert("Login Message", "Welcome " + loggedUser.FullName, "Ok");
+        }
+
+        private async void LogoutBtn_Clicked(object sender, EventArgs e)
+        {
+            await _googleAuthService?.LogoutAsync();
+
+            await Application.Current.MainPage.DisplayAlert("Login Message", "Goodbye", "Ok");
         }
     }
 

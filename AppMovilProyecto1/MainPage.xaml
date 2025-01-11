@@ -31,6 +31,20 @@
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
 
+            <Button
+                x:Name="LoginBtn"
+                Text="Inicio de sesion"
+                SemanticProperties.Hint="Inicia sesion al clikear"
+                Clicked="LoginBtn_Clicked"
+                HorizontalOptions="Fill" />
+
+            <Button
+                x:Name="LogoutBtn"
+                Text="Cerrar sesion"
+                SemanticProperties.Hint="Cierra sesion al clikear"
+                Clicked="LogoutBtn_Clicked"
+                HorizontalOptions="Fill" />
+            
             <Button 
                 Text="Vamos a la siguiente ventana."  
                 Clicked="navegacionVentana"
