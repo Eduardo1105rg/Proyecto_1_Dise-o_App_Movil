@@ -63,7 +63,7 @@
         <StackLayout Padding ="20" BackgroundColor ="#E6F4E6" Margin="20">
 
             <Button x:Name="ModificarBtn" Text="Elementos favoritos" Clicked="AsignarValoresPickerFavoritos" BackgroundColor="Green" TextColor="White" />
-            
+
             <!-- Recuadro superior para la seccion de la divisa base y destino. -->
             <Border>
                 <StackLayout>

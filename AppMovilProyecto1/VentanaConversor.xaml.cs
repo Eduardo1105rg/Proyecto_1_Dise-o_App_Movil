@@ -110,7 +110,7 @@ public partial class VentanaConversor : ContentPage
     // Asignar los valores al picker despues de cambiar a favoritos.
     private void AsignarValoresPickerDefaultActualizacion(object sender, EventArgs e)
     {
-        DivisaOrigenPicker.ItemsSource = null; 
+        DivisaOrigenPicker.ItemsSource = null;
         DivisaOrigenPicker.SelectedIndex = -1;
 
         DivisaOrigenPicker.ItemsSource = datosDivisasPicker;//new string[] { "USD", "EUR", "CRC" }; // Añadir más divisas según sea necesario
@@ -132,15 +132,15 @@ public partial class VentanaConversor : ContentPage
         DatosFavoritosCargados = new Dictionary<string, Dictionary<string, double>>();
         var elementosRegistrado = await FavoritosService.LeerTodoLosArchivosExistentesLista();
 
-        // Vaciar los datos del picker.
-        DivisaOrigenPicker.ItemsSource = null; 
-        DivisaOrigenPicker.SelectedIndex = -1;
-
         if (elementosRegistrado.Count() == 0)
         {
             await DisplayAlert("Informacion", "Actualmente no hay elementos guardados en favoritos.", "OK");
             return;
         }
+
+        // Vaciar los datos del picker.
+        DivisaOrigenPicker.ItemsSource = null;
+        DivisaOrigenPicker.SelectedIndex = -1;
 
 
         List<string> divisaRegistradasEnFavoritos = new List<string>();
@@ -163,10 +163,12 @@ public partial class VentanaConversor : ContentPage
 
         if (listaDeDivisasRegistradas.Any())
         {
-            DivisaOrigenPicker.ItemsSource = listaDeDivisasRegistradas; 
-        } else { 
-            await DisplayAlert("Error", "No se encontraron divisas registradas en favoritos.", "OK"); 
-            return; 
+            DivisaOrigenPicker.ItemsSource = listaDeDivisasRegistradas;
+        }
+        else
+        {
+            await DisplayAlert("Error", "No se encontraron divisas registradas en favoritos.", "OK");
+            return;
         }
 
 

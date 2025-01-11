@@ -125,7 +125,7 @@
                         <SearchBar x:Name="BusquedaSearchBar" Placeholder="Buscar divisa..." Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />
                         <!--<Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/>-->
                         <Button Text="Buscar" Clicked="GuardarElementoEnRegistros" Style="{StaticResource BuscarBtn}"/>
-                        
+
                     </StackLayout>
 
                     <!-- Label de elementos favoritos -->
@@ -133,7 +133,9 @@
 
                     <!-- Recuadro contenedor gris -->
                     <Border Style="{StaticResource RecuadroContenedor}">
-                        <StackLayout>
+
+                        <StackLayout x:Name="FavoritosContenedorStackLayout">
+
                             <!--Elemento Favorito, Recuadro verde-->
                             <Border Style="{StaticResource RecuadroElemento}">
 
@@ -177,7 +179,7 @@
 
                                             <Label Text="Costa Rica" Style="{StaticResource PaisLabel}" />
                                             <Label Text="CRC" Style="{StaticResource CodigoLabel}" />
-                                                
+
                                         </StackLayout>
 
                                         <Label Text="1 USD"  Style="{StaticResource ValorLabel}" />
@@ -185,14 +187,15 @@
                                         <StackLayout Style="{StaticResource StackLayouVerticalEspecial}">
 
                                             <Button Text="⋮"  Style="{StaticResource OpcionesBtn}"/>
-                                                
+
                                         </StackLayout>
-                                    
+
                                     </StackLayout>
-                                        
+
                                 </Border>
-                                
-                            </Border> <!--Fin del elemento favorito.-->
+
+                            </Border>
+                            <!--Fin del elemento favorito.-->
                             <!--Elemento Favorito, Recuadro verde-->
                             <Border Style="{StaticResource RecuadroElemento}">
 
@@ -222,8 +225,11 @@
 
                             </Border>
                             <!--Fin del elemento favorito.-->
+
                         </StackLayout>
+
                     </Border>
+
                 </StackLayout>
             </Border>
 

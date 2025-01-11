@@ -15,7 +15,8 @@ namespace AppMovilProyecto1.Services
         public static string rutaArchivosFavoritos = Path.Combine(FileSystem.AppDataDirectory, "Favoritos"); //Ruta del direcctorio de archivo, esta ruta es la mas recomendada para guardar archivos de forma local.
 
         // Verificamos si existe el directorio, si no existe lo creamos...FavoritosService()
-        public static void GenerarRutas() { 
+        public static void GenerarRutas()
+        {
             if (!Directory.Exists(rutaArchivosFavoritos))
             {
                 Directory.CreateDirectory(rutaArchivosFavoritos);
@@ -76,7 +77,7 @@ namespace AppMovilProyecto1.Services
 
                 if (archivos.Length == 0)
                 {
-                   
+
                     return new Dictionary<string, DivisaFavorita>();
                 }
 
@@ -88,13 +89,14 @@ namespace AppMovilProyecto1.Services
                     var favorito = JsonSerializer.Deserialize<DivisaFavorita>(archivo);
                     if (favorito != null)
                     {
-                        diccionarioDeElementos.Add(favorito.CodigoDivisa, favorito);                       
+                        diccionarioDeElementos.Add(favorito.CodigoDivisa, favorito);
                     }
                 }
                 return diccionarioDeElementos;
             }
-            catch (Exception ex) {
-                
+            catch (Exception ex)
+            {
+
                 return new Dictionary<string, DivisaFavorita>();
 
             }
@@ -113,7 +115,7 @@ namespace AppMovilProyecto1.Services
                 if (archivos.Length == 0)
                 {
                     return new List<DivisaFavorita>();
-                    
+
                 }
 
                 var elementosGuardados = new List<DivisaFavorita>();
@@ -124,7 +126,7 @@ namespace AppMovilProyecto1.Services
                     var favorito = JsonSerializer.Deserialize<DivisaFavorita>(archivo);
                     if (favorito != null)
                     {
-                        
+
                         elementosGuardados.Add(favorito);
                     }
                 }
@@ -153,9 +155,10 @@ namespace AppMovilProyecto1.Services
                 }
 
             }
-            catch (Exception e) { 
-                
-                
+            catch (Exception e)
+            {
+
+
             }
         }
 
@@ -188,7 +191,8 @@ namespace AppMovilProyecto1.Services
                     return objetoAcomodado;
 
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                     return null;
                 }
 
