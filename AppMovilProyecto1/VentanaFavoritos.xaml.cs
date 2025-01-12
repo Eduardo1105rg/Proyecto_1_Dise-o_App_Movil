@@ -7,8 +7,9 @@ namespace AppMovilProyecto1;
 
 public partial class VentanaFavoritos : ContentPage
 {
-
     private List<MenuDesplegable> menusAbiertos = new List<MenuDesplegable>();
+
+    private AbsoluteLayout absoluteLayoutMain;
 
     public Dictionary<String, String> AccederInfoDivisas = new Dictionary<string, string> {
         { "United Arab Emirates", "AED" }, { "Afghanistan", "AFN" }, { "Albania", "ALL" },
@@ -70,16 +71,58 @@ public partial class VentanaFavoritos : ContentPage
     public Dictionary<String, String> AccederInfoDivisasPorCodigo = new Dictionary<string, string>();
 
 
+
+
     public VentanaFavoritos()
     {
         InitializeComponent();
         AccederInfoDivisasPorCodigo = AccederInfoDivisas.ToDictionary(item => item.Value, item => item.Key);
 
-        var tapGestureRecognizer = new TapGestureRecognizer();
-        tapGestureRecognizer.Tapped += (s, e) => CerrarMenusDesplegables();
+        //var tapGestureRecognizer = new TapGestureRecognizer(); 
+        //tapGestureRecognizer.Tapped += (s, e) => CerrarMenusDesplegables();
 
-        var absoluteLayout = (AbsoluteLayout)this.Content;
-        absoluteLayout.GestureRecognizers.Add(tapGestureRecognizer);
+        //var absoluteLayout = (AbsoluteLayout)this.Content; 
+        //absoluteLayout.GestureRecognizers.Add(tapGestureRecognizer);
+        //var grid = this.Content as Grid;
+        //grid.GestureRecognizers.Add(tapGestureRecognizer);
+        //absoluteLayoutMain = grid.Children.OfType<AbsoluteLayout>().FirstOrDefault();
+        //absoluteLayoutMain.GestureRecognizers.Add(tapGestureRecognizer);
+
+        //if (grid != null)
+        //{
+        //absoluteLayoutMain = grid.Children.OfType<AbsoluteLayout>().FirstOrDefault();
+        // if (absoluteLayoutMain != null)
+        //{
+        //var tapGestureRecognizer = new TapGestureRecognizer();
+        // tapGestureRecognizer.Tapped += (s, e) => CerrarMenusDesplegables();
+        //TouchOverlay.GestureRecognizers.Add(tapGestureRecognizer);
+        //absoluteLayoutMain.GestureRecognizers.Add(tapGestureRecognizer);
+
+        // Añadir un gestor de eventos táctiles para capturar todos los toques
+
+
+        // }
+        // }
+        var grid = this.Content as Grid;
+        if (grid != null)
+        {
+            absoluteLayoutMain = grid.Children.OfType<AbsoluteLayout>().FirstOrDefault();
+        }
+
+        TapGestureRecognizer tapGestureRecognizer = new TapGestureRecognizer();
+        tapGestureRecognizer.Tapped += (s, e) =>
+        {
+            // Handle the tap
+            CerrarMenusDesplegables();
+        };
+
+        absoluteLayoutMain.GestureRecognizers.Add(tapGestureRecognizer);
+
+        // Configurar el TouchOverlay para cerrar menús
+        if (TouchOverlay != null)
+        {
+            TouchOverlay.IsVisible = false; // Asegurarse de que está oculto al inicio
+        }
 
 
         InciarRenderizadoDeElementos();
@@ -95,7 +138,7 @@ public partial class VentanaFavoritos : ContentPage
     // Inciar el proceso de renderrizado de elementos en la pantalla.
     private async void InciarRenderizadoDeElementos()
     {
-        
+
         var elementosRegistrado = await FavoritosService.LeerTodoLosArchivosExistentesLista();
 
         if (elementosRegistrado.Count() == 0)
@@ -109,8 +152,8 @@ public partial class VentanaFavoritos : ContentPage
 
 
 
-
         FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
+
         foreach (var favorito in elementosRegistrado)
         {
 
@@ -223,17 +266,17 @@ public partial class VentanaFavoritos : ContentPage
 
     }
 
-
     // Mostrar el menu de opciones en la ventana.
     private async void MostrarMenuDesplegable(string codigoDivisa, View anchor)
     {
         // Cerrar otros menús abiertos
-        foreach (var menu in menusAbiertos)
-        {
-            var absoluteLayout = (AbsoluteLayout)this.Content;
-            absoluteLayout.Children.Remove(menu);
-        }
-        menusAbiertos.Clear();
+        CerrarMenusDesplegables();
+        //foreach (var menu in menusAbiertos)
+        //{
+        //var absoluteLayout = (AbsoluteLayout)this.Content;
+        // absoluteLayout.Children.Remove(menu);
+        // }
+        // menusAbiertos.Clear();
 
         var menuDesplegable = new MenuDesplegable(codigoDivisa);
         menuDesplegable.OpcionSeleccionada += (sender, accion) =>
@@ -246,13 +289,17 @@ public partial class VentanaFavoritos : ContentPage
             {
                 EliminarElementoFavorito(codigoDivisa);
             }
-            var absoluteLayout = (AbsoluteLayout)this.Content;
-            absoluteLayout.Children.Remove((View)sender);
+            //var absoluteLayout = (AbsoluteLayout)this.Content;
+            //absoluteLayout.Children.Remove((View)sender);
+            absoluteLayoutMain.Children.Remove((View)sender);
             menusAbiertos.Remove((MenuDesplegable)sender);
+            TouchOverlay.IsVisible = false;
         };
 
-        var absoluteLayoutMain = (AbsoluteLayout)this.Content;
+        //var absoluteLayoutMain = (AbsoluteLayout)this.Content;
+        //absoluteLayoutMain.Children.Add(menuDesplegable);
         absoluteLayoutMain.Children.Add(menuDesplegable);
+        TouchOverlay.IsVisible = true;
 
         await Task.Yield(); // Esperar un ciclo de renderizado
 
@@ -294,16 +341,25 @@ public partial class VentanaFavoritos : ContentPage
         menusAbiertos.Add(menuDesplegable);
     }
 
-    // Cerrar los menus que se han abierto.
+    // Cerrar todos los menus que esten abiertos.
     private void CerrarMenusDesplegables()
     {
+        DisplayAlert("Error", "Cerrando los menus abiertos.", "OK");
         foreach (var menu in menusAbiertos)
         {
-            var absoluteLayout = (AbsoluteLayout)this.Content;
-            absoluteLayout.Children.Remove(menu);
+            //var absoluteLayout = (AbsoluteLayout)this.Content;
+            //absoluteLayout.Children.Remove(menu);
+            absoluteLayoutMain.Children.Remove(menu);
         }
         menusAbiertos.Clear();
+        TouchOverlay.IsVisible = false;
     }
+    private void OnTapGestureRecognizerTapped(object sender, EventArgs e)
+    {
+        DisplayAlert("Error", "Acabamos de hacer un click.", "OK");
+        CerrarMenusDesplegables(); // Cierra todos los menús abiertos
+    }
+
 
     // Recargar el contenido de la ventana:
     private void RecargarContenido()
@@ -311,6 +367,7 @@ public partial class VentanaFavoritos : ContentPage
         FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
         InciarRenderizadoDeElementos();
     }
+
 
     // Volver a lanzar la ventana:
     private async void ReelanzarVentana()
@@ -320,6 +377,8 @@ public partial class VentanaFavoritos : ContentPage
         await Navigation.PushAsync(new VentanaFavoritos()); // Crear la nueva.
         Navigation.RemovePage(paginaActual); // Elimianar la pagina anterior.
     }
+
+
 
     // Funcion para ser llamada a travez de la interfaz para guardar un elemento en favoritos.
     private async void GuardarElementoEnRegistros(string divisaSeleccionada)
@@ -363,6 +422,5 @@ public partial class VentanaFavoritos : ContentPage
         //RecargarContenido();
         DisplayAlert("Exito", $"Eliminar {codigoDivisa}", "OK");
     }
-
 
 }
