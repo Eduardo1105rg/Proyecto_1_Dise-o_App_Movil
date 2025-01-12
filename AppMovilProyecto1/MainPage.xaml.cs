@@ -6,7 +6,7 @@ namespace AppMovilProyecto1
 {
     public partial class MainPage : ContentPage
     {
-        private List<MenuDesplegable> menusAbiertos = new List<MenuDesplegable>();
+        private List<MenuDesplegableMain> menusAbiertos = new List<MenuDesplegableMain>();
 
         private AbsoluteLayout absoluteLayoutMain;
 
@@ -268,21 +268,17 @@ namespace AppMovilProyecto1
             // }
             // menusAbiertos.Clear();
 
-            var menuDesplegable = new MenuDesplegable(codigoDivisa);
+            var menuDesplegable = new MenuDesplegableMain(codigoDivisa);
             menuDesplegable.OpcionSeleccionada += (sender, accion) =>
-            {
-                if (accion == "Eliminar")
+            {              
+                if (accion == "Agregar")
                 {
                     GuardarElementoEnRegistros(codigoDivisa);
-                }
-                else if (accion == "Agregar")
-                {
-                    EliminarElementoFavorito(codigoDivisa);
                 }
                 //var absoluteLayout = (AbsoluteLayout)this.Content;
                 //absoluteLayout.Children.Remove((View)sender);
                 absoluteLayoutMain.Children.Remove((View)sender);
-                menusAbiertos.Remove((MenuDesplegable)sender);
+                menusAbiertos.Remove((MenuDesplegableMain)sender);
                 TouchOverlay.IsVisible = false;
             };
 
@@ -334,7 +330,7 @@ namespace AppMovilProyecto1
         // Cerrar todos los menus que esten abiertos.
         private void CerrarMenusDesplegables()
         {
-            DisplayAlert("Error", "Cerrando los menus abiertos.", "OK");
+           
             foreach (var menu in menusAbiertos)
             {
                 //var absoluteLayout = (AbsoluteLayout)this.Content;
@@ -351,9 +347,16 @@ namespace AppMovilProyecto1
         }
 
 
-        // Recargar el contenido de la ventana:
-        private void RecargarContenido()
+        protected override void OnAppearing()
         {
+            base.OnAppearing();
+            RecargarContenido();
+        }
+
+        // Recargar el contenido de la ventana:
+        public void RecargarContenido()
+        {
+            DisplayAlert("Error", "Recargando contenido", "OK");
             FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
             InciarRenderizadoDeElementos();
         }
@@ -405,22 +408,6 @@ namespace AppMovilProyecto1
             await DisplayAlert("Exito", "La divisa seleccionada ha sido guardada en favoritos exitosamente.", "OK");
 
         }
-
-        // Funcion para eliminar un elemento del registro de favoritos...
-        private void EliminarElementoFavorito(string codigoDivisa)
-        {
-            //RecargarContenido();
-            DisplayAlert("Exito", $"Eliminar {codigoDivisa}", "OK");
-        }
-
-
-
-
-
-
-
-
-
 
 
         private async void navegacionVentana(object sender, EventArgs e) // Con esos parametros, se le permite ser llamado desde la interfaz.

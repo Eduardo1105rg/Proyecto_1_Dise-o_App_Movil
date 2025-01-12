@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:AppMovilProyecto1"
     xmlns:res="clr-namespace:AppMovilProyecto1.Localization"
     Shell.FlyoutBehavior="Flyout"
-    Title="AppMovilProyecto1">
+    Title="Serafino Exchange">
 
     <ShellContent
         Title="{x:Static res:AppResources.Home}"
@@ -19,4 +19,12 @@
     <ShellContent Title="{x:Static res:AppResources.Favorites}"
         ContentTemplate="{DataTemplate local:VentanaFavoritos}"
         Route="VentanaFavoritos"/>
+
+
+    <Shell.ToolbarItems>
+
+        <ToolbarItem Text="Divisa base"  x:Name = "ToollPikerItem" Order="Primary" Priority="0" Clicked="SeleccionarDivisaBaseRediReccionador"/>
+
+    </Shell.ToolbarItems>
+    
 </Shell>

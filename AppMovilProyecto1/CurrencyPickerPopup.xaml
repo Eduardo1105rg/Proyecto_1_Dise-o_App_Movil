@@ -1,0 +1,19 @@
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="AppMovilProyecto1.CurrencyPickerPopup">
+    <StackLayout Padding="20" BackgroundColor="White">
+        <Label Text="Select Base Currency" FontSize="Medium" />
+        <Picker x:Name="CurrencyPicker" WidthRequest="150" SelectedIndexChanged="OnCurrencyPickerSelectedIndexChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>USD</x:String>
+                    <x:String>EUR</x:String>
+                    <x:String>JPY</x:String>
+                  
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+    </StackLayout>
+</toolkit:Popup>
+

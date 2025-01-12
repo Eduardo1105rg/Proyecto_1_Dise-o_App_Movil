@@ -3,12 +3,12 @@ using Microsoft.Maui.Controls.Shapes;
 
 namespace AppMovilProyecto1
 {
-    public class MenuDesplegable : ContentView
+    public class MenuDesplegableMain : ContentView
     {
 
         public event EventHandler<string> OpcionSeleccionada;
 
-        public MenuDesplegable(string codigoDivisa)
+        public MenuDesplegableMain(string codigoDivisa)
         {
             var stackLayoutOpciones = new StackLayout
             {
@@ -16,14 +16,13 @@ namespace AppMovilProyecto1
                 BackgroundColor = Colors.White,
                 Padding = 5,
                 Children =
-                {
+                {                   
                     new Button
                     {
-                        Text = "Eliminar",
-                        Command = new Command(() => ReaccionarOpcionSeleccionada("Eliminar", codigoDivisa)),
+                        Text = "Agregar a Favoritos",
+                        Command = new Command(() => ReaccionarOpcionSeleccionada("Agregar", codigoDivisa)),
                         Style = (Style)Application.Current.Resources["OpcionesBtnStyle"]
                     },
-
                 }
 
             };
@@ -46,5 +45,8 @@ namespace AppMovilProyecto1
         {
             OpcionSeleccionada?.Invoke(this, accion);
         }
+
+
+
     }
 }
