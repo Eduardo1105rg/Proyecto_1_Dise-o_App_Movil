@@ -4,19 +4,19 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:AppMovilProyecto1"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:res="clr-namespace:AppMovilProyecto1.Localization"
     Shell.FlyoutBehavior="Flyout"
     Title="Serafino Exchange">
 
     <ShellContent
-        Title="Inicio"
+        Title="{x:Static res:AppResources.Home}"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-    <ShellContent Title="Conversor"
+    <ShellContent Title="{x:Static res:AppResources.Converter}"
         ContentTemplate="{DataTemplate local:VentanaConversor}"
         Route="VentanaConversor"/>
-    
-    <ShellContent Title="Favoritos"
+
+    <ShellContent Title="{x:Static res:AppResources.Favorites}"
         ContentTemplate="{DataTemplate local:VentanaFavoritos}"
         Route="VentanaFavoritos"/>
 
