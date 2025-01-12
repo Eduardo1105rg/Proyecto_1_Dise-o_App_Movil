@@ -283,12 +283,9 @@ public partial class VentanaFavoritos : ContentPage
         {
             if (accion == "Eliminar")
             {
-                GuardarElementoEnRegistros(codigoDivisa);
-            }
-            else if (accion == "Agregar")
-            {
                 EliminarElementoFavorito(codigoDivisa);
             }
+            
             //var absoluteLayout = (AbsoluteLayout)this.Content;
             //absoluteLayout.Children.Remove((View)sender);
             absoluteLayoutMain.Children.Remove((View)sender);
@@ -361,9 +358,16 @@ public partial class VentanaFavoritos : ContentPage
     }
 
 
-    // Recargar el contenido de la ventana:
-    private void RecargarContenido()
+    protected override void OnAppearing()
     {
+        base.OnAppearing();
+        RecargarContenido();
+    }
+
+    // Recargar el contenido de la ventana:
+    public void RecargarContenido()
+    {
+        DisplayAlert("Error", "Recargando contenido", "OK");
         FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
         InciarRenderizadoDeElementos();
     }
@@ -417,10 +421,12 @@ public partial class VentanaFavoritos : ContentPage
     }
 
     // Funcion para eliminar un elemento del registro de favoritos...
-    private void EliminarElementoFavorito(string codigoDivisa)
+    private async void EliminarElementoFavorito(string codigoDivisa)
     {
+        FavoritosService.EliminarArchivo(codigoDivisa);
         //RecargarContenido();
         DisplayAlert("Exito", $"Eliminar {codigoDivisa}", "OK");
+        RecargarContenido();
     }
 
 }
