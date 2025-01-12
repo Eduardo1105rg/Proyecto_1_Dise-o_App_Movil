@@ -1,13 +1,14 @@
 using System.Formats.Asn1;
 using AppMovilProyecto1.Models;
 using AppMovilProyecto1.Services;
-
+using Microsoft.Maui.Layouts;
 
 namespace AppMovilProyecto1;
 
 public partial class VentanaFavoritos : ContentPage
 {
 
+    private List<MenuDesplegable> menusAbiertos = new List<MenuDesplegable>();
 
     public Dictionary<String, String> AccederInfoDivisas = new Dictionary<string, string> {
         { "United Arab Emirates", "AED" }, { "Afghanistan", "AFN" }, { "Albania", "ALL" },
@@ -69,11 +70,18 @@ public partial class VentanaFavoritos : ContentPage
     public Dictionary<String, String> AccederInfoDivisasPorCodigo = new Dictionary<string, string>();
 
 
-
-
     public VentanaFavoritos()
     {
         InitializeComponent();
+        AccederInfoDivisasPorCodigo = AccederInfoDivisas.ToDictionary(item => item.Value, item => item.Key);
+
+        var tapGestureRecognizer = new TapGestureRecognizer();
+        tapGestureRecognizer.Tapped += (s, e) => CerrarMenusDesplegables();
+
+        var absoluteLayout = (AbsoluteLayout)this.Content;
+        absoluteLayout.GestureRecognizers.Add(tapGestureRecognizer);
+
+
         InciarRenderizadoDeElementos();
 
     }
@@ -152,7 +160,7 @@ public partial class VentanaFavoritos : ContentPage
         stacktLayoutLabelsInfo.Add(new Label
         {
 
-            Text = "CostaRica",//AccederInfoDivisasPorCodigo[codigoDivisa],
+            Text = AccederInfoDivisasPorCodigo[codigoDivisa],
             Style = (Style)Application.Current.Resources["PaisLabel"]
 
         });
@@ -179,12 +187,23 @@ public partial class VentanaFavoritos : ContentPage
             Style = (Style)Application.Current.Resources["StackLayouVerticalEspecial"]
         };
 
-        // Añadir al StackLayout del boton el boton.
-        stackLayoutVerticalBtn.Add(new Button
+        // Crear el boton de opciones:
+        var opcionesBtn = new Button
         {
+
             Text = "E", //
             Style = (Style)Application.Current.Resources["OpcionesBtn"]
-        });
+
+        };
+        opcionesBtn.Clicked += (sender, args) => MostrarMenuDesplegable(codigoDivisa, opcionesBtn); // Añadir al boton la funcion de desplegar ventana.
+
+        stackLayoutVerticalBtn.Children.Add(opcionesBtn);// Añadir al StackLayout el botn
+
+        //stackLayoutVerticalBtn.Add(new Button
+        //{
+        //Text = "E", //
+        //Style = (Style)Application.Current.Resources["OpcionesBtn"]
+        //});
 
 
         // Agregar los StackLayou principal los stackLayout secundarios.
@@ -205,11 +224,107 @@ public partial class VentanaFavoritos : ContentPage
     }
 
 
+    // Mostrar el menu de opciones en la ventana.
+    private async void MostrarMenuDesplegable(string codigoDivisa, View anchor)
+    {
+        // Cerrar otros menús abiertos
+        foreach (var menu in menusAbiertos)
+        {
+            var absoluteLayout = (AbsoluteLayout)this.Content;
+            absoluteLayout.Children.Remove(menu);
+        }
+        menusAbiertos.Clear();
+
+        var menuDesplegable = new MenuDesplegable(codigoDivisa);
+        menuDesplegable.OpcionSeleccionada += (sender, accion) =>
+        {
+            if (accion == "Eliminar")
+            {
+                GuardarElementoEnRegistros(codigoDivisa);
+            }
+            else if (accion == "Agregar")
+            {
+                EliminarElementoFavorito(codigoDivisa);
+            }
+            var absoluteLayout = (AbsoluteLayout)this.Content;
+            absoluteLayout.Children.Remove((View)sender);
+            menusAbiertos.Remove((MenuDesplegable)sender);
+        };
+
+        var absoluteLayoutMain = (AbsoluteLayout)this.Content;
+        absoluteLayoutMain.Children.Add(menuDesplegable);
+
+        await Task.Yield(); // Esperar un ciclo de renderizado
+
+        // Obtener las dimensiones del menú desplegable
+        menuDesplegable.Measure(absoluteLayoutMain.Width, absoluteLayoutMain.Height);
+        var menuWidth = menuDesplegable.DesiredSize.Width;
+        var menuHeight = menuDesplegable.DesiredSize.Height;
+
+        // Posicionar el menú desplegable justo debajo del botón de opciones
+        var anchorLocation = anchor.GetRelativePosition(this);
+        double menuX = anchorLocation.X;
+        double menuY = anchorLocation.Y + anchor.Height;
+
+        double screenWidth = this.Width;
+        double screenHeight = this.Height;
+
+        // Ajustar la posición si el menú se sale de los márgenes de la pantalla
+        if (menuX + menuWidth > screenWidth)
+        {
+            menuX = screenWidth - menuWidth;
+        }
+        if (menuY + menuHeight > screenHeight)
+        {
+            menuY = screenHeight - menuHeight;
+        }
+        if (menuX < 0)
+        {
+            menuX = 0;
+        }
+        if (menuY < 0)
+        {
+            menuY = 0;
+        }
+
+        AbsoluteLayout.SetLayoutBounds(menuDesplegable, new Rect(menuX, menuY, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
+        AbsoluteLayout.SetLayoutFlags(menuDesplegable, AbsoluteLayoutFlags.None);
+
+        // Asegurar que el menú desplegable esté en el contenedor principal de AbsoluteLayout
+        menusAbiertos.Add(menuDesplegable);
+    }
+
+    // Cerrar los menus que se han abierto.
+    private void CerrarMenusDesplegables()
+    {
+        foreach (var menu in menusAbiertos)
+        {
+            var absoluteLayout = (AbsoluteLayout)this.Content;
+            absoluteLayout.Children.Remove(menu);
+        }
+        menusAbiertos.Clear();
+    }
+
+    // Recargar el contenido de la ventana:
+    private void RecargarContenido()
+    {
+        FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
+        InciarRenderizadoDeElementos();
+    }
+
+    // Volver a lanzar la ventana:
+    private async void ReelanzarVentana()
+    {
+
+        var paginaActual = this; // Optener la que esta
+        await Navigation.PushAsync(new VentanaFavoritos()); // Crear la nueva.
+        Navigation.RemovePage(paginaActual); // Elimianar la pagina anterior.
+    }
 
     // Funcion para ser llamada a travez de la interfaz para guardar un elemento en favoritos.
-    private async void GuardarElementoEnRegistros(object sender, EventArgs e)
+    private async void GuardarElementoEnRegistros(string divisaSeleccionada)
     {
-        string divisaSeleccionada = "CRC";
+        //string divisaSeleccionada = "CRC";
         // Validamos que el archivo no este ya creado.
         var validarExistencia = await FavoritosService.LeerArchivoFavorito(divisaSeleccionada);
 
@@ -240,6 +355,13 @@ public partial class VentanaFavoritos : ContentPage
 
         await DisplayAlert("Exito", "La divisa seleccionada ha sido guardada en favoritos exitosamente.", "OK");
 
+    }
+
+    // Funcion para eliminar un elemento del registro de favoritos...
+    private void EliminarElementoFavorito(string codigoDivisa)
+    {
+        //RecargarContenido();
+        DisplayAlert("Exito", $"Eliminar {codigoDivisa}", "OK");
     }
 
 

@@ -481,6 +481,7 @@
         <Setter Property="VerticalOptions" Value="Center"/>
 
     </Style>
+    
     <!--Estilo del boton de opciones.-->
     <Style x:Key="OpcionesBtn" TargetType="Button">
         <Setter Property="Margin" Value="2"/>
@@ -506,5 +507,16 @@
         <Setter Property="VerticalOptions" Value="EndAndExpand"/>
     </Style>
     <!-- Fin estilos para un elemento favorito.<<<<<-->
+
+    <!-- >>>>Estilos del menu de opciones -->
+
+    <Style x:Key="OpcionesBtnStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="BackgroundColor" Value="Green"/>
+        <Setter Property="TextColor" Value="White"/>
+    </Style>
+    <!-- Fin Estilos del menu de opciones <<<<<<<<<<<-->
 
 </ResourceDictionary>

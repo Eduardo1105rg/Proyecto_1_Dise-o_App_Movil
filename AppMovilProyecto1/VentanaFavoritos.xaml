@@ -114,125 +114,127 @@
     
     -->
 
-    <ScrollView>
-        <StackLayout Padding="10">
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+            <StackLayout Padding="10">
 
-            <!-- Recuadro principal -->
-            <Border Style="{StaticResource RecuadroPrincipal}">
-                <StackLayout Margin="10">
-                    <!-- Barra de búsqueda -->
-                    <StackLayout Orientation="Horizontal">
-                        <SearchBar x:Name="BusquedaSearchBar" Placeholder="Buscar divisa..." Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />
-                        <!--<Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/>-->
-                        <Button Text="Buscar" Clicked="GuardarElementoEnRegistros" Style="{StaticResource BuscarBtn}"/>
+                <!-- Recuadro principal -->
+                <Border Style="{StaticResource RecuadroPrincipal}">
+                    <StackLayout Margin="10">
+                        <!-- Barra de búsqueda -->
+                        <StackLayout Orientation="Horizontal">
+                            <SearchBar x:Name="BusquedaSearchBar" Placeholder="Buscar divisa..." Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />
+                            <!--<Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/>  <Button Text="Buscar" Clicked="GuardarElementoEnRegistros" Style="{StaticResource BuscarBtn}"/>-->
 
-                    </StackLayout>
-
-                    <!-- Label de elementos favoritos -->
-                    <Label Text="Elementos favoritos:" Style="{StaticResource FavoritosLabel}" />
-
-                    <!-- Recuadro contenedor gris -->
-                    <Border Style="{StaticResource RecuadroContenedor}">
-
-                        <StackLayout x:Name="FavoritosContenedorStackLayout">
-
-                            <!--Elemento Favorito, Recuadro verde-->
-                            <Border Style="{StaticResource RecuadroElemento}">
-
-                                <!--Elemento Favorito, Recuadro blanco-->
-                                <Border Style="{StaticResource RecuadroInterno}">
-
-                                    <!--Elemento Favorito, Ordenar los elementos en horizontal.-->
-                                    <StackLayout Style="{StaticResource StackLayouHorizontal}"  >
-                                        <StackLayout>
-
-                                            <Label Text="Costa Rica" Style="{StaticResource PaisLabel}" />
-                                            <Label Text="CRC" Style="{StaticResource CodigoLabel}" />
-
-                                        </StackLayout>
-
-                                        <Label Text="1 USD"  Style="{StaticResource ValorLabel}" />
-
-                                        <StackLayout Style="{StaticResource StackLayouVerticalEspecial}">
-
-                                            <Button Text="⋮"  Style="{StaticResource OpcionesBtn}"/>
-
-                                        </StackLayout>
-
-                                    </StackLayout>
-
-                                </Border>
-
-                            </Border>
-                            <!--Fin del elemento favorito.-->
-
-
-                            <!--Elemento Favorito, Recuadro verde-->
-                            <Border Style="{StaticResource RecuadroElemento}">
-
-                                <!--Elemento Favorito, Recuadro blanco-->
-                                <Border Style="{StaticResource RecuadroInterno}">
-
-                                    <!--Elemento Favorito, Ordenar los elementos en horizontal.-->
-                                    <StackLayout Style="{StaticResource StackLayouHorizontal}"  >
-                                        <StackLayout>
-
-                                            <Label Text="Costa Rica" Style="{StaticResource PaisLabel}" />
-                                            <Label Text="CRC" Style="{StaticResource CodigoLabel}" />
-
-                                        </StackLayout>
-
-                                        <Label Text="1 USD"  Style="{StaticResource ValorLabel}" />
-
-                                        <StackLayout Style="{StaticResource StackLayouVerticalEspecial}">
-
-                                            <Button Text="⋮"  Style="{StaticResource OpcionesBtn}"/>
-
-                                        </StackLayout>
-
-                                    </StackLayout>
-
-                                </Border>
-
-                            </Border>
-                            <!--Fin del elemento favorito.-->
-                            <!--Elemento Favorito, Recuadro verde-->
-                            <Border Style="{StaticResource RecuadroElemento}">
-
-                                <!--Elemento Favorito, Recuadro blanco-->
-                                <Border Style="{StaticResource RecuadroInterno}">
-
-                                    <!--Elemento Favorito, Ordenar los elementos en horizontal.-->
-                                    <StackLayout Style="{StaticResource StackLayouHorizontal}"  >
-                                        <StackLayout>
-
-                                            <Label Text="Costa Rica" Style="{StaticResource PaisLabel}" />
-                                            <Label Text="CRC" Style="{StaticResource CodigoLabel}" />
-
-                                        </StackLayout>
-
-                                        <Label Text="1 USD"  Style="{StaticResource ValorLabel}" />
-
-                                        <StackLayout Style="{StaticResource StackLayouVerticalEspecial}">
-
-                                            <Button Text="⋮"  Style="{StaticResource OpcionesBtn}"/>
-
-                                        </StackLayout>
-
-                                    </StackLayout>
-
-                                </Border>
-
-                            </Border>
-                            <!--Fin del elemento favorito.-->
 
                         </StackLayout>
 
-                    </Border>
+                        <!-- Label de elementos favoritos -->
+                        <Label Text="Elementos favoritos:" Style="{StaticResource FavoritosLabel}" />
 
-                </StackLayout>
-            </Border>
+                        <!-- Recuadro contenedor gris -->
+                        <Border Style="{StaticResource RecuadroContenedor}">
 
-        </StackLayout>
-    </ScrollView>
+                            <StackLayout x:Name="FavoritosContenedorStackLayout">
+
+                                <!--Elemento Favorito, Recuadro verde-->
+                                <Border Style="{StaticResource RecuadroElemento}">
+
+                                    <!--Elemento Favorito, Recuadro blanco-->
+                                    <Border Style="{StaticResource RecuadroInterno}">
+
+                                        <!--Elemento Favorito, Ordenar los elementos en horizontal.-->
+                                        <StackLayout Style="{StaticResource StackLayouHorizontal}"  >
+                                            <StackLayout>
+
+                                                <Label Text="Costa Rica" Style="{StaticResource PaisLabel}" />
+                                                <Label Text="CRC" Style="{StaticResource CodigoLabel}" />
+
+                                            </StackLayout>
+
+                                            <Label Text="1 USD"  Style="{StaticResource ValorLabel}" />
+
+                                            <StackLayout Style="{StaticResource StackLayouVerticalEspecial}">
+
+                                                <Button Text="⋮"  Style="{StaticResource OpcionesBtn}"/>
+
+                                            </StackLayout>
+
+                                        </StackLayout>
+
+                                    </Border>
+
+                                </Border>
+                                <!--Fin del elemento favorito.-->
+
+
+                                <!--Elemento Favorito, Recuadro verde-->
+                                <Border Style="{StaticResource RecuadroElemento}">
+
+                                    <!--Elemento Favorito, Recuadro blanco-->
+                                    <Border Style="{StaticResource RecuadroInterno}">
+
+                                        <!--Elemento Favorito, Ordenar los elementos en horizontal.-->
+                                        <StackLayout Style="{StaticResource StackLayouHorizontal}"  >
+                                            <StackLayout>
+
+                                                <Label Text="Costa Rica" Style="{StaticResource PaisLabel}" />
+                                                <Label Text="CRC" Style="{StaticResource CodigoLabel}" />
+
+                                            </StackLayout>
+
+                                            <Label Text="1 USD"  Style="{StaticResource ValorLabel}" />
+
+                                            <StackLayout Style="{StaticResource StackLayouVerticalEspecial}">
+
+                                                <Button Text="⋮"  Style="{StaticResource OpcionesBtn}"/>
+
+                                            </StackLayout>
+
+                                        </StackLayout>
+
+                                    </Border>
+
+                                </Border>
+                                <!--Fin del elemento favorito.-->
+                                <!--Elemento Favorito, Recuadro verde-->
+                                <Border Style="{StaticResource RecuadroElemento}">
+
+                                    <!--Elemento Favorito, Recuadro blanco-->
+                                    <Border Style="{StaticResource RecuadroInterno}">
+
+                                        <!--Elemento Favorito, Ordenar los elementos en horizontal.-->
+                                        <StackLayout Style="{StaticResource StackLayouHorizontal}"  >
+                                            <StackLayout>
+
+                                                <Label Text="Costa Rica" Style="{StaticResource PaisLabel}" />
+                                                <Label Text="CRC" Style="{StaticResource CodigoLabel}" />
+
+                                            </StackLayout>
+
+                                            <Label Text="1 USD"  Style="{StaticResource ValorLabel}" />
+
+                                            <StackLayout Style="{StaticResource StackLayouVerticalEspecial}">
+
+                                                <Button Text="⋮"  Style="{StaticResource OpcionesBtn}"/>
+
+                                            </StackLayout>
+
+                                        </StackLayout>
+
+                                    </Border>
+
+                                </Border>
+                                <!--Fin del elemento favorito.-->
+
+                            </StackLayout>
+
+                        </Border>
+
+                    </StackLayout>
+                </Border>
+
+            </StackLayout>
+        </ScrollView>
+    </AbsoluteLayout>
 </ContentPage>
