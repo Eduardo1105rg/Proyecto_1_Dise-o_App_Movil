@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:AppMovilProyecto1.Localization"
              x:Class="AppMovilProyecto1.MainPage">
 
     <ContentPage.Resources>
@@ -72,9 +73,9 @@
                         <StackLayout Margin="10">
                             <!-- Barra de búsqueda -->
                             <StackLayout Orientation="Horizontal">
-                                <SearchBar x:Name="BusquedaSearchBar" Placeholder="Buscar divisa..." Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />
+                                <SearchBar x:Name="BusquedaSearchBar" Placeholder="{x:Static res:AppResources.SearchBarPlace}" Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />
                                 <!--<Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/>  <Button Text="Buscar" Clicked="GuardarElementoEnRegistros" Style="{StaticResource BuscarBtn}"/>-->
-                                <Button Text="Buscar" Clicked="OnTapGestureRecognizerTapped" Style="{StaticResource BuscarBtn}"/>
+                                <Button Text="{x:Static res:AppResources.Search}" Clicked="OnTapGestureRecognizerTapped" Style="{StaticResource BuscarBtn}"/>
 
                             </StackLayout>
 

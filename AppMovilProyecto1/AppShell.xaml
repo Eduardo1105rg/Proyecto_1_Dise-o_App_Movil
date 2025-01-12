@@ -4,18 +4,19 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:AppMovilProyecto1"
+    xmlns:res="clr-namespace:AppMovilProyecto1.Localization"
     Shell.FlyoutBehavior="Flyout"
     Title="AppMovilProyecto1">
 
     <ShellContent
-        Title="Home"
+        Title="{x:Static res:AppResources.Home}"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-    <ShellContent Title="Ventana conversor"
+    <ShellContent Title="{x:Static res:AppResources.Converter}"
         ContentTemplate="{DataTemplate local:VentanaConversor}"
         Route="VentanaConversor"/>
-    
-    <ShellContent Title="Ventana favoritos"
+
+    <ShellContent Title="{x:Static res:AppResources.Favorites}"
         ContentTemplate="{DataTemplate local:VentanaFavoritos}"
         Route="VentanaFavoritos"/>
 </Shell>
