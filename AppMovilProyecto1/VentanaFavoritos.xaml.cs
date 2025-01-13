@@ -166,22 +166,25 @@ public partial class VentanaFavoritos : ContentPage
 
         // >>> Crear los elementos----------------------- Style = (Style)Application.Current.Resources[""]
         // Crear Recuadro verde.
-        var recuadroVerde = new Border
+        var recuadroVerde = new Border();
+        if (Application.Current.Resources.TryGetValue("RecuadroElemento", out var style))
         {
-            Style = (Style)Application.Current.Resources["RecuadroElemento"]
-        };
+            recuadroVerde.Style = style as Style;
+        }
 
         // Crear recuadro blanco.
-        var recuadroBlanco = new Border
+        var recuadroBlanco = new Border();
+        if (Application.Current.Resources.TryGetValue("RecuadroInterno", out var styleInterno))
         {
-            Style = (Style)Application.Current.Resources["RecuadroInterno"]
-        };
+            recuadroBlanco.Style = styleInterno as Style;
+        }
 
         // Crear el StackLayou horizontal que organiza los elementos en horizontal.
-        var stackLayoutHorizontal = new StackLayout
+        var stackLayoutHorizontal = new StackLayout();
+        if (Application.Current.Resources.TryGetValue("StackLayouHorizontal", out var styleHorizontal))
         {
-            Style = (Style)Application.Current.Resources["StackLayouHorizontal"]
-        };
+            stackLayoutHorizontal.Style = styleHorizontal as Style;
+        }
 
         // Crear StackLayout para el pais y codigo de la divisa.
         var stacktLayoutLabelsInfo = new StackLayout();
@@ -189,41 +192,45 @@ public partial class VentanaFavoritos : ContentPage
         // Agregar el label con el nombre del pais.
         stacktLayoutLabelsInfo.Add(new Label
         {
-
             Text = AccederInfoDivisasPorCodigo[codigoDivisa],
-            Style = (Style)Application.Current.Resources["PaisLabel"]
-
+            Style = Application.Current.Resources.TryGetValue("PaisLabel", out var paisStyle)
+                ? paisStyle as Style
+                : null
         });
 
         // Agregar el Label del codigo de la divisa.
         stacktLayoutLabelsInfo.Add(new Label
         {
-
             Text = codigoDivisa,
-            Style = (Style)Application.Current.Resources["CodigoLabel"]
-
+            Style = Application.Current.Resources.TryGetValue("CodigoLabel", out var codigoStyle)
+                ? codigoStyle as Style
+                : null
         });
 
         // Crear el Label para mostrar el valor.
         var valorLabel = new Label
         {
             Text = "",
-            Style = (Style)Application.Current.Resources["ValorLabel"]
+            Style = Application.Current.Resources.TryGetValue("ValorLabel", out var valorStyle)
+                ? valorStyle as Style
+                : null
         };
 
         // Crear El StackLayout Vertical para colocar el boton.
         var stackLayoutVerticalBtn = new StackLayout
         {
-            Style = (Style)Application.Current.Resources["StackLayouVerticalEspecial"]
+            Style = Application.Current.Resources.TryGetValue("StackLayouVerticalEspecial", out var stackStyle)
+                ? stackStyle as Style
+                : null
         };
 
         // Crear el boton de opciones:
         var opcionesBtn = new Button
         {
-
-            Text = "O", //
-            Style = (Style)Application.Current.Resources["OpcionesBtn"]
-
+            Text = "O",
+            Style = Application.Current.Resources.TryGetValue("OpcionesBtn", out var btnStyle)
+                ? btnStyle as Style
+                : null
         };
         opcionesBtn.Clicked += (sender, args) => MostrarMenuDesplegable(codigoDivisa, opcionesBtn); // Añadir al boton la funcion de desplegar ventana.
 

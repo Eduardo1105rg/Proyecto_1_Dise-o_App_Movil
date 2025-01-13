@@ -22,7 +22,7 @@
     <VerticalStackLayout BackgroundColor="{DynamicResource PageBackgroundColor}">
         <StackLayout Padding="20" Orientation="Horizontal">
             <Label Style="{StaticResource label}" x:Name="Label_Tema" Text="Cambiar tema" VerticalTextAlignment="Center"/>
-            <BoxView HorizontalOptions="FillAndExpand" /> <!--Para crear espacio entre los elementos-->
+            <BoxView BackgroundColor="{DynamicResource PageBackgroundColor}" HorizontalOptions="FillAndExpand" /> <!--Para crear espacio entre los elementos-->
             <Switch Style="{StaticResource switch}" x:Name="Sw_Tema" VerticalOptions="End" IsToggled="False" Toggled="OnSwitchToggled" />
         </StackLayout>
     </VerticalStackLayout>

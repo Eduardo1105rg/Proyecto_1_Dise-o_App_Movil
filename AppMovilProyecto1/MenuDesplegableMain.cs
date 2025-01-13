@@ -12,19 +12,21 @@ namespace AppMovilProyecto1
         {
             var stackLayoutOpciones = new StackLayout
             {
-
-                BackgroundColor = Colors.White,
+                BackgroundColor = Application.Current.Resources.TryGetValue("PageBackgroundColor", out var bgColor)
+                    ? (Color)(bgColor)
+                    : Colors.White,
                 Padding = 5,
                 Children =
-                {                   
+                {
                     new Button
                     {
                         Text = "Agregar a Favoritos",
                         Command = new Command(() => ReaccionarOpcionSeleccionada("Agregar", codigoDivisa)),
-                        Style = (Style)Application.Current.Resources["OpcionesBtnStyle"]
-                    },
+                        Style = Application.Current.Resources.TryGetValue("OpcionesBtnStyle", out var btnStyle)
+                            ? btnStyle as Style
+                            : null
+                    }
                 }
-
             };
 
             Content = new Border
