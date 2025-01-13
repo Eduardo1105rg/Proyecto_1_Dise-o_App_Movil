@@ -14,10 +14,14 @@ public partial class VentanaFavoritos : ContentPage
         // Aplicar el tema al cargar la MainPage
         GestionTema.ApplyTheme();
     }
+    
+    // Registrar los menus abiertos.
     private List<MenuDesplegable> menusAbiertos = new List<MenuDesplegable>();
 
+    // El layout principal del sistema.
     private AbsoluteLayout absoluteLayoutMain;
 
+    //Info de la divisa por nombre de pais.
     public Dictionary<String, String> AccederInfoDivisas = new Dictionary<string, string> {
         { "United Arab Emirates", "AED" }, { "Afghanistan", "AFN" }, { "Albania", "ALL" },
         { "Armenia", "AMD" }, { "Netherlands Antilles", "ANG" }, { "Angola", "AOA" },
@@ -75,6 +79,7 @@ public partial class VentanaFavoritos : ContentPage
         { "South Africa", "ZAR" }, { "Zambia", "ZMW" }, { "Zimbabwe", "ZWL" }
     };
 
+    // Info de la divisas por codigo.
     public Dictionary<String, String> AccederInfoDivisasPorCodigo = new Dictionary<string, string>();
 
 
@@ -85,31 +90,6 @@ public partial class VentanaFavoritos : ContentPage
         InitializeComponent();
         AccederInfoDivisasPorCodigo = AccederInfoDivisas.ToDictionary(item => item.Value, item => item.Key);
 
-        //var tapGestureRecognizer = new TapGestureRecognizer(); 
-        //tapGestureRecognizer.Tapped += (s, e) => CerrarMenusDesplegables();
-
-        //var absoluteLayout = (AbsoluteLayout)this.Content; 
-        //absoluteLayout.GestureRecognizers.Add(tapGestureRecognizer);
-        //var grid = this.Content as Grid;
-        //grid.GestureRecognizers.Add(tapGestureRecognizer);
-        //absoluteLayoutMain = grid.Children.OfType<AbsoluteLayout>().FirstOrDefault();
-        //absoluteLayoutMain.GestureRecognizers.Add(tapGestureRecognizer);
-
-        //if (grid != null)
-        //{
-        //absoluteLayoutMain = grid.Children.OfType<AbsoluteLayout>().FirstOrDefault();
-        // if (absoluteLayoutMain != null)
-        //{
-        //var tapGestureRecognizer = new TapGestureRecognizer();
-        // tapGestureRecognizer.Tapped += (s, e) => CerrarMenusDesplegables();
-        //TouchOverlay.GestureRecognizers.Add(tapGestureRecognizer);
-        //absoluteLayoutMain.GestureRecognizers.Add(tapGestureRecognizer);
-
-        // Añadir un gestor de eventos táctiles para capturar todos los toques
-
-
-        // }
-        // }
         var grid = this.Content as Grid;
         if (grid != null)
         {
@@ -227,7 +207,7 @@ public partial class VentanaFavoritos : ContentPage
         // Crear el Label para mostrar el valor.
         var valorLabel = new Label
         {
-            Text = "1 USD",
+            Text = "",
             Style = (Style)Application.Current.Resources["ValorLabel"]
         };
 
@@ -241,19 +221,13 @@ public partial class VentanaFavoritos : ContentPage
         var opcionesBtn = new Button
         {
 
-            Text = "E", //
+            Text = "O", //
             Style = (Style)Application.Current.Resources["OpcionesBtn"]
 
         };
         opcionesBtn.Clicked += (sender, args) => MostrarMenuDesplegable(codigoDivisa, opcionesBtn); // Añadir al boton la funcion de desplegar ventana.
 
         stackLayoutVerticalBtn.Children.Add(opcionesBtn);// Añadir al StackLayout el botn
-
-        //stackLayoutVerticalBtn.Add(new Button
-        //{
-        //Text = "E", //
-        //Style = (Style)Application.Current.Resources["OpcionesBtn"]
-        //});
 
 
         // Agregar los StackLayou principal los stackLayout secundarios.
@@ -278,12 +252,7 @@ public partial class VentanaFavoritos : ContentPage
     {
         // Cerrar otros menús abiertos
         CerrarMenusDesplegables();
-        //foreach (var menu in menusAbiertos)
-        //{
-        //var absoluteLayout = (AbsoluteLayout)this.Content;
-        // absoluteLayout.Children.Remove(menu);
-        // }
-        // menusAbiertos.Clear();
+       
 
         var menuDesplegable = new MenuDesplegable(codigoDivisa);
         menuDesplegable.OpcionSeleccionada += (sender, accion) =>
@@ -365,12 +334,6 @@ public partial class VentanaFavoritos : ContentPage
     }
 
 
-    //protected override void OnAppearing()
-    //{
-    //    base.OnAppearing();
-    //    RecargarContenido();
-    //}
-
     // Recargar el contenido de la ventana:
     public void RecargarContenido()
     {
@@ -432,7 +395,10 @@ public partial class VentanaFavoritos : ContentPage
     {
         FavoritosService.EliminarArchivo(codigoDivisa);
         //RecargarContenido();
+        
         DisplayAlert("Exito", $"Eliminar {codigoDivisa}", "OK");
+
+        FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
         RecargarContenido();
     }
 

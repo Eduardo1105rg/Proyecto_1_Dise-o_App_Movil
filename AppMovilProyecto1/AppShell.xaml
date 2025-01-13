@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:AppMovilProyecto1"
     xmlns:res="clr-namespace:AppMovilProyecto1.Localization"
     Shell.FlyoutBehavior="Flyout"
-    Title="AppMovilProyecto1"
+    Title="Serafino Exchange"
     Shell.BackgroundColor="{DynamicResource Navbar}">
 
     <ShellContent
@@ -20,6 +20,7 @@
     <ShellContent Title="{x:Static res:AppResources.Favorites}"
         ContentTemplate="{DataTemplate local:VentanaFavoritos}"
         Route="VentanaFavoritos"/>
+    
     <FlyoutItem Title="Cambio de tema" Icon="sol3.jpg">
         <ShellContent ContentTemplate="{DataTemplate local:Settings}"/>
     </FlyoutItem>

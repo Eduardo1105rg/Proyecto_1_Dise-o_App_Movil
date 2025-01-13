@@ -4,12 +4,17 @@
                x:Class="AppMovilProyecto1.CurrencyPickerPopup">
     <StackLayout Padding="20" BackgroundColor="White">
         <Label Text="Select Base Currency" FontSize="Medium" />
-        <Picker x:Name="CurrencyPicker" WidthRequest="150" SelectedIndexChanged="OnCurrencyPickerSelectedIndexChanged">
+        <Picker x:Name="CurrencyPicker" WidthRequest="150" SelectedIndexChanged="CambiarOpcionSeleccionada">
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
-                    <x:String>USD</x:String>
+
+                    <x:String>CRC</x:String>
+
                     <x:String>EUR</x:String>
+
                     <x:String>JPY</x:String>
+
+                    <x:String>USD</x:String>
                   
                 </x:Array>
             </Picker.ItemsSource>

@@ -448,7 +448,7 @@
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
-    
+
     <!-->>>>Estilos para un elemento favorito.-->
 
     <!-- Estilo para el recuadro de elementos favoritos -->
@@ -481,7 +481,7 @@
         <Setter Property="VerticalOptions" Value="Center"/>
 
     </Style>
-    
+
     <!--Estilo del boton de opciones.-->
     <Style x:Key="OpcionesBtn" TargetType="Button">
         <Setter Property="Margin" Value="2"/>

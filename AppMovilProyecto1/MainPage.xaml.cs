@@ -76,31 +76,7 @@ namespace AppMovilProyecto1
             InitializeComponent();
             AccederInfoDivisasPorCodigo = AccederInfoDivisas.ToDictionary(item => item.Value, item => item.Key);
 
-            //var tapGestureRecognizer = new TapGestureRecognizer(); 
-            //tapGestureRecognizer.Tapped += (s, e) => CerrarMenusDesplegables();
-
-            //var absoluteLayout = (AbsoluteLayout)this.Content; 
-            //absoluteLayout.GestureRecognizers.Add(tapGestureRecognizer);
-            //var grid = this.Content as Grid;
-            //grid.GestureRecognizers.Add(tapGestureRecognizer);
-            //absoluteLayoutMain = grid.Children.OfType<AbsoluteLayout>().FirstOrDefault();
-            //absoluteLayoutMain.GestureRecognizers.Add(tapGestureRecognizer);
-
-            //if (grid != null)
-            //{
-            //absoluteLayoutMain = grid.Children.OfType<AbsoluteLayout>().FirstOrDefault();
-            // if (absoluteLayoutMain != null)
-            //{
-            //var tapGestureRecognizer = new TapGestureRecognizer();
-            // tapGestureRecognizer.Tapped += (s, e) => CerrarMenusDesplegables();
-            //TouchOverlay.GestureRecognizers.Add(tapGestureRecognizer);
-            //absoluteLayoutMain.GestureRecognizers.Add(tapGestureRecognizer);
-
-            // Añadir un gestor de eventos táctiles para capturar todos los toques
-
-
-            // }
-            // }
+            
             var grid = this.Content as Grid;
             if (grid != null)
             {
@@ -137,7 +113,7 @@ namespace AppMovilProyecto1
         private async void InciarRenderizadoDeElementos()
         {
 
-            string divisaSeleccionada = "USD";
+            string divisaSeleccionada = Application.Current.Resources["BaseCurrency"]?.ToString();
 
             // Consultar al API para el valor de la conversion.
             var DatosConsultadoDelAPI = ExchangeService.Import(divisaSeleccionada);
@@ -160,11 +136,8 @@ namespace AppMovilProyecto1
 
                 RenderizarElementos(codigoDivisa, valorConversion, divisaSeleccionada);
 
-                //Console.WriteLine($"Divisa: {favorito.CodigoDivisa}, Valores: {favorito.ValoresConversion}"); 
-
             }
-            await DisplayAlert("Informacion", "Carga completada.", "OK");
-
+            
         }
 
         // Mostrar un elementos en la ventana.
@@ -231,7 +204,7 @@ namespace AppMovilProyecto1
             var opcionesBtn = new Button
             {
 
-                Text = "E", //
+                Text = "O", //
                 Style = (Style)Application.Current.Resources["OpcionesBtn"]
 
             };
@@ -261,13 +234,7 @@ namespace AppMovilProyecto1
         {
             // Cerrar otros menús abiertos
             CerrarMenusDesplegables();
-            //foreach (var menu in menusAbiertos)
-            //{
-            //var absoluteLayout = (AbsoluteLayout)this.Content;
-            // absoluteLayout.Children.Remove(menu);
-            // }
-            // menusAbiertos.Clear();
-
+            
             var menuDesplegable = new MenuDesplegableMain(codigoDivisa);
             menuDesplegable.OpcionSeleccionada += (sender, accion) =>
             {              
@@ -340,6 +307,8 @@ namespace AppMovilProyecto1
             menusAbiertos.Clear();
             TouchOverlay.IsVisible = false;
         }
+        
+        // Reaccionar cuando se toca la ventana.
         private void OnTapGestureRecognizerTapped(object sender, EventArgs e)
         {
             DisplayAlert("Error", "Acabamos de hacer un click.", "OK");
@@ -364,7 +333,16 @@ namespace AppMovilProyecto1
             Navigation.RemovePage(paginaActual); // Elimianar la pagina anterior.
         }
 
+        // Este metodo se activa cada vez que se cambia de ventana.
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
+            // Aplicar el tema al cargar la MainPage
+            GestionTema.ApplyTheme();
+
+            RecargarContenido();
+        }
 
         // Funcion para ser llamada a travez de la interfaz para guardar un elemento en favoritos.
         private async void GuardarElementoEnRegistros(string divisaSeleccionada)
