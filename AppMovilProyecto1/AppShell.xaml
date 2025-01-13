@@ -21,14 +21,14 @@
         ContentTemplate="{DataTemplate local:VentanaFavoritos}"
         Route="VentanaFavoritos"/>
 
-    <FlyoutItem Title="{x:Static res:AppResources.Theme-change}" Icon="sol3.jpg">
+    <FlyoutItem Title="{x:Static res:AppResources.Theme_change}" Icon="sol3.jpg">
         <ShellContent ContentTemplate="{DataTemplate local:Settings}"/>
     </FlyoutItem>
 
 
     <Shell.ToolbarItems>
 
-        <ToolbarItem Text="{x:Static res:AppResources.Base-currency}"  x:Name = "ToollPikerItem" Order="Primary" Priority="0" Clicked="SeleccionarDivisaBaseRediReccionador"/>
+        <ToolbarItem Text="{x:Static res:AppResources.Base_currency}"  x:Name = "ToollPikerItem" Order="Primary" Priority="0" Clicked="SeleccionarDivisaBaseRediReccionador"/>
 
     </Shell.ToolbarItems>
     

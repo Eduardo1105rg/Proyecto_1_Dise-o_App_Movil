@@ -19,7 +19,7 @@ namespace AppMovilProyecto1
                 {
                     new Button
                     {
-                        Text = "Eliminar",
+                        Text = Localization.AppResources.Delete,
                         Command = new Command(() => ReaccionarOpcionSeleccionada("Eliminar", codigoDivisa)),
                         Style = (Style)Application.Current.Resources["OpcionesBtnStyle"]
                     },

@@ -61,6 +61,15 @@ namespace AppMovilProyecto1.Localization {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Agregar a Favoritos.
+        /// </summary>
+        internal static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Ingresa el monto.
         /// </summary>
         internal static string Amount_input {
@@ -102,6 +111,15 @@ namespace AppMovilProyecto1.Localization {
         internal static string Converter {
             get {
                 return ResourceManager.GetString("Converter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Eliminar.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
             }
         }
         

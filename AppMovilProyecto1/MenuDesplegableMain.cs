@@ -19,7 +19,7 @@ namespace AppMovilProyecto1
                 {                   
                     new Button
                     {
-                        Text = "Agregar a Favoritos",
+                        Text = Localization.AppResources.Add,
                         Command = new Command(() => ReaccionarOpcionSeleccionada("Agregar", codigoDivisa)),
                         Style = (Style)Application.Current.Resources["OpcionesBtnStyle"]
                     },
