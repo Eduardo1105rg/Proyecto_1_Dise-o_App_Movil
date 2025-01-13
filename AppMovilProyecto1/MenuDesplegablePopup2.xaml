@@ -1,0 +1,16 @@
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="AppMovilProyecto1.MenuDesplegablePopup2">
+    <Border
+        StrokeShape="RoundRectangle 10"
+        Stroke="{DynamicResource Gray}"
+        BackgroundColor="{DynamicResource White}"
+        Padding="5"
+        Margin="10"
+        >
+        <StackLayout BackgroundColor="{DynamicResource White}" Padding="5">
+            <Button Text="Eliminar" Command="{Binding EliminarCommand}" Style="{StaticResource OpcionesBtnStyle}" />
+        </StackLayout>
+    </Border>
+</toolkit:Popup>

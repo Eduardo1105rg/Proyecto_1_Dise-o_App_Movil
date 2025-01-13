@@ -28,6 +28,8 @@
 
         <!--Ejemplo sobre como definir un estilo a un elemento en especifico, se ingresa un nombre clave para el estylo y se ingresa un typo de elementos especifico.-->
         <Style x:Key="EspecialBorderStyle" TargetType="Border">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="10"/>
             <Setter Property="Background" Value="{DynamicResource PageBackgroundColor}"/>
             <Setter Property="Stroke" Value="{DynamicResource Border}" />
             <Setter Property="StrokeThickness" Value="2" />
@@ -62,7 +64,7 @@
         <Style x:Key="botones" TargetType="Button">
             <Setter Property="BackgroundColor" Value="{DynamicResource Navbar}" />
             <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}"/>
-            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontSize" Value="15" />
             <Setter Property="CornerRadius" Value="8" />
             <Setter Property="WidthRequest" Value="200" />
         </Style>
@@ -106,7 +108,7 @@
                     <Image x:Name="FlechaImagenInferior" Source="flecha_conversor.png" HeightRequest="50"/>
 
                     <Label Style="{StaticResource Etiquetas}" Text="Monto convertido:" />
-                    <Border Style="{StaticResource EspecialBorderStyle}">
+                    <Border Style="{StaticResource main-container}">
                         <Label Style="{StaticResource Etiquetas}" x:Name="ResultadoLabel" Text="Monto Final" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
                     </Border>
                 </StackLayout>

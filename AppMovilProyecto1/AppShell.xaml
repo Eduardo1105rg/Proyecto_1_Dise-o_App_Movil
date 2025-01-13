@@ -23,6 +23,7 @@
     
     <FlyoutItem Title="Cambio de tema" Icon="sol3.jpg">
         <ShellContent ContentTemplate="{DataTemplate local:Settings}"/>
+        
     </FlyoutItem>
 
 

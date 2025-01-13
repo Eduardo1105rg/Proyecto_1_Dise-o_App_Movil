@@ -99,8 +99,25 @@ namespace AppMovilProyecto1
             }
 
 
-            InciarRenderizadoDeElementos();
+            bool llamar = RevisarEstado();
+            if (llamar)
+            {
+                //InciarRenderizadoDeElementos();
 
+            }
+        }
+
+        // Revisar el estado de la conexion
+        private bool RevisarEstado()
+        {
+            bool llamar = ConexionService.EstadoConexion();
+            if (llamar == false) {
+                DisplayAlert("Error", "No estas conectado a internet", "OK");
+                return false; 
+            } else {
+                DisplayAlert("Aviso", "Conectado a internet", "OK");
+                return true; 
+            }
         }
 
         // Funcion para ser llamada a traves de la interfaz para iniciar el proceso de busqueda.
@@ -318,9 +335,17 @@ namespace AppMovilProyecto1
         // Recargar el contenido de la ventana:
         public void RecargarContenido()
         {
-            DisplayAlert("Error", "Recargando contenido", "OK");
+            DisplayAlert("Aviso", "Recargando contenido", "OK");
             FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
-            InciarRenderizadoDeElementos();
+
+            // Validamos si esta conectado a internet.
+            bool llamar = RevisarEstado();
+            if (llamar)
+            {
+                //InciarRenderizadoDeElementos();
+
+            }
+            //InciarRenderizadoDeElementos();
         }
 
 

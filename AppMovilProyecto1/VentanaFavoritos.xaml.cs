@@ -1,6 +1,7 @@
 using System.Formats.Asn1;
 using AppMovilProyecto1.Models;
 using AppMovilProyecto1.Services;
+using CommunityToolkit.Maui.Views;
 using Microsoft.Maui.Layouts;
 
 namespace AppMovilProyecto1;
@@ -225,7 +226,7 @@ public partial class VentanaFavoritos : ContentPage
             Style = (Style)Application.Current.Resources["OpcionesBtn"]
 
         };
-        opcionesBtn.Clicked += (sender, args) => MostrarMenuDesplegable(codigoDivisa, opcionesBtn); // Añadir al boton la funcion de desplegar ventana.
+        opcionesBtn.Clicked += (sender, args) => MostrarMenuDesplegablePopup(codigoDivisa, opcionesBtn); // Añadir al boton la funcion de desplegar ventana.
 
         stackLayoutVerticalBtn.Children.Add(opcionesBtn);// Añadir al StackLayout el botn
 
@@ -314,6 +315,23 @@ public partial class VentanaFavoritos : ContentPage
         menusAbiertos.Add(menuDesplegable);
     }
 
+
+    private async void MostrarMenuDesplegablePopup(string codigoDivisa, View anchor)
+    {
+        var popup = new MenuDesplegablePopup1(codigoDivisa, AccionSeleccionada); 
+        await this.ShowPopupAsync(popup);
+    }
+
+    private void AccionSeleccionada(string codigoDivisa, string accion)
+    {
+        if (accion == "Agregar") { 
+            GuardarElementoEnRegistros(codigoDivisa); 
+        } 
+        else if (accion == "Eliminar") { 
+            EliminarElementoFavorito(codigoDivisa); 
+        }
+    }
+
     // Cerrar todos los menus que esten abiertos.
     private void CerrarMenusDesplegables()
     {
@@ -353,6 +371,31 @@ public partial class VentanaFavoritos : ContentPage
     }
 
 
+    // Actualizar todas las divisas registradas:
+    private async void ActualizarDivisas(object sender, EventArgs e)
+    {
+
+        var elementosRegistrado = await FavoritosService.LeerTodoLosArchivosExistentesLista();
+
+        if (elementosRegistrado.Count() == 0)
+        {
+            await DisplayAlert("Error", "No hay divisas guardadas en favoritos.", "OK");
+            return;
+        }
+
+        // Consultar al API para el valor de la conversion.
+        
+        foreach (var favorito in elementosRegistrado)
+        {
+
+            string codigoDivisa = favorito.CodigoDivisa;
+
+            ActualizarElementoEnRegistros(codigoDivisa);
+
+        }
+        await DisplayAlert("Informacion", "Valores de las divisas guardadas en favoritos actualizadas con exito.", "OK");
+    }
+
 
     // Funcion para ser llamada a travez de la interfaz para guardar un elemento en favoritos.
     private async void GuardarElementoEnRegistros(string divisaSeleccionada)
@@ -389,6 +432,26 @@ public partial class VentanaFavoritos : ContentPage
         await DisplayAlert("Exito", "La divisa seleccionada ha sido guardada en favoritos exitosamente.", "OK");
 
     }
+
+
+    private async void ActualizarElementoEnRegistros(string divisaSeleccionada)
+    {
+       
+
+        // Acomodamos los datos de la divisa.
+        var elementoAcomodado = FavoritosService.AcomodarValoresParaGuardar(divisaSeleccionada);
+
+        if (elementoAcomodado == null)
+        {
+            await DisplayAlert("Error", "No ha sido posible acomodar los datos de la divisa.", "OK");
+            return;
+        }
+
+        // Guardamos la divisa.
+        await FavoritosService.GuardarNuevoFavorito(elementoAcomodado);
+
+    }
+
 
     // Funcion para eliminar un elemento del registro de favoritos...
     private async void EliminarElementoFavorito(string codigoDivisa)

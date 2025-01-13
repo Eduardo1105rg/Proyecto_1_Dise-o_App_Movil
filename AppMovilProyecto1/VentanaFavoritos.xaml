@@ -38,6 +38,11 @@
         <!--Estilo del boton de buscar-->
         <Style x:Key="BuscarBtn" TargetType="Button">
             <Setter Property="Margin" Value="2"/>
+            <Setter Property="BackgroundColor" Value="{DynamicResource Navbar}" />
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}"/>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="WidthRequest" Value="100" />
         </Style>
 
 
@@ -132,6 +137,8 @@
                     <!-- Recuadro principal -->
                     <Border Style="{StaticResource RecuadroPrincipal}">
                         <StackLayout Margin="10">
+                            <!-- Boton para volver a sincronizar las divisas -->
+                            <Button Text="Actualizar" Clicked="ActualizarDivisas" Style="{StaticResource BuscarBtn}"/>
                             <!-- Barra de búsqueda -->
                             <StackLayout Orientation="Horizontal">
                                 <SearchBar x:Name="BusquedaSearchBar" Placeholder="Buscar divisa..." Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />

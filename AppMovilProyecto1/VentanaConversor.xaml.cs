@@ -10,6 +10,7 @@ public partial class VentanaConversor : ContentPage
 
         // Aplicar el tema al cargar la MainPage
         GestionTema.ApplyTheme();
+        RevisarEstado();
     }
 
     // Nombre de todo los paise disponibles.
@@ -106,10 +107,36 @@ public partial class VentanaConversor : ContentPage
     public VentanaConversor()
     {
         InitializeComponent();
-        AsignarValoresPickerDefault();
+        
         DatosFavoritosCargados = new Dictionary<string, Dictionary<string, double>>();
         AccederInfoDivisasPorCodigo = AccederInfoDivisas.ToDictionary(item => item.Value, item => item.Key);
+
+        bool llamar = RevisarEstado();
+        if (llamar)
+        {
+            AsignarValoresPickerDefault();
+
+        }
+
     }
+
+    // Revisar el estado de la conexion
+    private bool RevisarEstado()
+    {
+        bool llamar = ConexionService.EstadoConexion();
+        if (llamar == false)
+        {
+            DisplayAlert("Error", "No estas conectado a internet", "OK");
+            return false;
+        }
+        else
+        {
+            
+            return true;
+        }
+    }
+
+
 
     // Asignar los valores por defecto al picker.
     private void AsignarValoresPickerDefault()
@@ -258,11 +285,12 @@ public partial class VentanaConversor : ContentPage
         //var montoIngresado = MontoEntry.GetValue;
 
         decimal montoConvertido = 0;
-        if (datosConvercion.HasValue)
+        if (!datosConvercion.HasValue || datosConvercion == null)
         {
+            await DisplayAlert("Error", "No se ha podido realizar la conversion, por favor intentelo en unos momentos.", "OK");
 
-            montoConvertido = (decimal)montoIngresado * (decimal)datosConvercion.Value;
         }
+        montoConvertido = (decimal)montoIngresado * (decimal)datosConvercion.Value;
 
         ResultadoLabel.Text = $"{montoConvertido}";
 
