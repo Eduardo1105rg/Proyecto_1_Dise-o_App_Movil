@@ -4,3 +4,6 @@
 
 *.v2
 
+/AppMovilProyecto1/obj
+/AppMovilProyecto1/obj
+*.bin
