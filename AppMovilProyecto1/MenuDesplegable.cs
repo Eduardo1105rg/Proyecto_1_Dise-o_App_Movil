@@ -12,20 +12,23 @@ namespace AppMovilProyecto1
         {
             var stackLayoutOpciones = new StackLayout
             {
-
-                BackgroundColor = Colors.White,
-                Padding = 5,
+                BackgroundColor = Colors.White, // Color de fondo blanco
+                Padding = new Thickness(5), // Relleno de 5 unidades en todos los bordes
                 Children =
                 {
                     new Button
                     {
-                        Text = "Eliminar",
-                        Command = new Command(() => ReaccionarOpcionSeleccionada("Eliminar", codigoDivisa)),
-                        Style = (Style)Application.Current.Resources["OpcionesBtnStyle"]
-                    },
-
+                        Text = "Eliminar", // Texto del botón
+                        Command = new Command(() => ReaccionarOpcionSeleccionada("Eliminar", codigoDivisa)), // Comando de la acción al presionar
+                        BackgroundColor = Colors.Green, // Color de fondo del botón
+                        TextColor = Colors.White, // Color del texto del botón
+                        FontSize = 20, // Tamaño de fuente
+                        CornerRadius = 8, // Esquinas redondeadas
+                        Margin = new Thickness(4), // Márgenes de 4 unidades
+                        Padding = new Thickness(0), // Sin relleno
+                        VerticalOptions = LayoutOptions.Center, // Alineación vertical al centro
+                    }
                 }
-
             };
 
             Content = new Border

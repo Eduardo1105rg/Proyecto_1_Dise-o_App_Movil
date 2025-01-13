@@ -2,6 +2,7 @@ using System.Formats.Asn1;
 using AppMovilProyecto1.Models;
 using AppMovilProyecto1.Services;
 using CommunityToolkit.Maui.Views;
+using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Layouts;
 
 namespace AppMovilProyecto1;
@@ -169,20 +170,43 @@ public partial class VentanaFavoritos : ContentPage
         // Crear Recuadro verde.
         var recuadroVerde = new Border
         {
-            Style = (Style)Application.Current.Resources["RecuadroElemento"]
+            BackgroundColor = Application.Current.Resources.TryGetValue("InternContainer", out var bgColor)
+                    ? (Color)bgColor
+                    : Colors.Transparent,
+            Stroke = Brush.Transparent,
+            StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(20) },
+            Margin = new Thickness(10, 5, 10, 5)
         };
 
         // Crear recuadro blanco.
         var recuadroBlanco = new Border
         {
-            Style = (Style)Application.Current.Resources["RecuadroInterno"]
+            Style = Application.Current.Resources.TryGetValue("RecuadroInterno", out var styleInterno)
+                    ? styleInterno as Style
+                    : null,
+            BackgroundColor = Application.Current.Resources.TryGetValue("PageBackgroundColor", out var bgColor2)
+                    ? (Color)bgColor2
+                    : Colors.White,
+            Stroke = new SolidColorBrush(Application.Current.Resources.TryGetValue("Border", out var borderColor)
+                    ? (Color)borderColor
+                    : Colors.Black),
+            StrokeThickness = 2,
+            StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(20) },
+            Padding = new Thickness(1),
+            Margin = new Thickness(5, 5, 0, 0),
+            VerticalOptions = LayoutOptions.CenterAndExpand,
+            HorizontalOptions = LayoutOptions.FillAndExpand
         };
 
         // Crear el StackLayou horizontal que organiza los elementos en horizontal.
         var stackLayoutHorizontal = new StackLayout
         {
-            Style = (Style)Application.Current.Resources["StackLayouHorizontal"]
+            Style = Application.Current.Resources.TryGetValue("StackLayouHorizontal", out var styleHorizontal)
+                    ? styleHorizontal as Style
+                    : null,
+            Orientation = StackOrientation.Horizontal
         };
+
 
         // Crear StackLayout para el pais y codigo de la divisa.
         var stacktLayoutLabelsInfo = new StackLayout();
@@ -190,41 +214,61 @@ public partial class VentanaFavoritos : ContentPage
         // Agregar el label con el nombre del pais.
         stacktLayoutLabelsInfo.Add(new Label
         {
-
             Text = AccederInfoDivisasPorCodigo[codigoDivisa],
-            Style = (Style)Application.Current.Resources["PaisLabel"]
-
+            Style = Application.Current.Resources.TryGetValue("PaisLabel", out var paisStyle)
+                    ? paisStyle as Style
+                    : null,
+            TextColor = Application.Current.Resources.TryGetValue("PrimaryTextColor", out var textColor)
+                    ? (Color)textColor
+                    : Colors.Black,
+            Margin = new Thickness(10, 5, 0, 0)
         });
 
         // Agregar el Label del codigo de la divisa.
         stacktLayoutLabelsInfo.Add(new Label
         {
-
             Text = codigoDivisa,
-            Style = (Style)Application.Current.Resources["CodigoLabel"]
-
+            Style = Application.Current.Resources.TryGetValue("CodigoLabel", out var codigoStyle)
+                    ? codigoStyle as Style
+                    : null,
+            TextColor = Application.Current.Resources.TryGetValue("PrimaryTextColor", out var textColor2)
+                    ? (Color)textColor2
+                    : Colors.Black,
+            Margin = new Thickness(10, 5, 0, 5)
         });
 
         // Crear el Label para mostrar el valor.
         var valorLabel = new Label
         {
             Text = "",
-            Style = (Style)Application.Current.Resources["ValorLabel"]
+            Style = Application.Current.Resources.TryGetValue("ValorLabel", out var valorStyle)
+                    ? valorStyle as Style
+                    : null,
+            TextColor = Application.Current.Resources.TryGetValue("PrimaryTextColor", out var textColor3)
+                    ? (Color)textColor3
+                    : Colors.Black,
+            Margin = new Thickness(10, 5, 0, 5),
+            VerticalOptions = LayoutOptions.EndAndExpand, // Ajusta según sea necesario
+            HorizontalOptions = LayoutOptions.EndAndExpand // Ajusta según sea necesario
         };
 
         // Crear El StackLayout Vertical para colocar el boton.
         var stackLayoutVerticalBtn = new StackLayout
         {
-            Style = (Style)Application.Current.Resources["StackLayouVerticalEspecial"]
+            HorizontalOptions = LayoutOptions.Center, // Centrado horizontalmente
+            VerticalOptions = LayoutOptions.Center // Centrado verticalmente
         };
 
         // Crear el boton de opciones:
         var opcionesBtn = new Button
         {
-
-            Text = "O", //
-            Style = (Style)Application.Current.Resources["OpcionesBtn"]
-
+            Text = "O", // Texto del botón
+            Margin = new Thickness(0), // Según el estilo, el margen es 0
+            BackgroundColor = Colors.Transparent, // Fondo transparente
+            TextColor = (Color)Application.Current.Resources["PrimaryTextColor"], // Color dinámico para el texto
+            FontSize = 30, // Tamaño de fuente
+            Padding = new Thickness(0), // Sin relleno adicional
+            VerticalOptions = LayoutOptions.Center // Alineación vertical centrada
         };
         opcionesBtn.Clicked += (sender, args) => MostrarMenuDesplegablePopup(codigoDivisa, opcionesBtn); // Añadir al boton la funcion de desplegar ventana.
 

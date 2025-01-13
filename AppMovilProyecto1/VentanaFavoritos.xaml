@@ -4,14 +4,14 @@
              x:Class="AppMovilProyecto1.VentanaFavoritos"
              Title="Favoritos"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
-    
-    
+
+
     <ContentPage.Resources>
 
         <!-- Estilo para el recuadro principal -->
         <Style x:Key="RecuadroPrincipal" TargetType="Border">
-            <Setter Property="BackgroundColor" Value="#E6F4E6" />
-            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource ContainerFav}" />
+            <Setter Property="Stroke" Value="{DynamicResource Border}" />
             <Setter Property="StrokeThickness" Value="2" />
             <Setter Property="StrokeShape" Value="RoundRectangle 10" />
         </Style>
@@ -19,24 +19,24 @@
         <!-- Estilo para el recuadro de contenedor gris -->
         <Style x:Key="RecuadroContenedor" TargetType="Border">
             <Setter Property="BackgroundColor" Value="#D9D9D9" />
-            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="Stroke" Value="{DynamicResource Border}" />
             <Setter Property="StrokeThickness" Value="2" />
             <Setter Property="StrokeShape" Value="RoundRectangle 10" />
             <Setter Property="Padding" Value="0,10,0,10"/>
         </Style>
 
-
-
         <!--Estilo de la barra de busqueda.-->
         <Style x:Key="BarraBusqueda" TargetType="SearchBar">
             <Setter Property="Margin" Value="2"/>
-            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="BackgroundColor" Value="{DynamicResource PageBackgroundColor}"/>
+            <Setter Property="PlaceholderColor" Value="{DynamicResource Border}"/>
             <Setter Property="CancelButtonColor" Value="red"/>
             <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
         </Style>
 
         <!--Estilo del boton de buscar-->
         <Style x:Key="BuscarBtn" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{DynamicResource Navbar}"/>
             <Setter Property="Margin" Value="2"/>
             <Setter Property="BackgroundColor" Value="{DynamicResource Navbar}" />
             <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}"/>
@@ -45,85 +45,16 @@
             <Setter Property="WidthRequest" Value="100" />
         </Style>
 
-
-
         <!--Estilos del label que dice Elementos Favoritos.-->
         <Style x:Key="FavoritosLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}"/>
+            <Setter Property="BackgroundColor" Value="{DynamicResource ContainerFav}"/>
             <Setter Property="Margin" Value="10"/>
             <Setter Property="FontAttributes" Value="Bold"/>
             <Setter Property="FontSize" Value="15"/>
         </Style>
 
-
-        <!-->>>>Estilos para un elemento favorito.-->
-
-        <!-- Estilo para el recuadro de elementos favoritos -->
-        <Style x:Key="RecuadroElemento" TargetType="Border">
-            <Setter Property="BackgroundColor" Value="#CCFFCC" />
-            <Setter Property="Stroke" Value="Transparent" />
-            <Setter Property="StrokeShape" Value="RoundRectangle 20" />
-            <Setter Property="Margin" Value="10,5,10,5"/>
-        </Style>
-
-        <!-- Estilo para el recuadro interno blanco -->
-        <Style x:Key="RecuadroInterno" TargetType="Border">
-            <Setter Property="BackgroundColor" Value="White" />
-            <Setter Property="Stroke" Value="Black" />
-            <Setter Property="StrokeThickness" Value="2" />
-            <Setter Property="StrokeShape" Value="RoundRectangle 20" />
-            <Setter Property="Padding" Value="1" />
-            <Setter Property="Margin" Value="5,5,0,0"/>
-            <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
-            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-        </Style>
-
-        <Style x:Key="StackLayouHorizontal" TargetType="StackLayout">
-            <Setter Property="Orientation" Value="Horizontal"/>
-
-        </Style>
-
-        <Style x:Key="StackLayouVerticalEspecial" TargetType="StackLayout">
-            <Setter Property="HorizontalOptions" Value="Center"/>
-            <Setter Property="VerticalOptions" Value="Center"/>
-
-        </Style>
-        <!--Estilo del boton de opciones.-->
-        <Style x:Key="OpcionesBtn" TargetType="Button">
-            <Setter Property="Margin" Value="2"/>
-            <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="TextColor" Value="Black"/>
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="VerticalOptions" Value="Center"/>
-        </Style>
-
-        <Style x:Key="PaisLabel" TargetType="Label">
-            <Setter Property="Margin" Value="10,5,0,0"/>
-        </Style>
-
-        <Style x:Key="CodigoLabel" TargetType="Label">
-            <Setter Property="Margin" Value="10,5,0,5"/>
-        </Style>
-
-        <Style x:Key="ValorLabel" TargetType="Label">
-            <Setter Property="Margin" Value="10,0,0,5"/>
-            <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
-            <Setter Property="VerticalOptions" Value="EndAndExpand"/>
-        </Style>
-        <!-- Fin estilos para un elemento favorito.<<<<<-->
-
     </ContentPage.Resources>
-    <!-- Style="{StaticResource }" 
-    
-        <Setter Property="" Value=""/>
-    
-    
-                    <BoxView.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"/>
-                </BoxView.GestureRecognizers>
-    
-    -->
 
     <Grid>
       
