@@ -127,7 +127,7 @@
     <value>Divisa base</value>
   </data>
   <data name="Convert" xml:space="preserve">
-    <value>Convert</value>
+    <value>Convertir</value>
   </data>
   <data name="Converted-amount" xml:space="preserve">
     <value>Monto convertido:</value>
@@ -139,7 +139,7 @@
     <value>Eliminar</value>
   </data>
   <data name="Entry-amount" xml:space="preserve">
-    <value>Amount to convert: </value>
+    <value>Monto a convertir:</value>
   </data>
   <data name="Favorite-elements" xml:space="preserve">
     <value>Elementos favoritos:</value>
@@ -157,7 +157,7 @@
     <value>Inicio</value>
   </data>
   <data name="Registered-currency" xml:space="preserve">
-    <value>Registered currencies: </value>
+    <value>Divisas registradas: </value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Buscar</value>
@@ -166,12 +166,12 @@
     <value>Buscar Divisa...</value>
   </data>
   <data name="Select-dest" xml:space="preserve">
-    <value>Select the destination currency: </value>
+    <value>Selecciona la divisa destino: </value>
   </data>
   <data name="Select-origin" xml:space="preserve">
-    <value>Select the source currency: </value>
+    <value>Selecciona la divisa de origen: </value>
   </data>
   <data name="Theme-change" xml:space="preserve">
-    <value>Change theme</value>
+    <value>Cambiar tema</value>
   </data>
 </root>
