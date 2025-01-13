@@ -18,7 +18,7 @@ namespace AppMovilProyecto1
                 {
                     new Button
                     {
-                        Text = "Agregar a Favoritos", // Texto del botón
+                        Text = Localization.AppResources.Add, // Texto del botón
                         Command = new Command(() => ReaccionarOpcionSeleccionada("Agregar", codigoDivisa)), // Comando asociado al botón
                         BackgroundColor = Colors.Green, // Fondo verde para el botón
                         TextColor = Colors.White, // Texto blanco

@@ -170,6 +170,7 @@ namespace AppMovilProyecto1
             if (DatosConsultadoDelAPI == null || DatosConsultadoDelAPI.conversion_rates == null)
             {
                 await DisplayAlert("Informacion", "Actualmente no se han podido consultar los datos del api.", "OK");
+                return; // Return para evitar errores nulos
 
             }
 

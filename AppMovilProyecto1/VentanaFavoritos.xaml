@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMovilProyecto1.VentanaFavoritos"
+             xmlns:res="clr-namespace:AppMovilProyecto1.Localization"
              Title="Favoritos"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
 
@@ -72,14 +73,14 @@
                             <Button Text="Actualizar" Clicked="ActualizarDivisas" Style="{StaticResource BuscarBtn}"/>
                             <!-- Barra de búsqueda -->
                             <StackLayout Orientation="Horizontal">
-                                <SearchBar x:Name="BusquedaSearchBar" Placeholder="Buscar divisa..." Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />
+                                <SearchBar x:Name="BusquedaSearchBar" Placeholder="{x:Static res:AppResources.SearchBarPlace}" Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />
                                 <!--<Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/>  <Button Text="Buscar" Clicked="GuardarElementoEnRegistros" Style="{StaticResource BuscarBtn}"/>-->
                                 
 
                             </StackLayout>
 
                             <!-- Label de elementos favoritos -->
-                            <Label Text="Elementos favoritos:" Style="{StaticResource FavoritosLabel}" />
+                            <Label Text="{x:Static res:AppResources.Favorite_elements}" Style="{StaticResource FavoritosLabel}" />
 
                             <!-- Recuadro contenedor gris -->
                             <Border Style="{StaticResource RecuadroContenedor}">

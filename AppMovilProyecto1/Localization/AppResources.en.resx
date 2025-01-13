@@ -117,22 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add to Favorites</value>
+  </data>
+  <data name="Amount-input" xml:space="preserve">
+    <value>Enter the amount</value>
+  </data>
+  <data name="Base-currency" xml:space="preserve">
+    <value>Base currency</value>
+  </data>
+  <data name="Convert" xml:space="preserve">
+    <value>Convert</value>
+  </data>
+  <data name="Converted-amount" xml:space="preserve">
+    <value>Converted amount:</value>
+  </data>
   <data name="Converter" xml:space="preserve">
     <value>Converter</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Entry-amount" xml:space="preserve">
+    <value>Amount to convert: </value>
+  </data>
   <data name="Favorite-elements" xml:space="preserve">
-    <value>Favorites items:</value>
+    <value>Favorite items:</value>
+  </data>
+  <data name="Favorite-items" xml:space="preserve">
+    <value>Favorite items</value>
   </data>
   <data name="Favorites" xml:space="preserve">
     <value>Favorites</value>
   </data>
+  <data name="Final-amount" xml:space="preserve">
+    <value>Final amount:</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="Registered-currency" xml:space="preserve">
+    <value>Registered currencies:</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
   <data name="SearchBarPlace" xml:space="preserve">
     <value>Search Exchange Rate...</value>
+  </data>
+  <data name="Select-dest" xml:space="preserve">
+    <value>Select the destination currency: </value>
+  </data>
+  <data name="Select-origin" xml:space="preserve">
+    <value>Select the source currency: </value>
+  </data>
+  <data name="Theme-change" xml:space="preserve">
+    <value>Change theme</value>
   </data>
 </root>

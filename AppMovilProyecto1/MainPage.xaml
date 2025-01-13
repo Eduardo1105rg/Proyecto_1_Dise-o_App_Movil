@@ -78,7 +78,7 @@
                             </StackLayout>
 
                             <!-- Label de elementos favoritos -->
-                            <Label Text="Divisas registradas:" Style="{StaticResource FavoritosLabel}" />
+                            <Label Text="{x:Static res:AppResources.Registered_currency}" Style="{StaticResource FavoritosLabel}" />
 
                             <!-- Recuadro contenedor gris -->
                             <Border Style="{StaticResource RecuadroContenedor}">

@@ -18,7 +18,7 @@ namespace AppMovilProyecto1
                 {
                     new Button
                     {
-                        Text = "Eliminar", // Texto del botón
+                        Text = Localization.AppResources.Delete, // Texto del botón
                         Command = new Command(() => ReaccionarOpcionSeleccionada("Eliminar", codigoDivisa)), // Comando de la acción al presionar
                         BackgroundColor = Colors.Green, // Color de fondo del botón
                         TextColor = Colors.White, // Color del texto del botón
