@@ -120,6 +120,9 @@
   <data name="Amount-input" xml:space="preserve">
     <value>Ingresa el monto</value>
   </data>
+  <data name="Base-currency" xml:space="preserve">
+    <value>Divisa base</value>
+  </data>
   <data name="Convert" xml:space="preserve">
     <value>Convert</value>
   </data>
