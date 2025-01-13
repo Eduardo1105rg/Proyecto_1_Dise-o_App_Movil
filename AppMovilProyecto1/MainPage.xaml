@@ -17,7 +17,7 @@
         <!-- Estilo para el recuadro de contenedor gris -->
         <Style x:Key="RecuadroContenedor" TargetType="Border">
             <Setter Property="BackgroundColor" Value="#D9D9D9" />
-            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="Stroke" Value="{DynamicResource Border}" />
             <Setter Property="StrokeThickness" Value="2" />
             <Setter Property="StrokeShape" Value="RoundRectangle 10" />
             <Setter Property="Padding" Value="0,10,0,10"/>

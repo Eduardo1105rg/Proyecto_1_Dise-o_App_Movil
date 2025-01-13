@@ -12,19 +12,19 @@ namespace AppMovilProyecto1
         {
             var stackLayoutOpciones = new StackLayout
             {
-                BackgroundColor = Application.Current.Resources.TryGetValue("PageBackgroundColor", out var bgColor)
-                    ? (Color)(bgColor)
-                    : Colors.White,
-                Padding = 5,
+                BackgroundColor = Colors.White, // Fondo blanco para el StackLayout
+                Padding = new Thickness(5), // Relleno interno de 5 en todos los lados
                 Children =
                 {
                     new Button
                     {
-                        Text = "Agregar a Favoritos",
-                        Command = new Command(() => ReaccionarOpcionSeleccionada("Agregar", codigoDivisa)),
-                        Style = Application.Current.Resources.TryGetValue("OpcionesBtnStyle", out var btnStyle)
-                            ? btnStyle as Style
-                            : null
+                        Text = "Agregar a Favoritos", // Texto del botón
+                        Command = new Command(() => ReaccionarOpcionSeleccionada("Agregar", codigoDivisa)), // Comando asociado al botón
+                        BackgroundColor = Colors.Green, // Fondo verde para el botón
+                        TextColor = Colors.White, // Texto blanco
+                        FontSize = 20, // Tamaño de fuente
+                        CornerRadius = 8, // Bordes redondeados
+                        Margin = new Thickness(4), // Márgenes alrededor del botón
                     }
                 }
             };
