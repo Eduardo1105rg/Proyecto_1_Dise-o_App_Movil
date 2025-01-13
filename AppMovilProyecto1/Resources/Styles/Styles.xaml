@@ -453,7 +453,7 @@
 
     <!-- Estilo para el recuadro de elementos favoritos -->
     <Style x:Key="RecuadroElemento" TargetType="Border">
-        <Setter Property="BackgroundColor" Value="#CCFFCC" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource InternContainer}" />
         <Setter Property="Stroke" Value="Transparent" />
         <Setter Property="StrokeShape" Value="RoundRectangle 20" />
         <Setter Property="Margin" Value="10,5,10,5"/>
@@ -461,8 +461,8 @@
 
     <!-- Estilo para el recuadro interno blanco -->
     <Style x:Key="RecuadroInterno" TargetType="Border">
-        <Setter Property="BackgroundColor" Value="White" />
-        <Setter Property="Stroke" Value="Black" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource PageBackgroundColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource Border}" />
         <Setter Property="StrokeThickness" Value="2" />
         <Setter Property="StrokeShape" Value="RoundRectangle 20" />
         <Setter Property="Padding" Value="1" />
@@ -486,7 +486,7 @@
     <Style x:Key="OpcionesBtn" TargetType="Button">
         <Setter Property="Margin" Value="2"/>
         <Setter Property="BackgroundColor" Value="Transparent"/>
-        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}"/>
         <Setter Property="FontSize" Value="30"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="Margin" Value="0"/>
@@ -494,14 +494,17 @@
     </Style>
 
     <Style x:Key="PaisLabel" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}"/>
         <Setter Property="Margin" Value="10,5,0,0"/>
     </Style>
 
     <Style x:Key="CodigoLabel" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}"/>
         <Setter Property="Margin" Value="10,5,0,5"/>
     </Style>
 
     <Style x:Key="ValorLabel" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}"/>
         <Setter Property="Margin" Value="10,0,0,5"/>
         <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
         <Setter Property="VerticalOptions" Value="EndAndExpand"/>

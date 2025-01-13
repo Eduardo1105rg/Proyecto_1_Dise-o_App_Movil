@@ -12,19 +12,21 @@ namespace AppMovilProyecto1
         {
             var stackLayoutOpciones = new StackLayout
             {
-
-                BackgroundColor = Colors.White,
-                Padding = 5,
+                BackgroundColor = Colors.White, // Fondo blanco para el StackLayout
+                Padding = new Thickness(5), // Relleno interno de 5 en todos los lados
                 Children =
-                {                   
+                {
                     new Button
                     {
-                        Text = Localization.AppResources.Add,
-                        Command = new Command(() => ReaccionarOpcionSeleccionada("Agregar", codigoDivisa)),
-                        Style = (Style)Application.Current.Resources["OpcionesBtnStyle"]
-                    },
+                        Text = Localization.AppResources.Add, // Texto del botón
+                        Command = new Command(() => ReaccionarOpcionSeleccionada("Agregar", codigoDivisa)), // Comando asociado al botón
+                        BackgroundColor = Colors.Green, // Fondo verde para el botón
+                        TextColor = Colors.White, // Texto blanco
+                        FontSize = 20, // Tamaño de fuente
+                        CornerRadius = 8, // Bordes redondeados
+                        Margin = new Thickness(4), // Márgenes alrededor del botón
+                    }
                 }
-
             };
 
             Content = new Border
