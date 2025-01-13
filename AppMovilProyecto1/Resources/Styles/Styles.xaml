@@ -448,7 +448,7 @@
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
-
+    
     <!-->>>>Estilos para un elemento favorito.-->
 
     <!-- Estilo para el recuadro de elementos favoritos -->

@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:res="clr-namespace:AppMovilProyecto1.Localization"
-             x:Class="AppMovilProyecto1.MainPage">
+             x:Class="AppMovilProyecto1.MainPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
 
     <ContentPage.Resources>
 
@@ -48,16 +49,6 @@
         </Style>
 
     </ContentPage.Resources>
-    <!-- Style="{StaticResource }" 
-
-    <Setter Property="" Value=""/>
-
-
-                <BoxView.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"/>
-            </BoxView.GestureRecognizers>
-
--->
 
     <Grid>
 

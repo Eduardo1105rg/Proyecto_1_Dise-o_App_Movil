@@ -7,6 +7,13 @@ namespace AppMovilProyecto1;
 
 public partial class VentanaFavoritos : ContentPage
 {
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Aplicar el tema al cargar la MainPage
+        GestionTema.ApplyTheme();
+    }
     private List<MenuDesplegable> menusAbiertos = new List<MenuDesplegable>();
 
     private AbsoluteLayout absoluteLayoutMain;
@@ -358,11 +365,11 @@ public partial class VentanaFavoritos : ContentPage
     }
 
 
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        RecargarContenido();
-    }
+    //protected override void OnAppearing()
+    //{
+    //    base.OnAppearing();
+    //    RecargarContenido();
+    //}
 
     // Recargar el contenido de la ventana:
     public void RecargarContenido()

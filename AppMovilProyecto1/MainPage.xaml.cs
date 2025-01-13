@@ -69,7 +69,7 @@ namespace AppMovilProyecto1
 
         public Dictionary<String, String> AccederInfoDivisasPorCodigo = new Dictionary<string, string>();
 
-        private readonly IGoogleAuthService _googleAuthService = new GoogleAuthService(); //probar lo del inicio de sesion
+        private readonly GoogleAuthService _googleAuthService = new GoogleAuthService();
 
         public MainPage()
         {
@@ -346,13 +346,6 @@ namespace AppMovilProyecto1
             CerrarMenusDesplegables(); // Cierra todos los menús abiertos
         }
 
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            RecargarContenido();
-        }
-
         // Recargar el contenido de la ventana:
         public void RecargarContenido()
         {
@@ -416,8 +409,8 @@ namespace AppMovilProyecto1
             await Shell.Current.GoToAsync("//VentanaConversor");
         }
 
-        
-        //Para el inicio de sesion
+
+        //Para el inicio de sesion, metodo del video
         private async void LoginBtn_Clicked(object sender, EventArgs e)
         {
             var loggedUser = await _googleAuthService.GetCurrentUserAsync();
@@ -427,17 +420,15 @@ namespace AppMovilProyecto1
                 loggedUser = await _googleAuthService.AuthenticateAsync();
             }
 
-            await Application.Current.MainPage.DisplayAlert("Login Message", "Welcome " + loggedUser.FullName, "Ok");
-            //await DisplayAlert("Login Message", "Welcome " + loggedUser.FullName, "Ok");
+            await DisplayAlert("Login Message", "Welcome " + loggedUser.FullName, "Ok");
         }
 
         private async void LogoutBtn_Clicked(object sender, EventArgs e)
         {
             await _googleAuthService?.LogoutAsync();
 
-            await Application.Current.MainPage.DisplayAlert("Login Message", "Goodbye", "Ok");
-            //await DisplayAlert("Login Message", "Goodbye", "Ok");
+            await DisplayAlert("Login Message", "Goodbye", "Ok");
         }
-    }
 
+    }
 }

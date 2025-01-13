@@ -4,6 +4,14 @@ using AppMovilProyecto1.Services;
 
 public partial class VentanaConversor : ContentPage
 {
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Aplicar el tema al cargar la MainPage
+        GestionTema.ApplyTheme();
+    }
+
     public string[] datosDivisasPicker = new string[] {
         "United Arab Emirates", "Afghanistan", "Albania", "Armenia", "Netherlands Antilles", "Angola",
         "Argentina", "Australia", "Aruba", "Azerbaijan", "Bosnia and Herzegovina", "Barbados",

@@ -1,26 +1,26 @@
 ﻿using Android.App;
 using Android.Gms.Auth.Api.SignIn;
+using Android.Gms.Common;
 using AppMovilProyecto1.Models;
+using static AndroidX.ConstraintLayout.Core.Motion.Utils.HyperSpline;
 
 namespace AppMovilProyecto1.GoogleAuth
 {
-    public class GoogleAuthService : IGoogleAuthService
+
+    public partial class GoogleAuthService
     {
-        private const string WebApiKey = "13014203953 - 35so8asr9id1mlrjtr0lvj8cbegpekl1.apps.googleusercontent.com";
+        private const string WebApiKey = "13014203953-eel5hsvq51b324e0j5ped24kjmdebke1.apps.googleusercontent.com";
         public static Activity _activity;
         public static GoogleSignInOptions _gso;
         public static GoogleSignInClient _googleSignInClient;
-
         private TaskCompletionSource<GoogleUserDTO> _taskCompletionSource = new TaskCompletionSource<GoogleUserDTO>();
         private Task<GoogleUserDTO> GoogleAuthentication
         {
             get => _taskCompletionSource.Task;
         }
-
         public GoogleAuthService()
         {
             _activity = Platform.CurrentActivity;
-
             //Google Auth Option
             _gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
                             .RequestIdToken(WebApiKey)
@@ -28,24 +28,15 @@ namespace AppMovilProyecto1.GoogleAuth
                             .RequestId()
                             .RequestProfile()
                             .Build();
-
             _googleSignInClient = GoogleSignIn.GetClient(_activity, _gso);
-
-
             MainActivity.ResultGoogleAuth += MainActivity_ResultGoogleAuth;
         }
-
-
         public Task<GoogleUserDTO> AuthenticateAsync()
         {
             _taskCompletionSource = new TaskCompletionSource<GoogleUserDTO>();
-
             _activity.StartActivityForResult(_googleSignInClient.SignInIntent, 9001);
-
             return GoogleAuthentication;
-
         }
-
         private void MainActivity_ResultGoogleAuth(object sender, (bool Success, GoogleSignInAccount Account) e)
         {
             if (e.Success)
@@ -53,7 +44,6 @@ namespace AppMovilProyecto1.GoogleAuth
                 try
                 {
                     var currentAccount = e.Account;
-
                     _taskCompletionSource.SetResult(
                         new GoogleUserDTO
                         {
@@ -68,9 +58,7 @@ namespace AppMovilProyecto1.GoogleAuth
                     _taskCompletionSource.SetException(ex);
                 }
             }
-
         }
-
         public async Task<GoogleUserDTO> GetCurrentUserAsync()
         {
             try
@@ -83,15 +71,12 @@ namespace AppMovilProyecto1.GoogleAuth
                     TokenId = user.IdToken,
                     Username = user.GivenName
                 };
-
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
-
         public Task LogoutAsync() => _googleSignInClient.SignOutAsync();
-
     }
 }
