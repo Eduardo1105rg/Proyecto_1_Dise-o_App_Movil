@@ -147,6 +147,9 @@
   <data name="Home" xml:space="preserve">
     <value>Inicio</value>
   </data>
+  <data name="Registered-currency" xml:space="preserve">
+    <value>Registered currencies: </value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Buscar</value>
   </data>
@@ -158,5 +161,8 @@
   </data>
   <data name="Select-origin" xml:space="preserve">
     <value>Select the source currency: </value>
+  </data>
+  <data name="Theme-change" xml:space="preserve">
+    <value>Change theme</value>
   </data>
 </root>

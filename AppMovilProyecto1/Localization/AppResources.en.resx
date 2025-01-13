@@ -120,6 +120,9 @@
   <data name="Amount-input" xml:space="preserve">
     <value>Enter the amount</value>
   </data>
+  <data name="Base-currency" xml:space="preserve">
+    <value>Base currency</value>
+  </data>
   <data name="Convert" xml:space="preserve">
     <value>Convertir</value>
   </data>
@@ -147,6 +150,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="Registered-currency" xml:space="preserve">
+    <value>Divisas registradas: </value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
@@ -158,5 +164,8 @@
   </data>
   <data name="Select-origin" xml:space="preserve">
     <value>Selecciona la divisa de origen: </value>
+  </data>
+  <data name="Theme-change" xml:space="preserve">
+    <value>Cambiar tema</value>
   </data>
 </root>
