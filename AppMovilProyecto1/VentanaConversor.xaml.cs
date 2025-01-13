@@ -112,12 +112,12 @@ public partial class VentanaConversor : ContentPage
         AccederInfoDivisasPorCodigo = AccederInfoDivisas.ToDictionary(item => item.Value, item => item.Key);
 
         bool llamar = RevisarEstado();
-        if (llamar)
+        if (!llamar)
         {
-            AsignarValoresPickerDefault();
+            AsignarValoresPickerFavoritosAutomatico();
 
         }
-
+        AsignarValoresPickerDefault();
     }
 
     // Revisar el estado de la conexion
@@ -148,6 +148,15 @@ public partial class VentanaConversor : ContentPage
     // Asignar los valores al picker despues de cambiar a favoritos.
     private void AsignarValoresPickerDefaultActualizacion(object sender, EventArgs e)
     {
+
+        bool llamar = RevisarEstado();
+        if (!llamar)
+        {
+            DisplayAlert("Error", "No se pueden cambiar los valores sin estar conectado a internet.", "OK");
+            return;
+
+        }
+
         DivisaOrigenPicker.ItemsSource = null;
         DivisaOrigenPicker.SelectedIndex = -1;
 
@@ -202,6 +211,74 @@ public partial class VentanaConversor : ContentPage
         if (listaDeDivisasRegistradas.Any())
         {
             DivisaOrigenPicker.ItemsSource = listaDeDivisasRegistradas;
+            DivisaDestinoPicker.ItemsSource = datosDivisasPicker;
+        }
+        else
+        {
+            await DisplayAlert("Error", "No se encontraron divisas registradas en favoritos.", "OK");
+            return;
+        }
+
+
+
+        //DivisaOrigenPicker.ItemsSource = listaDeDivisasRegistradas;
+
+        //DivisaDestinoPicker.ItemsSource = datosDivisasPicker;
+
+
+        // Modificar los datos del boton que actualiza los valores del picker.
+        ModificarBtn.Clicked -= AsignarValoresPickerFavoritos;
+        ModificarBtn.Clicked += AsignarValoresPickerDefaultActualizacion;
+        ModificarBtn.Text = "Elementos default";
+
+        // Modifcar los datos del boton que inicia el proceso de conversion.
+        ConvertirBtn.Clicked -= RealizarConvercion;
+        ConvertirBtn.Clicked += RealizarConvercionFavoritos;
+
+
+        //AccederInfoDivisasPorCodigo = AccederInfoDivisas.ToDictionary(item => item.Value, item => item.Key);
+
+    }
+
+
+    private async void AsignarValoresPickerFavoritosAutomatico()
+    {
+        DatosFavoritosCargados = new Dictionary<string, Dictionary<string, double>>();
+        var elementosRegistrado = await FavoritosService.LeerTodoLosArchivosExistentesLista();
+
+        if (elementosRegistrado.Count() == 0)
+        {
+            await DisplayAlert("Informacion", "Actualmente no hay elementos guardados en favoritos.", "OK");
+            return;
+        }
+
+        // Vaciar los datos del picker.
+        DivisaOrigenPicker.ItemsSource = null;
+        DivisaOrigenPicker.SelectedIndex = -1;
+
+
+        List<string> divisaRegistradasEnFavoritos = new List<string>();
+        Dictionary<string, Dictionary<string, double>> valoresConversionDvisas = new Dictionary<string, Dictionary<string, double>>();
+        foreach (var favorito in elementosRegistrado)
+        {
+
+            string codigoDivisa = favorito.CodigoDivisa;
+
+            divisaRegistradasEnFavoritos.Add(AccederInfoDivisasPorCodigo[codigoDivisa]);
+
+            Dictionary<string, double> valoresConversion = favorito.ValoresConversion;
+            DatosFavoritosCargados.Add(codigoDivisa, valoresConversion);
+        }
+
+        //DatosFavoritosCargados.Add(valoresConversionDvisas);
+
+        string[] listaDeDivisasRegistradas = divisaRegistradasEnFavoritos.ToArray();
+
+
+        if (listaDeDivisasRegistradas.Any())
+        {
+            DivisaOrigenPicker.ItemsSource = listaDeDivisasRegistradas;
+            DivisaDestinoPicker.ItemsSource = datosDivisasPicker;
         }
         else
         {
@@ -233,6 +310,13 @@ public partial class VentanaConversor : ContentPage
 
     private async void RealizarConvercion(object sender, EventArgs e)
     {
+        bool llamar = RevisarEstado();
+        if (!llamar)
+        {
+            AsignarValoresPickerFavoritosAutomatico();
+
+        }
+
         // Limpiar el lugar en donde se muestran los datos.
 
         // Validar que si se selecciono un elemento.

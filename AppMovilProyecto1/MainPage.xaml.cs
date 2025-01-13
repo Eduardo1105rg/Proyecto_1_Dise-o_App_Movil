@@ -127,27 +127,8 @@ namespace AppMovilProyecto1
         // Funcion para ser llamada a traves de la interfaz para iniciar el proceso de busqueda.
         private void IniciarBusqueda(object sender, TextChangedEventArgs e)
         {
-            //await DisplayAlert("Error", "Iniciando busqueda.", "OK");
-            return;
-            string divisaSeleccionada = Application.Current.Resources["BaseCurrency"]?.ToString();
-
-            var textoBusqueda = e.NewTextValue.ToLower();
-
-            FavoritosContenedorStackLayout.Children.Clear();
-
-            foreach (var elemento in elementosRecuperado) {
-
-                string codigoDivisa = elemento.Key;
-
-                string nombrePais = AccederInfoDivisasPorCodigo[elemento.Key];
-
-                if (string.IsNullOrEmpty(textoBusqueda) || codigoDivisa.ToLower().Contains(textoBusqueda) || nombrePais.ToLower().Contains(textoBusqueda))
-                {
-                    RenderizarElementos(codigoDivisa, elemento.Value.Item1, divisaSeleccionada);
-                }
-
-            }
-
+            DisplayAlert("Informacion", "Busqueda desactivada.", "OK");
+ 
         }
 
         // Inciar el proceso de renderrizado de elementos en la pantalla.
