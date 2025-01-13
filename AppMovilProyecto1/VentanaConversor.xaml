@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMovilProyecto1.VentanaConversor"
+             xmlns:res="clr-namespace:AppMovilProyecto1.Localization"
              Title="VentanaConversor">
 
 
@@ -62,19 +63,19 @@
 
         <StackLayout Padding ="20" BackgroundColor ="#E6F4E6" Margin="20">
 
-            <Button x:Name="ModificarBtn" Text="Elementos favoritos" Clicked="AsignarValoresPickerFavoritos" BackgroundColor="Green" TextColor="White" />
+            <Button x:Name="ModificarBtn" Text="{x:Static res:AppResources.Favorite-items}" Clicked="AsignarValoresPickerFavoritos" BackgroundColor="Green" TextColor="White" />
 
             <!-- Recuadro superior para la seccion de la divisa base y destino. -->
             <Border>
                 <StackLayout>
-                    <Label Text="Selecciona la divisa de origen: "/>
+                    <Label Text="{x:Static res:AppResources.Select_origin}"/>
                     <Border>
                         <Picker x:Name="DivisaOrigenPicker"/>
                     </Border>
 
                     <Image x:Name="FlechaImagenSuperior" Source="flecha_conversor.png" HeightRequest="50"/>
 
-                    <Label Text="Selecciona la divisa de destino:" />
+                    <Label Text="{x:Static res:AppResources.Select_dest}" />
 
                     <Border>
                         <Picker x:Name="DivisaDestinoPicker" />
@@ -85,22 +86,22 @@
             <!-- Recuadro inferior para ingresar el monto y mostrar el valor de la conversion. Style="{StaticResource EspecialBorderStyle}"-->
             <Border>
                 <StackLayout>
-                    <Label Text="Monto a convertir:" />
+                    <Label Text="{x:Static res:AppResources.Entry_amount}" />
 
                     <Border>
-                        <Entry x:Name="MontoEntry" Placeholder="Ingresa el monto" Keyboard="Numeric"  VerticalOptions="CenterAndExpand"/>
+                        <Entry x:Name="MontoEntry" Placeholder="{x:Static res:AppResources.Amount_input}" Keyboard="Numeric"  VerticalOptions="CenterAndExpand"/>
                     </Border>
 
                     <Image x:Name="FlechaImagenInferior" Source="flecha_conversor.png" HeightRequest="50"/>
 
-                    <Label Text="Monto convertido:" />
+                    <Label Text="{x:Static res:AppResources.Converted_amount}" />
                     <Border>
-                        <Label x:Name="ResultadoLabel" Text="Monto Final" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                        <Label x:Name="ResultadoLabel" Text="{x:Static res:AppResources.Final-amount}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
                     </Border>
                 </StackLayout>
             </Border>
 
-            <Button x:Name="ConvertirBtn" Text="Convertir" Clicked="RealizarConvercion" BackgroundColor="Green" TextColor="White" />
+            <Button x:Name="ConvertirBtn" Text="{x:Static res:AppResources.}" Clicked="RealizarConvercion" BackgroundColor="Green" TextColor="White" />
 
 
         </StackLayout>

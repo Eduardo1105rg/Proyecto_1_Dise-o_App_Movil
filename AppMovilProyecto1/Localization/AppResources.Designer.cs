@@ -61,11 +61,47 @@ namespace AppMovilProyecto1.Localization {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ingresa el monto.
+        /// </summary>
+        internal static string Amount_input {
+            get {
+                return ResourceManager.GetString("Amount-input", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Convertir.
+        /// </summary>
+        internal static string Convert {
+            get {
+                return ResourceManager.GetString("Convert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Monto convertido:.
+        /// </summary>
+        internal static string Converted_amount {
+            get {
+                return ResourceManager.GetString("Converted-amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Conversor.
         /// </summary>
         internal static string Converter {
             get {
                 return ResourceManager.GetString("Converter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Monto a convertir:.
+        /// </summary>
+        internal static string Entry_amount {
+            get {
+                return ResourceManager.GetString("Entry-amount", resourceCulture);
             }
         }
         
@@ -79,11 +115,29 @@ namespace AppMovilProyecto1.Localization {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Elementos favoritos.
+        /// </summary>
+        internal static string Favorite_items {
+            get {
+                return ResourceManager.GetString("Favorite-items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Favoritos.
         /// </summary>
         internal static string Favorites {
             get {
                 return ResourceManager.GetString("Favorites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Monto final:.
+        /// </summary>
+        internal static string Final_amount {
+            get {
+                return ResourceManager.GetString("Final-amount", resourceCulture);
             }
         }
         
@@ -111,6 +165,24 @@ namespace AppMovilProyecto1.Localization {
         internal static string SearchBarPlace {
             get {
                 return ResourceManager.GetString("SearchBarPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Selecciona la divisa destino: .
+        /// </summary>
+        internal static string Select_dest {
+            get {
+                return ResourceManager.GetString("Select-dest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Selecciona la divisa de origen: .
+        /// </summary>
+        internal static string Select_origin {
+            get {
+                return ResourceManager.GetString("Select-origin", resourceCulture);
             }
         }
     }

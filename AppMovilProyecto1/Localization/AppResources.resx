@@ -117,14 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Amount-input" xml:space="preserve">
+    <value>Ingresa el monto</value>
+  </data>
+  <data name="Convert" xml:space="preserve">
+    <value>Convertir</value>
+  </data>
+  <data name="Converted-amount" xml:space="preserve">
+    <value>Monto convertido:</value>
+  </data>
   <data name="Converter" xml:space="preserve">
     <value>Conversor</value>
+  </data>
+  <data name="Entry-amount" xml:space="preserve">
+    <value>Monto a convertir:</value>
   </data>
   <data name="Favorite-elements" xml:space="preserve">
     <value>Elementos favoritos</value>
   </data>
+  <data name="Favorite-items" xml:space="preserve">
+    <value>Elementos favoritos</value>
+  </data>
   <data name="Favorites" xml:space="preserve">
     <value>Favoritos</value>
+  </data>
+  <data name="Final-amount" xml:space="preserve">
+    <value>Monto final:</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Inicio</value>
@@ -134,5 +152,11 @@
   </data>
   <data name="SearchBarPlace" xml:space="preserve">
     <value>Buscar Divisa...</value>
+  </data>
+  <data name="Select-dest" xml:space="preserve">
+    <value>Selecciona la divisa destino: </value>
+  </data>
+  <data name="Select-origin" xml:space="preserve">
+    <value>Selecciona la divisa de origen: </value>
   </data>
 </root>
