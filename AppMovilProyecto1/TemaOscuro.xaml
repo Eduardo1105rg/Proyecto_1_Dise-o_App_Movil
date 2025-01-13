@@ -6,7 +6,8 @@
     <Color x:Key="Navbar">#343A40</Color>
     <Color x:Key="ShellContent">#343A40</Color>
     <Color x:Key="PageBackgroundColor">#727272</Color>
-    <Color x:Key="ContainerFav">#585858</Color>
+    <Color x:Key="ContainerFavPrincipal">#585858</Color>
+    <Color x:Key="ContainerFavoritos">#656565</Color>
     <Color x:Key="Border">White</Color>
     <Color x:Key="PrimaryTextColor">White</Color>
     <Color x:Key="SecondaryTextColor">White</Color>
