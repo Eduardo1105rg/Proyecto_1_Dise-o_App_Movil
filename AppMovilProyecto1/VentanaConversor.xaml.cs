@@ -4,6 +4,15 @@ using AppMovilProyecto1.Services;
 
 public partial class VentanaConversor : ContentPage
 {
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Aplicar el tema al cargar la MainPage
+        GestionTema.ApplyTheme();
+    }
+
+    // Nombre de todo los paise disponibles.
     public string[] datosDivisasPicker = new string[] {
         "United Arab Emirates", "Afghanistan", "Albania", "Armenia", "Netherlands Antilles", "Angola",
         "Argentina", "Australia", "Aruba", "Azerbaijan", "Bosnia and Herzegovina", "Barbados",
@@ -30,6 +39,7 @@ public partial class VentanaConversor : ContentPage
         "Zambia", "Zimbabwe"
     };
 
+    // Informacion de la divisas.
     public Dictionary<String, String> AccederInfoDivisas = new Dictionary<string, string> {
         { "United Arab Emirates", "AED" }, { "Afghanistan", "AFN" }, { "Albania", "ALL" },
         { "Armenia", "AMD" }, { "Netherlands Antilles", "ANG" }, { "Angola", "AOA" },
@@ -87,9 +97,10 @@ public partial class VentanaConversor : ContentPage
         { "South Africa", "ZAR" }, { "Zambia", "ZMW" }, { "Zimbabwe", "ZWL" }
     };
 
+    // Acceder al pais de una divisa por codigo.
     public Dictionary<String, String> AccederInfoDivisasPorCodigo = new Dictionary<string, string>();
 
-
+    // Datos cargados desde favoritos.
     public Dictionary<string, Dictionary<string, double>> DatosFavoritosCargados;
 
     public VentanaConversor()
@@ -126,7 +137,7 @@ public partial class VentanaConversor : ContentPage
 
     }
 
-    // 
+    // Asignar a los picker los datos almacenados de forma local.
     private async void AsignarValoresPickerFavoritos(object sender, EventArgs e)
     {
         DatosFavoritosCargados = new Dictionary<string, Dictionary<string, double>>();
@@ -264,7 +275,7 @@ public partial class VentanaConversor : ContentPage
     // Pais es la clase de acceso al elementos, codigo divisa es lo que se devuelve.
 
 
-
+    // Metodo que realiza converciones con los datos de favoritos guardados de forma local.
     private async void RealizarConvercionFavoritos(object sender, EventArgs e)
     {
         // Limpiar el lugar en donde se muestran los datos.

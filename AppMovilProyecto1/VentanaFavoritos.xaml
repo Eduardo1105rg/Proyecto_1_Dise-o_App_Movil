@@ -2,15 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMovilProyecto1.VentanaFavoritos"
-             xmlns:res="clr-namespace:AppMovilProyecto1.Localization"
-             Title="VentanaFavoritos">
+             Title="Favoritos"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     
     
     <ContentPage.Resources>
-        
+
         <!-- Estilo para el recuadro principal -->
         <Style x:Key="RecuadroPrincipal" TargetType="Border">
-            <Setter Property="BackgroundColor" Value="#E6F4E6" /> 
+            <Setter Property="BackgroundColor" Value="#E6F4E6" />
             <Setter Property="Stroke" Value="Black" />
             <Setter Property="StrokeThickness" Value="2" />
             <Setter Property="StrokeShape" Value="RoundRectangle 10" />
@@ -34,14 +34,14 @@
             <Setter Property="CancelButtonColor" Value="red"/>
             <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
         </Style>
-        
+
         <!--Estilo del boton de buscar-->
         <Style x:Key="BuscarBtn" TargetType="Button">
             <Setter Property="Margin" Value="2"/>
         </Style>
-        
 
-        
+
+
         <!--Estilos del label que dice Elementos Favoritos.-->
         <Style x:Key="FavoritosLabel" TargetType="Label">
             <Setter Property="Margin" Value="10"/>
@@ -49,7 +49,7 @@
             <Setter Property="FontSize" Value="15"/>
         </Style>
 
-        
+
         <!-->>>>Estilos para un elemento favorito.-->
 
         <!-- Estilo para el recuadro de elementos favoritos -->
@@ -74,9 +74,9 @@
 
         <Style x:Key="StackLayouHorizontal" TargetType="StackLayout">
             <Setter Property="Orientation" Value="Horizontal"/>
-            
+
         </Style>
-        
+
         <Style x:Key="StackLayouVerticalEspecial" TargetType="StackLayout">
             <Setter Property="HorizontalOptions" Value="Center"/>
             <Setter Property="VerticalOptions" Value="Center"/>
@@ -134,109 +134,21 @@
                         <StackLayout Margin="10">
                             <!-- Barra de búsqueda -->
                             <StackLayout Orientation="Horizontal">
-                                <SearchBar x:Name="BusquedaSearchBar" Placeholder="{x:Static res:AppResources.SearchBarPlace}" Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />
+                                <SearchBar x:Name="BusquedaSearchBar" Placeholder="Buscar divisa..." Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />
                                 <!--<Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/>  <Button Text="Buscar" Clicked="GuardarElementoEnRegistros" Style="{StaticResource BuscarBtn}"/>-->
-                                <Button Text="{x:Static res:AppResources.Search}" Clicked="OnTapGestureRecognizerTapped" Style="{StaticResource BuscarBtn}"/>
+                                <Button Text="Buscar" Clicked="OnTapGestureRecognizerTapped" Style="{StaticResource BuscarBtn}"/>
 
                             </StackLayout>
 
                             <!-- Label de elementos favoritos -->
-                            <Label Text="{x:Static res:AppResources.Favorite_elements}" Style="{StaticResource FavoritosLabel}" />
+                            <Label Text="Elementos favoritos:" Style="{StaticResource FavoritosLabel}" />
 
                             <!-- Recuadro contenedor gris -->
                             <Border Style="{StaticResource RecuadroContenedor}">
 
                                 <StackLayout x:Name="FavoritosContenedorStackLayout">
 
-                                    <!--Elemento Favorito, Recuadro verde-->
-                                    <Border Style="{StaticResource RecuadroElemento}">
-
-                                        <!--Elemento Favorito, Recuadro blanco-->
-                                        <Border Style="{StaticResource RecuadroInterno}">
-
-                                            <!--Elemento Favorito, Ordenar los elementos en horizontal.-->
-                                            <StackLayout Style="{StaticResource StackLayouHorizontal}"  >
-                                                <StackLayout>
-
-                                                    <Label Text="Costa Rica" Style="{StaticResource PaisLabel}" />
-                                                    <Label Text="CRC" Style="{StaticResource CodigoLabel}" />
-
-                                                </StackLayout>
-
-                                                <Label Text="1 USD"  Style="{StaticResource ValorLabel}" />
-
-                                                <StackLayout Style="{StaticResource StackLayouVerticalEspecial}">
-
-                                                    <Button Text="⋮"  Style="{StaticResource OpcionesBtn}"/>
-
-                                                </StackLayout>
-
-                                            </StackLayout>
-
-                                        </Border>
-
-                                    </Border>
-                                    <!--Fin del elemento favorito.-->
-
-
-                                    <!--Elemento Favorito, Recuadro verde-->
-                                    <Border Style="{StaticResource RecuadroElemento}">
-
-                                        <!--Elemento Favorito, Recuadro blanco-->
-                                        <Border Style="{StaticResource RecuadroInterno}">
-
-                                            <!--Elemento Favorito, Ordenar los elementos en horizontal.-->
-                                            <StackLayout Style="{StaticResource StackLayouHorizontal}"  >
-                                                <StackLayout>
-
-                                                    <Label Text="Costa Rica" Style="{StaticResource PaisLabel}" />
-                                                    <Label Text="CRC" Style="{StaticResource CodigoLabel}" />
-
-                                                </StackLayout>
-
-                                                <Label Text="1 USD"  Style="{StaticResource ValorLabel}" />
-
-                                                <StackLayout Style="{StaticResource StackLayouVerticalEspecial}">
-
-                                                    <Button Text="⋮"  Style="{StaticResource OpcionesBtn}"/>
-
-                                                </StackLayout>
-
-                                            </StackLayout>
-
-                                        </Border>
-
-                                    </Border>
-                                    <!--Fin del elemento favorito.-->
-                                    <!--Elemento Favorito, Recuadro verde-->
-                                    <Border Style="{StaticResource RecuadroElemento}">
-
-                                        <!--Elemento Favorito, Recuadro blanco-->
-                                        <Border Style="{StaticResource RecuadroInterno}">
-
-                                            <!--Elemento Favorito, Ordenar los elementos en horizontal.-->
-                                            <StackLayout Style="{StaticResource StackLayouHorizontal}"  >
-                                                <StackLayout>
-
-                                                    <Label Text="Costa Rica" Style="{StaticResource PaisLabel}" />
-                                                    <Label Text="CRC" Style="{StaticResource CodigoLabel}" />
-
-                                                </StackLayout>
-
-                                                <Label Text="1 USD"  Style="{StaticResource ValorLabel}" />
-
-                                                <StackLayout Style="{StaticResource StackLayouVerticalEspecial}">
-
-                                                    <Button Text="⋮"  Style="{StaticResource OpcionesBtn}"/>
-
-                                                </StackLayout>
-
-                                            </StackLayout>
-
-                                        </Border>
-
-                                    </Border>
-                                    <!--Fin del elemento favorito.-->
+                                    <!---Aqui van los elementos favoritos.-->
 
                                 </StackLayout>
 

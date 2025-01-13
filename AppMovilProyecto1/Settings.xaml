@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMovilProyecto1.Settings"
+             Title="Configuración">
+    <!--BackgroundColor="{DynamicResource PageBackgroundColor}"-->
+    
+    <ContentPage.Resources>
+        <!--Label-->
+        <Style x:Key="label" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <!--Switch-->
+        <Style x:Key="switch" TargetType="Switch">
+            <Setter Property="ThumbColor" Value="{DynamicResource Navbar}"/>
+            <Setter Property="BackgroundColor" Value="{DynamicResource PageBackgroundColor}"/>
+            <Setter Property="OnColor" Value="{DynamicResource SecondaryTextColor}"/>
+        </Style>
+    </ContentPage.Resources>
+    
+    <VerticalStackLayout BackgroundColor="{DynamicResource PageBackgroundColor}">
+        <StackLayout Padding="20" Orientation="Horizontal">
+            <Label Style="{StaticResource label}" x:Name="Label_Tema" Text="Cambiar tema" VerticalTextAlignment="Center"/>
+            <BoxView HorizontalOptions="FillAndExpand" /> <!--Para crear espacio entre los elementos-->
+            <Switch Style="{StaticResource switch}" x:Name="Sw_Tema" VerticalOptions="End" IsToggled="False" Toggled="OnSwitchToggled" />
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMovilProyecto1.TemaOscuro">
+
+    <Color x:Key="Navbar">#343A40</Color>
+    <Color x:Key="ShellContent">#343A40</Color>
+    <Color x:Key="PageBackgroundColor">#727272</Color>
+    <Color x:Key="ContainerFav">#585858</Color>
+    <Color x:Key="Border">White</Color>
+    <Color x:Key="PrimaryTextColor">White</Color>
+    <Color x:Key="SecondaryTextColor">White</Color>
+    <Color x:Key="InternContainer">#454545</Color>
+
+</ResourceDictionary>

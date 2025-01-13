@@ -5,6 +5,9 @@
         public App()
         {
             InitializeComponent();
+
+            // Regitre el recurso global.
+            Resources.Add("BaseCurrency", "USD");
         }
 
         protected override Window CreateWindow(IActivationState? activationState)

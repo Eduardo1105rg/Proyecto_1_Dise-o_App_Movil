@@ -9,48 +9,59 @@
     <!--Aqui se definen los estilos de los elementos de la ventena.-->
     <ContentPage.Resources>
 
-        <!--Estilo para los recuadros principales.-->
-        <Style TargetType="Border">
+        <Style x:Key="stackLayout" TargetType="StackLayout">
+            <Setter Property="BackgroundColor" Value="{DynamicResource ContainerFav}"/>
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="Padding" Value="20"/>
+        </Style>
 
-            <Setter Property="BackgroundColor" Value="White"/>
+            <!--Estilo para los recuadros principales.-->
+        <Style x:Key="main-container" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PageBackgroundColor}"/>
             <Setter Property="Padding" Value="10"/>
             <Setter Property="Margin" Value="10"/>
-            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="Stroke" Value="{DynamicResource Border}" />
             <Setter Property="StrokeThickness" Value="2" />
             <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
-
+            <Setter Property="VerticalOptions" Value="Start"/>
         </Style>
 
         <!--Ejemplo sobre como definir un estilo a un elemento en especifico, se ingresa un nombre clave para el estylo y se ingresa un typo de elementos especifico.-->
         <Style x:Key="EspecialBorderStyle" TargetType="Border">
-            <Setter Property="BackgroundColor" Value="White"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="Background" Value="{DynamicResource PageBackgroundColor}"/>
+            <Setter Property="Stroke" Value="{DynamicResource Border}" />
             <Setter Property="StrokeThickness" Value="2" />
             <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
-
         </Style>
 
         <!--Estilo para los label, para todos.-->
-        <Style TargetType="Label">
+        <Style x:Key="Etiquetas" TargetType="Label">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PageBackgroundColor}"/>
+            <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}"/>
             <Setter Property="FontSize" Value="17"/>
         </Style>
 
         <!--Estilos para los Picker-->
-        <Style TargetType="Picker">
+        <Style x:Key="pickerStyle" TargetType="Picker">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PageBackgroundColor}"/>
+            <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}"/>
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
 
         <!--Estilos para los Entry-->
-        <Style TargetType="Entry">
-
+        <Style x:Key="entryStyle" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PageBackgroundColor}"/>
+            <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}"/>
+            <Setter Property="PlaceholderColor" Value="{DynamicResource SecondaryTextColor}"/>
             <Setter Property="FontSize" Value="17"/>
 
         </Style>
 
         <!--Estilos para los Botones-->
-        <Style TargetType="Button">
+        <Style x:Key="botones" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{DynamicResource Navbar}" />
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}"/>
             <Setter Property="FontSize" Value="20" />
             <Setter Property="CornerRadius" Value="8" />
             <Setter Property="WidthRequest" Value="200" />
@@ -61,47 +72,47 @@
 
     <ScrollView>
 
-        <StackLayout Padding ="20" BackgroundColor ="#E6F4E6" Margin="20">
+        <StackLayout Style="{StaticResource stackLayout}">
 
-            <Button x:Name="ModificarBtn" Text="{x:Static res:AppResources.Favorite-items}" Clicked="AsignarValoresPickerFavoritos" BackgroundColor="Green" TextColor="White" />
+            <Button x:Name="ModificarBtn" Text="Elementos favoritos" Clicked="AsignarValoresPickerFavoritos" Style="{StaticResource botones}" />
 
             <!-- Recuadro superior para la seccion de la divisa base y destino. -->
-            <Border>
-                <StackLayout>
-                    <Label Text="{x:Static res:AppResources.Select_origin}"/>
-                    <Border>
-                        <Picker x:Name="DivisaOrigenPicker"/>
+            <Border Style="{StaticResource main-container}">
+                <StackLayout VerticalOptions="Start">
+                    <Label Style="{StaticResource Etiquetas}" Text="Selecciona la divisa de origen: "/>
+                    <Border Style="{StaticResource EspecialBorderStyle}">
+                        <Picker Style="{StaticResource pickerStyle}" x:Name="DivisaOrigenPicker"/>
                     </Border>
 
                     <Image x:Name="FlechaImagenSuperior" Source="flecha_conversor.png" HeightRequest="50"/>
 
-                    <Label Text="{x:Static res:AppResources.Select_dest}" />
+                    <Label Style="{StaticResource Etiquetas}" Text="Selecciona la divisa de destino:" />
 
-                    <Border>
-                        <Picker x:Name="DivisaDestinoPicker" />
+                    <Border Style="{StaticResource EspecialBorderStyle}">
+                        <Picker Style="{StaticResource pickerStyle}" x:Name="DivisaDestinoPicker" />
                     </Border>
                 </StackLayout>
             </Border>
 
             <!-- Recuadro inferior para ingresar el monto y mostrar el valor de la conversion. Style="{StaticResource EspecialBorderStyle}"-->
-            <Border>
-                <StackLayout>
-                    <Label Text="{x:Static res:AppResources.Entry_amount}" />
+            <Border Style="{StaticResource main-container}">
+                <StackLayout VerticalOptions="Start">
+                    <Label Style="{StaticResource Etiquetas}" Text="Monto a convertir:" />
 
-                    <Border>
-                        <Entry x:Name="MontoEntry" Placeholder="{x:Static res:AppResources.Amount_input}" Keyboard="Numeric"  VerticalOptions="CenterAndExpand"/>
+                    <Border Style="{StaticResource EspecialBorderStyle}" VerticalOptions="Start">
+                        <Entry x:Name="MontoEntry" Placeholder="Ingresa el monto" Keyboard="Numeric" Style="{StaticResource entryStyle}"/>
                     </Border>
 
                     <Image x:Name="FlechaImagenInferior" Source="flecha_conversor.png" HeightRequest="50"/>
 
-                    <Label Text="{x:Static res:AppResources.Converted_amount}" />
-                    <Border>
-                        <Label x:Name="ResultadoLabel" Text="{x:Static res:AppResources.Final-amount}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                    <Label Style="{StaticResource Etiquetas}" Text="Monto convertido:" />
+                    <Border Style="{StaticResource EspecialBorderStyle}">
+                        <Label Style="{StaticResource Etiquetas}" x:Name="ResultadoLabel" Text="Monto Final" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
                     </Border>
                 </StackLayout>
             </Border>
 
-            <Button x:Name="ConvertirBtn" Text="{x:Static res:AppResources.}" Clicked="RealizarConvercion" BackgroundColor="Green" TextColor="White" />
+            <Button x:Name="ConvertirBtn" Text="Convertir" Clicked="RealizarConvercion" Style="{StaticResource botones}"/> 
 
 
         </StackLayout>

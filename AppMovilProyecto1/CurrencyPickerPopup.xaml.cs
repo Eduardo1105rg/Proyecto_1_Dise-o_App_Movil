@@ -10,11 +10,13 @@ namespace AppMovilProyecto1
             InitializeComponent();
         }
 
-        private void OnCurrencyPickerSelectedIndexChanged(object sender, EventArgs e)
+        // Esto se llama cuando se selecciona una opcion en el piker.
+        private void CambiarOpcionSeleccionada(object sender, EventArgs e)
         {
             Picker picker = sender as Picker;
             string selectedCurrency = (string)picker.SelectedItem;
-            // Guarda la divisa seleccionada en una propiedad global o en App.xaml.cs
+            
+            // Algo global en lo que se guarda.
             App.Current.Resources["BaseCurrency"] = selectedCurrency;
 
             
@@ -22,21 +24,23 @@ namespace AppMovilProyecto1
             // Cerrar el popup
             Close();
 
-            // Recargar la ventana actual o tomar otras acciones
-            ReloadCurrentPage();
+            // Recargar la ventana actual 
+            RecargarContenidoDePaginaActual();
         }
 
-        private void ReloadCurrentPage()
+        // Se recarga el conenido de la pagina actual.
+        private void RecargarContenidoDePaginaActual()
         {
-            // Obtén la página actual
+            // Obtiene la pagina actual
             var currentPage = Shell.Current.CurrentPage;
 
-            if (currentPage is VentanaFavoritos ventanaFavoritos)
-            {
-                ventanaFavoritos.RecargarContenido();
-            }
+            // LLamar al metodo de la ventana correspondiente
+            //if (currentPage is VentanaFavoritos ventanaFavoritos)
+            //{
+                //ventanaFavoritos.RecargarContenido();
+            //}
           
-            else if (currentPage is MainPage mainPage)
+            if (currentPage is MainPage mainPage)
             {
                 mainPage.RecargarContenido();
             }
