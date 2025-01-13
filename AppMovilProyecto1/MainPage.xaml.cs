@@ -1,5 +1,6 @@
 ﻿using AppMovilProyecto1.GoogleAuth;
 using AppMovilProyecto1.Services;
+using CommunityToolkit.Maui.Views;
 using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Layouts;
 
@@ -72,12 +73,15 @@ namespace AppMovilProyecto1
 
         private readonly GoogleAuthService _googleAuthService = new GoogleAuthService();
 
+
+        private Dictionary<string, (double, string)> elementosRecuperado = new Dictionary<string, (double, string)>();
+
         public MainPage()
         {
             InitializeComponent();
             AccederInfoDivisasPorCodigo = AccederInfoDivisas.ToDictionary(item => item.Value, item => item.Key);
 
-            
+
             var grid = this.Content as Grid;
             if (grid != null)
             {
@@ -99,37 +103,64 @@ namespace AppMovilProyecto1
                 TouchOverlay.IsVisible = false; // Asegurarse de que está oculto al inicio
             }
 
+            elementosRecuperado = new Dictionary<string, (double, string)>();
 
-            bool llamar = RevisarEstado();
-            if (llamar)
-            {
-                //InciarRenderizadoDeElementos();
-
-            }
+            InciarRenderizadoDeElementos();
         }
 
         // Revisar el estado de la conexion
         private bool RevisarEstado()
         {
             bool llamar = ConexionService.EstadoConexion();
-            if (llamar == false) {
+            if (llamar == false)
+            {
                 DisplayAlert("Error", "No estas conectado a internet", "OK");
-                return false; 
-            } else {
+                return false;
+            }
+            else
+            {
                 DisplayAlert("Aviso", "Conectado a internet", "OK");
-                return true; 
+                return true;
             }
         }
 
         // Funcion para ser llamada a traves de la interfaz para iniciar el proceso de busqueda.
-        private async void IniciarBusqueda(object sender, EventArgs e)
+        private void IniciarBusqueda(object sender, TextChangedEventArgs e)
         {
-            await DisplayAlert("Error", "Iniciando busqueda.", "OK");
+            //await DisplayAlert("Error", "Iniciando busqueda.", "OK");
+            return;
+            string divisaSeleccionada = Application.Current.Resources["BaseCurrency"]?.ToString();
+
+            var textoBusqueda = e.NewTextValue.ToLower();
+
+            FavoritosContenedorStackLayout.Children.Clear();
+
+            foreach (var elemento in elementosRecuperado) {
+
+                string codigoDivisa = elemento.Key;
+
+                string nombrePais = AccederInfoDivisasPorCodigo[elemento.Key];
+
+                if (string.IsNullOrEmpty(textoBusqueda) || codigoDivisa.ToLower().Contains(textoBusqueda) || nombrePais.ToLower().Contains(textoBusqueda))
+                {
+                    RenderizarElementos(codigoDivisa, elemento.Value.Item1, divisaSeleccionada);
+                }
+
+            }
+
         }
 
         // Inciar el proceso de renderrizado de elementos en la pantalla.
         private async void InciarRenderizadoDeElementos()
         {
+            elementosRecuperado = new Dictionary<string, (double, string)>();
+
+            bool llamar = RevisarEstado();
+            if (!llamar)
+            {
+                return;
+
+            }
 
             string divisaSeleccionada = Application.Current.Resources["BaseCurrency"]?.ToString();
 
@@ -152,10 +183,12 @@ namespace AppMovilProyecto1
 
                 double valorConversion = (double)rate.GetValue(DatosConsultadoDelAPI.conversion_rates);
 
+                elementosRecuperado[codigoDivisa] = (valorConversion, codigoDivisa);
+
                 RenderizarElementos(codigoDivisa, valorConversion, divisaSeleccionada);
 
             }
-            
+
         }
 
         // Mostrar un elementos en la ventana.
@@ -172,9 +205,9 @@ namespace AppMovilProyecto1
                 BackgroundColor = Application.Current.Resources.TryGetValue("InternContainer", out var bgColor)
                     ? (Color)bgColor
                     : Colors.Transparent,
-                            Stroke = Brush.Transparent,
-                            StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(20) },
-                            Margin = new Thickness(10, 5, 10, 5)
+                Stroke = Brush.Transparent,
+                StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(20) },
+                Margin = new Thickness(10, 5, 10, 5)
             };
 
             // Crear recuadro blanco.
@@ -253,7 +286,7 @@ namespace AppMovilProyecto1
                 Padding = new Thickness(0), // Sin relleno adicional
                 VerticalOptions = LayoutOptions.Center // Alineación vertical centrada
             };
-            opcionesBtn.Clicked += (sender, args) => MostrarMenuDesplegable(codigoDivisa, opcionesBtn); // Añadir al boton la funcion de desplegar ventana.
+            opcionesBtn.Clicked += (sender, args) => MostrarMenuDesplegablePopup(codigoDivisa, opcionesBtn); // Añadir al boton la funcion de desplegar ventana.
 
             stackLayoutVerticalBtn.Children.Add(opcionesBtn);// Añadir al StackLayout el botn
 
@@ -279,10 +312,10 @@ namespace AppMovilProyecto1
         {
             // Cerrar otros menús abiertos
             CerrarMenusDesplegables();
-            
+
             var menuDesplegable = new MenuDesplegableMain(codigoDivisa);
             menuDesplegable.OpcionSeleccionada += (sender, accion) =>
-            {              
+            {
                 if (accion == "Agregar")
                 {
                     GuardarElementoEnRegistros(codigoDivisa);
@@ -342,7 +375,7 @@ namespace AppMovilProyecto1
         // Cerrar todos los menus que esten abiertos.
         private void CerrarMenusDesplegables()
         {
-           
+
             foreach (var menu in menusAbiertos)
             {
                 //var absoluteLayout = (AbsoluteLayout)this.Content;
@@ -352,7 +385,7 @@ namespace AppMovilProyecto1
             menusAbiertos.Clear();
             TouchOverlay.IsVisible = false;
         }
-        
+
         // Reaccionar cuando se toca la ventana.
         private void OnTapGestureRecognizerTapped(object sender, EventArgs e)
         {
@@ -363,18 +396,34 @@ namespace AppMovilProyecto1
         // Recargar el contenido de la ventana:
         public void RecargarContenido()
         {
-            DisplayAlert("Aviso", "Recargando contenido", "OK");
-            FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
-
-            // Validamos si esta conectado a internet.
             bool llamar = RevisarEstado();
-            if (llamar)
+            if (!llamar)
             {
-                //InciarRenderizadoDeElementos();
+                return;
 
             }
-            //InciarRenderizadoDeElementos();
+            
+            FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
+            InciarRenderizadoDeElementos();
         }
+
+
+        private async void MostrarMenuDesplegablePopup(string codigoDivisa, View anchor)
+        {
+            var popup = new MenuDesplegablePopup2(codigoDivisa, AccionSeleccionada);
+            await this.ShowPopupAsync(popup);
+        }
+
+        private void AccionSeleccionada(string codigoDivisa, string accion)
+        {
+            if (accion == "Agregar")
+            {
+                GuardarElementoEnRegistros(codigoDivisa);
+            }
+            
+        }
+
+
 
 
         // Volver a lanzar la ventana:
@@ -393,6 +442,7 @@ namespace AppMovilProyecto1
 
             // Aplicar el tema al cargar la MainPage
             GestionTema.ApplyTheme();
+
 
             RecargarContenido();
         }

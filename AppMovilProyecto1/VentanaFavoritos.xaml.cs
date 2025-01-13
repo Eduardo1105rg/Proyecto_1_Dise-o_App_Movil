@@ -15,6 +15,7 @@ public partial class VentanaFavoritos : ContentPage
 
         // Aplicar el tema al cargar la MainPage
         GestionTema.ApplyTheme();
+        RecargarContenido();
     }
     
     // Registrar los menus abiertos.
@@ -118,10 +119,26 @@ public partial class VentanaFavoritos : ContentPage
 
     }
 
+    // Revisar el estado de la conexion
+    private bool RevisarEstado()
+    {
+        bool llamar = ConexionService.EstadoConexion();
+        if (llamar == false)
+        {
+            DisplayAlert("Error", "No estas conectado a internet", "OK");
+            return false;
+        }
+        else
+        {
+            DisplayAlert("Aviso", "Conectado a internet", "OK");
+            return true;
+        }
+    }
+
     // Funcion para ser llamada a traves de la interfaz para iniciar el proceso de busqueda.
     private async void IniciarBusqueda(object sender, EventArgs e)
     {
-        await DisplayAlert("Error", "Iniciando busqueda.", "OK");
+        await DisplayAlert("Informacion", "Iniciando busqueda.", "OK");
     }
 
     // Inciar el proceso de renderrizado de elementos en la pantalla.
@@ -399,7 +416,7 @@ public partial class VentanaFavoritos : ContentPage
     // Recargar el contenido de la ventana:
     public void RecargarContenido()
     {
-        DisplayAlert("Error", "Recargando contenido", "OK");
+        
         FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
         InciarRenderizadoDeElementos();
     }
@@ -418,7 +435,12 @@ public partial class VentanaFavoritos : ContentPage
     // Actualizar todas las divisas registradas:
     private async void ActualizarDivisas(object sender, EventArgs e)
     {
+        bool llamar = RevisarEstado();
+        if (!llamar)
+        {
+            return;
 
+        }
         var elementosRegistrado = await FavoritosService.LeerTodoLosArchivosExistentesLista();
 
         if (elementosRegistrado.Count() == 0)

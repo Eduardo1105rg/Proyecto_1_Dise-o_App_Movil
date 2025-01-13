@@ -10,7 +10,7 @@
         Margin="10"
         >
         <StackLayout BackgroundColor="{DynamicResource White}" Padding="5">
-            <Button Text="Eliminar" Command="{Binding EliminarCommand}" Style="{StaticResource OpcionesBtnStyle}" />
+            <Button Text="Agregar" Command="{Binding AgregarCommand}" Style="{StaticResource OpcionesBtnStyle}" />
         </StackLayout>
     </Border>
 </toolkit:Popup>

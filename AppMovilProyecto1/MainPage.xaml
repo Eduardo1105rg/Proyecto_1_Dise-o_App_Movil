@@ -35,7 +35,7 @@
         <!--Estilo del boton de buscar-->
         <Style x:Key="BuscarBtn" TargetType="Button">
             <Setter Property="BackgroundColor" Value="{DynamicResource Navbar}"/>
-            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Margin" Value="3"/>
         </Style>
 
         <!--Estilos del label que dice Elementos Favoritos.-->
@@ -61,11 +61,19 @@
                     <!-- Recuadro principal -->
                     <Border Style="{StaticResource RecuadroPrincipal}">
                         <StackLayout Margin="10">
+
+                            <StackLayout Orientation="Horizontal">
+
+                                <!--<Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/> {x:Static res:AppResources.Search} <Button Text="Buscar" Clicked="GuardarElementoEnRegistros" Style="{StaticResource BuscarBtn}"/>  <Button Text="{x:Static res:AppResources.Search}" Clicked="OnTapGestureRecognizerTapped" Style="{StaticResource BuscarBtn}"/>-->
+                                <Button Text="Iniciar sesion" Clicked="LoginBtn_Clicked" Style="{StaticResource BuscarBtn}"/>
+                                <Button Text="Cerrar sesion" Clicked="LogoutBtn_Clicked" Style="{StaticResource BuscarBtn}"/>
+                            </StackLayout>
+
                             <!-- Barra de búsqueda -->
                             <StackLayout Orientation="Horizontal">
-                                <SearchBar x:Name="BusquedaSearchBar" Placeholder="{x:Static res:AppResources.SearchBarPlace}" Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />
-                                <!--<Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/>  <Button Text="Buscar" Clicked="GuardarElementoEnRegistros" Style="{StaticResource BuscarBtn}"/>-->
-                                <Button Text="{x:Static res:AppResources.Search}" Clicked="OnTapGestureRecognizerTapped" Style="{StaticResource BuscarBtn}"/>
+                                <SearchBar x:Name="BusquedaSearchBar" Placeholder="{x:Static res:AppResources.SearchBarPlace}" Style="{StaticResource BarraBusqueda}" TextChanged="IniciarBusqueda"/>
+                                <!--<Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/>  <Button Text="Buscar" Clicked="GuardarElementoEnRegistros" Style="{StaticResource BuscarBtn}"/>  <Button Text="{x:Static res:AppResources.Search}" Clicked="OnTapGestureRecognizerTapped" Style="{StaticResource BuscarBtn}"/>-->
+                                
 
                             </StackLayout>
 

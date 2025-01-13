@@ -74,7 +74,7 @@
                             <StackLayout Orientation="Horizontal">
                                 <SearchBar x:Name="BusquedaSearchBar" Placeholder="Buscar divisa..." Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />
                                 <!--<Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/>  <Button Text="Buscar" Clicked="GuardarElementoEnRegistros" Style="{StaticResource BuscarBtn}"/>-->
-                                <Button Text="Buscar" Clicked="OnTapGestureRecognizerTapped" Style="{StaticResource BuscarBtn}"/>
+                                
 
                             </StackLayout>
 
