@@ -523,9 +523,16 @@ public partial class VentanaFavoritos : ContentPage
     private async void EliminarElementoFavorito(string codigoDivisa)
     {
         FavoritosService.EliminarArchivo(codigoDivisa);
-        //RecargarContenido();
         
-        DisplayAlert("Exito", $"Eliminar {codigoDivisa}", "OK");
+        bool respuesta = await DisplayAlert("Confermar eliminacion", $"¿Estás seguro de que deseas eliminar {codigoDivisa}?", "Sí", "No");
+
+        if (!respuesta)
+        {
+            await DisplayAlert("Informacion", "Accion cancelada.", "OK");
+            return;
+        }
+
+        await DisplayAlert("Informacion", $"Divisa {codigoDivisa} eliminada de favoritos.", "OK");
 
         FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
         RecargarContenido();

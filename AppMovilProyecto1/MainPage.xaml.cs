@@ -73,6 +73,7 @@ namespace AppMovilProyecto1
 
         private readonly GoogleAuthService _googleAuthService = new GoogleAuthService();
 
+        private string DivisaBaseGuardada = "";
 
         private Dictionary<string, (double, string)> elementosRecuperado = new Dictionary<string, (double, string)>();
 
@@ -134,16 +135,24 @@ namespace AppMovilProyecto1
         // Inciar el proceso de renderrizado de elementos en la pantalla.
         private async void InciarRenderizadoDeElementos()
         {
-            elementosRecuperado = new Dictionary<string, (double, string)>();
-
+            
             bool llamar = RevisarEstado();
             if (!llamar)
             {
+                FavoritosContenedorStackLayout.Children.Clear();
                 return;
 
             }
 
             string divisaSeleccionada = Application.Current.Resources["BaseCurrency"]?.ToString();
+
+            if (divisaSeleccionada == DivisaBaseGuardada)
+            {
+                return;
+            }
+            DivisaBaseGuardada = divisaSeleccionada;
+
+            elementosRecuperado = new Dictionary<string, (double, string)>();
 
             // Consultar al API para el valor de la conversion.
             var DatosConsultadoDelAPI = ExchangeService.Import(divisaSeleccionada);
@@ -385,7 +394,7 @@ namespace AppMovilProyecto1
 
             }
             
-            FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
+            //FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
             InciarRenderizadoDeElementos();
         }
 
