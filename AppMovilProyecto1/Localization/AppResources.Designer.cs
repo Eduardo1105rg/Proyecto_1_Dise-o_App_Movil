@@ -230,5 +230,14 @@ namespace AppMovilProyecto1.Localization {
                 return ResourceManager.GetString("Theme-change", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Actualizar.
+        /// </summary>
+        internal static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
     }
 }

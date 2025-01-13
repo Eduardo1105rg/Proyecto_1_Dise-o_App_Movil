@@ -70,7 +70,7 @@
                     <Border Style="{StaticResource RecuadroPrincipal}">
                         <StackLayout Margin="10">
                             <!-- Boton para volver a sincronizar las divisas -->
-                            <Button Text="Actualizar" Clicked="ActualizarDivisas" Style="{StaticResource BuscarBtn}"/>
+                            <Button Text="{x:Static res:AppResources.Update}" Clicked="ActualizarDivisas" Style="{StaticResource BuscarBtn}"/>
                             <!-- Barra de búsqueda -->
                             <StackLayout Orientation="Horizontal">
                                 <SearchBar x:Name="BusquedaSearchBar" Placeholder="{x:Static res:AppResources.SearchBarPlace}" Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />

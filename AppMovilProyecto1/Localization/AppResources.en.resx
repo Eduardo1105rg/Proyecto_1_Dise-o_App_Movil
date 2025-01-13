@@ -174,4 +174,7 @@
   <data name="Theme-change" xml:space="preserve">
     <value>Change theme</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
 </root>

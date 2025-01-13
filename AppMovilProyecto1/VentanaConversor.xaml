@@ -107,9 +107,9 @@
 
                     <Image x:Name="FlechaImagenInferior" Source="flecha_conversor.png" HeightRequest="50"/>
 
-                    <Label Style="{StaticResource Etiquetas}" Text="Monto convertido:" />
+                    <Label Style="{StaticResource Etiquetas}" Text="{x:Static res:AppResources.Converted_amount}" />
                     <Border Style="{StaticResource main-container}">
-                        <Label Style="{StaticResource Etiquetas}" x:Name="ResultadoLabel" Text="Monto Final" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                        <Label Style="{StaticResource Etiquetas}" x:Name="ResultadoLabel" Text="{x:Static res:AppResources.Final_amount}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
                     </Border>
                 </StackLayout>
             </Border>

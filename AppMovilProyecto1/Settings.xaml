@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMovilProyecto1.Settings"
+             xmlns:res="clr-namespace:AppMovilProyecto1.Localization"
              Title="Configuración">
     <!--BackgroundColor="{DynamicResource PageBackgroundColor}"-->
     
@@ -21,7 +22,7 @@
     
     <VerticalStackLayout BackgroundColor="{DynamicResource PageBackgroundColor}">
         <StackLayout Padding="20" Orientation="Horizontal">
-            <Label Style="{StaticResource label}" x:Name="Label_Tema" Text="Cambiar tema" VerticalTextAlignment="Center"/>
+            <Label Style="{StaticResource label}" x:Name="Label_Tema" Text="{x:Static res:AppResources.Theme_change}" VerticalTextAlignment="Center"/>
             <BoxView BackgroundColor="{DynamicResource PageBackgroundColor}" HorizontalOptions="FillAndExpand" /> <!--Para crear espacio entre los elementos-->
             <Switch Style="{StaticResource switch}" x:Name="Sw_Tema" VerticalOptions="End" IsToggled="False" Toggled="OnSwitchToggled" />
         </StackLayout>
