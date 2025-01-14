@@ -8,6 +8,10 @@ namespace AppMovilProyecto1
         public CurrencyPickerPopup()
         {
             InitializeComponent();
+
+            CurrencyPicker.ItemsSource = new string[] { "USD", "EUR", "CRC", "JPY" };
+
+
         }
 
         // Esto se llama cuando se selecciona una opcion en el piker.
