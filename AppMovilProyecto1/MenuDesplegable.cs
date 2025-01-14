@@ -16,6 +16,19 @@ namespace AppMovilProyecto1
                 Padding = new Thickness(5), // Relleno de 5 unidades en todos los bordes
                 Children =
                 {
+
+                    // Imagen para cerrar la ventana. 
+                    new ImageButton {
+
+                        Source ="x.png",
+                        HeightRequest = 50,
+                        WidthRequest = 50,
+                        BackgroundColor = Colors.Transparent,
+                        Margin = new Thickness(4), // Márgenes alrededor del botón
+                        Command = new Command(() =>  ReaccionarOpcionSeleccionada("Cerrar", codigoDivisa))
+
+                    },
+
                     new Button
                     {
                         Text = Localization.AppResources.Delete, // Texto del botón
@@ -25,8 +38,7 @@ namespace AppMovilProyecto1
                         FontSize = 20, // Tamaño de fuente
                         CornerRadius = 8, // Esquinas redondeadas
                         Margin = new Thickness(4), // Márgenes de 4 unidades
-                        Padding = new Thickness(0), // Sin relleno
-                        VerticalOptions = LayoutOptions.Center, // Alineación vertical al centro
+ 
                     }
                 }
             };

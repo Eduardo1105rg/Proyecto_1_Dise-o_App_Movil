@@ -287,7 +287,7 @@ public partial class VentanaFavoritos : ContentPage
             Padding = new Thickness(0), // Sin relleno adicional
             VerticalOptions = LayoutOptions.Center // Alineación vertical centrada
         };
-        opcionesBtn.Clicked += (sender, args) => MostrarMenuDesplegablePopup(codigoDivisa, opcionesBtn); // Añadir al boton la funcion de desplegar ventana.
+        opcionesBtn.Clicked += (sender, args) => MostrarMenuDesplegable(codigoDivisa, opcionesBtn); // Añadir al boton la funcion de desplegar ventana.
 
         stackLayoutVerticalBtn.Children.Add(opcionesBtn);// Añadir al StackLayout el botn
 
@@ -323,7 +323,11 @@ public partial class VentanaFavoritos : ContentPage
             {
                 EliminarElementoFavorito(codigoDivisa);
             }
-            
+            else if (accion == "Cerrar")
+            {
+                CerrarMenusDesplegables();
+            }
+
             //var absoluteLayout = (AbsoluteLayout)this.Content;
             //absoluteLayout.Children.Remove((View)sender);
             absoluteLayoutMain.Children.Remove((View)sender);
@@ -396,11 +400,10 @@ public partial class VentanaFavoritos : ContentPage
     // Cerrar todos los menus que esten abiertos.
     private void CerrarMenusDesplegables()
     {
-        DisplayAlert("Error", "Cerrando los menus abiertos.", "OK");
+        
         foreach (var menu in menusAbiertos)
         {
-            //var absoluteLayout = (AbsoluteLayout)this.Content;
-            //absoluteLayout.Children.Remove(menu);
+
             absoluteLayoutMain.Children.Remove(menu);
         }
         menusAbiertos.Clear();
@@ -416,7 +419,7 @@ public partial class VentanaFavoritos : ContentPage
     // Recargar el contenido de la ventana:
     public void RecargarContenido()
     {
-        
+        CerrarMenusDesplegables();
         FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
         InciarRenderizadoDeElementos();
     }

@@ -86,7 +86,7 @@
                         <Picker Style="{StaticResource pickerStyle}" x:Name="DivisaOrigenPicker"/>
                     </Border>
 
-                    <Image x:Name="FlechaImagenSuperior" Source="flecha_conversor.png" HeightRequest="50"/>
+                    <Image x:Name="FlechaImagenSuperior" Source="flacha_abajo.png" HeightRequest="50"/>
 
                     <Label Style="{StaticResource Etiquetas}" Text="{x:Static res:AppResources.Select_dest}" />
 
@@ -105,7 +105,7 @@
                         <Entry x:Name="MontoEntry" Placeholder="{x:Static res:AppResources.Amount_input}" Keyboard="Numeric" Style="{StaticResource entryStyle}"/>
                     </Border>
 
-                    <Image x:Name="FlechaImagenInferior" Source="flecha_conversor.png" HeightRequest="50"/>
+                    <Image x:Name="FlechaImagenInferior" Source="flacha_abajo.png" HeightRequest="50"/>
 
                     <Label Style="{StaticResource Etiquetas}" Text="{x:Static res:AppResources.Converted_amount}" />
                     <Border Style="{StaticResource main-container}">

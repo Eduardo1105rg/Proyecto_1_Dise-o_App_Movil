@@ -277,7 +277,7 @@ namespace AppMovilProyecto1
                 Padding = new Thickness(0), // Sin relleno adicional
                 VerticalOptions = LayoutOptions.Center // Alineación vertical centrada
             };
-            opcionesBtn.Clicked += (sender, args) => MostrarMenuDesplegablePopup(codigoDivisa, opcionesBtn); // Añadir al boton la funcion de desplegar ventana.
+            opcionesBtn.Clicked += (sender, args) => MostrarMenuDesplegable(codigoDivisa, opcionesBtn); // Añadir al boton la funcion de desplegar ventana.
 
             stackLayoutVerticalBtn.Children.Add(opcionesBtn);// Añadir al StackLayout el botn
 
@@ -311,6 +311,10 @@ namespace AppMovilProyecto1
                 {
                     GuardarElementoEnRegistros(codigoDivisa);
                 }
+                else if (accion == "Cerrar") {
+                    CerrarMenusDesplegables();
+                }
+
                 //var absoluteLayout = (AbsoluteLayout)this.Content;
                 //absoluteLayout.Children.Remove((View)sender);
                 absoluteLayoutMain.Children.Remove((View)sender);
@@ -387,6 +391,7 @@ namespace AppMovilProyecto1
         // Recargar el contenido de la ventana:
         public void RecargarContenido()
         {
+            CerrarMenusDesplegables();
             bool llamar = RevisarEstado();
             if (!llamar)
             {
