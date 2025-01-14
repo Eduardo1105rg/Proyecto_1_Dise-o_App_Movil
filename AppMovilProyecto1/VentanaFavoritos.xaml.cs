@@ -1,4 +1,5 @@
 using System.Formats.Asn1;
+using System.Linq;
 using AppMovilProyecto1.Models;
 using AppMovilProyecto1.Services;
 using CommunityToolkit.Maui.Views;
@@ -85,8 +86,10 @@ public partial class VentanaFavoritos : ContentPage
     // Info de la divisas por codigo.
     public Dictionary<String, String> AccederInfoDivisasPorCodigo = new Dictionary<string, string>();
 
+    // Guardar los codigos de las divisas guardados
+    //public Dictionary<String, String> DivisasRecuperadas = new Dictionary<string, string>();
 
-
+    public List<string> DivisasRecuperadas = new List<string>();
 
     public VentanaFavoritos()
     {
@@ -136,9 +139,23 @@ public partial class VentanaFavoritos : ContentPage
     }
 
     // Funcion para ser llamada a traves de la interfaz para iniciar el proceso de busqueda.
-    private async void IniciarBusqueda(object sender, EventArgs e)
+    private void IniciarBusqueda(object sender, TextChangedEventArgs e)
     {
-        await DisplayAlert("Informacion", "Iniciando busqueda.", "OK");
+        
+        var textoBusqueda = e.NewTextValue.ToLower(); //BusquedaSearchBar.Text.ToLower();
+        FavoritosContenedorStackLayout.Children.Clear();
+        foreach (var elemento in DivisasRecuperadas)
+        {
+            string codigoDivisa = elemento;
+            string nombrePais = AccederInfoDivisasPorCodigo[elemento];
+            if (string.IsNullOrEmpty(textoBusqueda) || codigoDivisa.ToLower().Contains(textoBusqueda) || nombrePais.ToLower().Contains(textoBusqueda))
+            {
+                RenderizarElementos(codigoDivisa);
+            }
+        }
+
+
+
     }
 
     // Inciar el proceso de renderrizado de elementos en la pantalla.
@@ -159,11 +176,13 @@ public partial class VentanaFavoritos : ContentPage
 
 
         FavoritosContenedorStackLayout.Children.Clear(); // Vaciar el contenedor de favoritos.
-
+        DivisasRecuperadas.Clear();
         foreach (var favorito in elementosRegistrado)
         {
 
             string codigoDivisa = favorito.CodigoDivisa;
+
+            DivisasRecuperadas.Add(codigoDivisa);
 
             Dictionary<string, double> valoresConversion = favorito.ValoresConversion;
 

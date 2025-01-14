@@ -73,8 +73,8 @@
                             <Button Text="{x:Static res:AppResources.Update}" Clicked="ActualizarDivisas" Style="{StaticResource BuscarBtn}"/>
                             <!-- Barra de búsqueda -->
                             <StackLayout Orientation="Horizontal">
-                                <SearchBar x:Name="BusquedaSearchBar" Placeholder="{x:Static res:AppResources.SearchBarPlace}" Style="{StaticResource BarraBusqueda}" SearchButtonPressed="IniciarBusqueda" />
-                                <!--<Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/>  <Button Text="Buscar" Clicked="GuardarElementoEnRegistros" Style="{StaticResource BuscarBtn}"/>-->
+                                <SearchBar x:Name="BusquedaSearchBar" Placeholder="{x:Static res:AppResources.SearchBarPlace}" Style="{StaticResource BarraBusqueda}" TextChanged="IniciarBusqueda" />
+                                <!--<Button Text="Buscar" Clicked="IniciarBusqueda" Style="{StaticResource BuscarBtn}"/>  <Button Text="Buscar" Clicked="GuardarElementoEnRegistros" Style="{StaticResource BuscarBtn}" SearchButtonPressed="IniciarBusqueda"/>-->
                                 
 
                             </StackLayout>
