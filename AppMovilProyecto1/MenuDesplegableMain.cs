@@ -35,9 +35,10 @@ namespace AppMovilProyecto1
                         Command = new Command(() => ReaccionarOpcionSeleccionada("Agregar", codigoDivisa)), // Comando asociado al botón
                         BackgroundColor = (Color)Application.Current.Resources["Navbar"],
                         TextColor = (Color)Application.Current.Resources["PrimaryTextColor"],
-                        FontSize = 20, // Tamaño de fuente
+                        FontSize = 15, // Tamaño de fuente
                         CornerRadius = 8, // Bordes redondeados
                         Margin = new Thickness(4), // Márgenes alrededor del botón
+                        //WidthRequest = 100,
                     }
                 }
             };

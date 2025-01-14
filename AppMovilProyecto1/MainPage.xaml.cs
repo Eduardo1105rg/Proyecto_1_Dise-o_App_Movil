@@ -77,11 +77,13 @@ namespace AppMovilProyecto1
 
         private Dictionary<string, (double, string)> elementosRecuperado = new Dictionary<string, (double, string)>();
 
+        private bool EstadoTema = false;
+
         public MainPage()
         {
             InitializeComponent();
             AccederInfoDivisasPorCodigo = AccederInfoDivisas.ToDictionary(item => item.Value, item => item.Key);
-
+            GestionTema.ApplyTheme();
 
             var grid = this.Content as Grid;
             if (grid != null)
@@ -159,10 +161,12 @@ namespace AppMovilProyecto1
 
             string divisaSeleccionada = Application.Current.Resources["BaseCurrency"]?.ToString();
 
-            if (divisaSeleccionada == DivisaBaseGuardada)
+            if (divisaSeleccionada == DivisaBaseGuardada && EstadoTema == GestionTema.GetThemePreference())
             {
                 return;
             }
+            EstadoTema = GestionTema.GetThemePreference();
+
             DivisaBaseGuardada = divisaSeleccionada;
 
             elementosRecuperado = new Dictionary<string, (double, string)>();
@@ -447,7 +451,7 @@ namespace AppMovilProyecto1
 
             // Aplicar el tema al cargar la MainPage
             GestionTema.ApplyTheme();
-
+            //EstadoTema = GestionTema.getEstadoTema();
 
             RecargarContenido();
         }
@@ -455,6 +459,14 @@ namespace AppMovilProyecto1
         // Funcion para ser llamada a travez de la interfaz para guardar un elemento en favoritos.
         private async void GuardarElementoEnRegistros(string divisaSeleccionada)
         {
+
+            bool llamar = RevisarEstado();
+            if (!llamar)
+            {
+                return;
+
+            }
+
             //string divisaSeleccionada = "CRC";
             // Validamos que el archivo no este ya creado.
             var validarExistencia = await FavoritosService.LeerArchivoFavorito(divisaSeleccionada);

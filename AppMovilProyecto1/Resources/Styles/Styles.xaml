@@ -522,4 +522,23 @@
     </Style>
     <!-- Fin Estilos del menu de opciones <<<<<<<<<<<-->
 
+    <Style x:Key="contenedorPopup" TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="{DynamicResource PageBackgroundColor}"/>
+        <Setter Property="Padding" Value="30"/>
+        <Setter Property="Margin" Value="10"/>
+
+        
+    </Style>
+
+    <Style x:Key="contenedorPikerPopup" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{DynamicResource PageBackgroundColor}"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Margin" Value="15"/>
+        <Setter Property="Stroke" Value="{DynamicResource Border}" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+    </Style>
+
+
 </ResourceDictionary>
