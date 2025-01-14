@@ -43,10 +43,5 @@ namespace AppMovilProyecto1
                 }
             }
         }
-        public static string ObtenerIcono()
-        {
-            // Asegúrate de que los nombres de los iconos sean correctos y estén en la carpeta adecuada
-            return GetThemePreference() ? "moon.png" : "sun2.png"; // Asegúrate de que estos nombres de archivo sean correctos
-        }
     }
 }

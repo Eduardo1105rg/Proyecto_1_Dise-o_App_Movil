@@ -11,7 +11,6 @@ namespace AppMovilProyecto1
             InitializeComponent();
             Routing.RegisterRoute("secondpage", typeof(VentanaConversor)); // Para el registro de una ruta con parametros.
             Routing.RegisterRoute("favoritospage", typeof(VentanaFavoritos)); // Para el registro de una ruta con parametros.
-            UpdateThemeIcon(); // Establecer el icono inicial
         }
 
         private async void SeleccionarDivisaBaseRediReccionador(object sender, EventArgs e)
@@ -19,20 +18,5 @@ namespace AppMovilProyecto1
             var popup = new CurrencyPickerPopup();
             await Shell.Current.CurrentPage.ShowPopupAsync(popup);
         }
-
-        public string ThemeIcon
-        {
-            get => _iconoTema;
-            set
-            {
-                _iconoTema = value;
-                OnPropertyChanged(nameof(iconoTema));
-            }
-        }
-        public void UpdateThemeIcon()
-        {
-            ThemeIcon = GestionTema.ObtenerIcono(); // Establecer el icono según el tema actual
-        }
-
     }
 }

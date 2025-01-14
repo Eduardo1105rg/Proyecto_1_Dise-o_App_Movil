@@ -17,9 +17,5 @@ public partial class Settings : ContentPage
 
         // Cambiar el tema seg�n el valor del Switch
         GestionTema.ApplyTheme();
-
-        // Actualizar el icono en AppShell
-        var appShell = Application.Current.MainPage as AppShell;
-        appShell?.UpdateThemeIcon(); // Llama al método para actualizar el icono
     }
 }

@@ -9,21 +9,23 @@
     Title="Serafino Exchange"
     Shell.BackgroundColor="{DynamicResource Navbar}">
 
-    <ShellContent
-        Title="{x:Static res:AppResources.Home}"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-    <ShellContent Title="{x:Static res:AppResources.Converter}"
-        ContentTemplate="{DataTemplate local:VentanaConversor}"
-        Route="VentanaConversor"/>
-
-    <ShellContent Title="{x:Static res:AppResources.Favorites}"
-        ContentTemplate="{DataTemplate local:VentanaFavoritos}"
-        Route="VentanaFavoritos"/>
-
-    <FlyoutItem x:Name="iconoTema" Title="{x:Static res:AppResources.Theme_change}" Icon="{Binding ThemeIcon}">
+    <FlyoutItem Title="{x:Static res:AppResources.Home}" Icon="home.png">
+        <ShellContent
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+    </FlyoutItem>
+    <FlyoutItem Title="{x:Static res:AppResources.Converter}" Icon="sackDollar.png">
+        <ShellContent
+            ContentTemplate="{DataTemplate local:VentanaConversor}"
+            Route="VentanaConversor"/>
+    </FlyoutItem>
+    <FlyoutItem Title="{x:Static res:AppResources.Favorites}" Icon="star.png">
+        <ShellContent 
+            ContentTemplate="{DataTemplate local:VentanaFavoritos}"
+            Route="VentanaFavoritos"/>
+    </FlyoutItem>
+    <FlyoutItem Title="{x:Static res:AppResources.Theme_change}" Icon="moon.png">
         <ShellContent ContentTemplate="{DataTemplate local:Settings}"/>
-        
     </FlyoutItem>
 
 
