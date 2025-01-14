@@ -6,12 +6,12 @@
     <Border
         StrokeShape="RoundRectangle 10"
         Stroke="{DynamicResource Gray}"
-        BackgroundColor="{DynamicResource White}"
+        BackgroundColor="{DynamicResource PageBackgroundColor}"
         Padding="5"
         Margin="10"
         >
-        <StackLayout BackgroundColor="{DynamicResource White}" Padding="5">
-            <Button Text="{x:Static res:AppResources.Add}" Command="{Binding AgregarCommand}" Style="{StaticResource OpcionesBtnStyle}" />
+        <StackLayout Padding="5">
+            <Button Text="{x:Static res:AppResources.Add}" BackgroundColor="{DynamicResource PageBackgroundColor}" Command="{Binding AgregarCommand}" Style="{StaticResource OpcionesBtnStyle}" />
         </StackLayout>
     </Border>
 </toolkit:Popup>

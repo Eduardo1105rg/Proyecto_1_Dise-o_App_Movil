@@ -12,7 +12,7 @@ namespace AppMovilProyecto1
         {
             var stackLayoutOpciones = new StackLayout
             {
-                BackgroundColor = Colors.White, // Color de fondo blanco
+                BackgroundColor = (Color)Application.Current.Resources["PageBackgroundColor"],
                 Padding = new Thickness(5), // Relleno de 5 unidades en todos los bordes
                 Children =
                 {
@@ -33,8 +33,8 @@ namespace AppMovilProyecto1
                     {
                         Text = Localization.AppResources.Delete, // Texto del botón
                         Command = new Command(() => ReaccionarOpcionSeleccionada("Eliminar", codigoDivisa)), // Comando de la acción al presionar
-                        BackgroundColor = Colors.Green, // Color de fondo del botón
-                        TextColor = Colors.White, // Color del texto del botón
+                        BackgroundColor = (Color)Application.Current.Resources["Navbar"], // Color de fondo del botón
+                        TextColor = (Color)Application.Current.Resources["PrimaryTextColor"],
                         FontSize = 20, // Tamaño de fuente
                         CornerRadius = 8, // Esquinas redondeadas
                         Margin = new Thickness(4), // Márgenes de 4 unidades
@@ -48,7 +48,7 @@ namespace AppMovilProyecto1
                 Content = stackLayoutOpciones,
                 StrokeShape = new RoundRectangle { CornerRadius = 10 },
                 Stroke = Colors.Gray,
-                BackgroundColor = Colors.White,
+                BackgroundColor = (Color)Application.Current.Resources["PageBackgroundColor"],
                 Padding = 5,
                 Margin = new Thickness(10),
             };

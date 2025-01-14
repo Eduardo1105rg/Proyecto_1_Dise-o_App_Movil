@@ -5,7 +5,7 @@ public partial class Settings : ContentPage
 	public Settings()
 	{
 		InitializeComponent();
-        // Configurar el Switch según la preferencia guardada
+        // Configurar el Switch segï¿½n la preferencia guardada
         Sw_Tema.IsToggled = GestionTema.GetThemePreference();
     }
 
@@ -15,7 +15,11 @@ public partial class Settings : ContentPage
         // Guardar la preferencia del tema
         GestionTema.SaveThemePreference(Sw_Tema.IsToggled);
 
-        // Cambiar el tema según el valor del Switch
+        // Cambiar el tema segï¿½n el valor del Switch
         GestionTema.ApplyTheme();
+
+        // Actualizar el icono en AppShell
+        var appShell = Application.Current.MainPage as AppShell;
+        appShell?.UpdateThemeIcon(); // Llama al mÃ©todo para actualizar el icono
     }
 }

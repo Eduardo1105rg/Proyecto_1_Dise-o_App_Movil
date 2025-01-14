@@ -12,7 +12,7 @@ namespace AppMovilProyecto1
         {
             var stackLayoutOpciones = new StackLayout
             {
-                BackgroundColor = Colors.White, // Fondo blanco para el StackLayout
+                BackgroundColor = (Color)Application.Current.Resources["PageBackgroundColor"],
                 Padding = new Thickness(5), // Relleno interno de 5 en todos los lados
                 Children =
                 {
@@ -33,8 +33,8 @@ namespace AppMovilProyecto1
                     {
                         Text = Localization.AppResources.Add, // Texto del botón
                         Command = new Command(() => ReaccionarOpcionSeleccionada("Agregar", codigoDivisa)), // Comando asociado al botón
-                        BackgroundColor = Colors.Green, // Fondo verde para el botón
-                        TextColor = Colors.White, // Texto blanco
+                        BackgroundColor = (Color)Application.Current.Resources["Navbar"],
+                        TextColor = (Color)Application.Current.Resources["PrimaryTextColor"],
                         FontSize = 20, // Tamaño de fuente
                         CornerRadius = 8, // Bordes redondeados
                         Margin = new Thickness(4), // Márgenes alrededor del botón
@@ -47,7 +47,7 @@ namespace AppMovilProyecto1
                 Content = stackLayoutOpciones,
                 StrokeShape = new RoundRectangle { CornerRadius = 10 },
                 Stroke = Colors.Gray,
-                BackgroundColor = Colors.White,
+                BackgroundColor = (Color)Application.Current.Resources["PageBackgroundColor"],
                 Padding = 5,
                 Margin = new Thickness(10),
             };

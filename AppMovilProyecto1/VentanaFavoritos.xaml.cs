@@ -207,8 +207,7 @@ public partial class VentanaFavoritos : ContentPage
         var recuadroVerde = new Border
         {
             BackgroundColor = Application.Current.Resources.TryGetValue("InternContainer", out var bgColor)
-                    ? (Color)bgColor
-                    : Colors.Transparent,
+                    ? (Color)bgColor : Colors.Transparent,
             Stroke = Brush.Transparent,
             StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(20) },
             Margin = new Thickness(10, 5, 10, 5)

@@ -16,6 +16,7 @@ namespace AppMovilProyecto1
             EliminarCommand = new Command(() => accionSeleccionada?.Invoke(codigoDivisa, "Eliminar"));
 
             BindingContext = this;
+            GestionTema.ApplyTheme();
         }
     }
 }

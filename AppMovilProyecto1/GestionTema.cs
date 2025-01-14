@@ -1,4 +1,5 @@
 ﻿
+using Android.Graphics.Drawables;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
 using System.Collections.ObjectModel;
@@ -41,6 +42,11 @@ namespace AppMovilProyecto1
                     mergeDictionaries.Add(new TemaClaro()); // Agregar Tema Claro
                 }
             }
+        }
+        public static string ObtenerIcono()
+        {
+            // Asegúrate de que los nombres de los iconos sean correctos y estén en la carpeta adecuada
+            return GetThemePreference() ? "moon.png" : "sun2.png"; // Asegúrate de que estos nombres de archivo sean correctos
         }
     }
 }

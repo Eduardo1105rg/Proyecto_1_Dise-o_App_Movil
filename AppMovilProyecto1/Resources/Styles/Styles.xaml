@@ -517,7 +517,7 @@
         <Setter Property="FontSize" Value="20" />
         <Setter Property="CornerRadius" Value="8" />
         <Setter Property="Margin" Value="4"/>
-        <Setter Property="BackgroundColor" Value="Green"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource Navbar}"/>
         <Setter Property="TextColor" Value="White"/>
     </Style>
     <!-- Fin Estilos del menu de opciones <<<<<<<<<<<-->

@@ -207,8 +207,7 @@ namespace AppMovilProyecto1
             var recuadroVerde = new Border
             {
                 BackgroundColor = Application.Current.Resources.TryGetValue("InternContainer", out var bgColor)
-                    ? (Color)bgColor
-                    : Colors.Transparent,
+                    ? (Color)bgColor : Colors.Transparent,
                 Stroke = Brush.Transparent,
                 StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(20) },
                 Margin = new Thickness(10, 5, 10, 5)
@@ -218,14 +217,11 @@ namespace AppMovilProyecto1
             var recuadroBlanco = new Border
             {
                 Style = Application.Current.Resources.TryGetValue("RecuadroInterno", out var styleInterno)
-                    ? styleInterno as Style
-                    : null,
+                    ? styleInterno as Style : null,
                 BackgroundColor = Application.Current.Resources.TryGetValue("PageBackgroundColor", out var bgColor2)
-                    ? (Color)bgColor2
-                    : Colors.White,
+                    ? (Color)bgColor2 : Colors.White,
                 Stroke = new SolidColorBrush(Application.Current.Resources.TryGetValue("Border", out var borderColor)
-                    ? (Color)borderColor
-                    : Colors.Black),
+                    ? (Color)borderColor : Colors.Black),
                 StrokeThickness = 2,
                 StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(20) },
                 Padding = new Thickness(1),

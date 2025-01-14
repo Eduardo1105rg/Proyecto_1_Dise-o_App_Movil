@@ -6,11 +6,11 @@
     <Border
         StrokeShape="RoundRectangle 10"
         Stroke="{DynamicResource Gray}"
-        BackgroundColor="{DynamicResource White}"
+        BackgroundColor="{DynamicResource PageBackgroundColor}"
         Padding="5"
         Margin="10"
         >
-        <StackLayout BackgroundColor="{DynamicResource White}" Padding="5">
+        <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}" Padding="5">
             <Button Text="{x:Static res:AppResources.Delete}" Command="{Binding EliminarCommand}" Style="{StaticResource OpcionesBtnStyle}" />
         </StackLayout>
     </Border>

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMovilProyecto1.VentanaConversor"
              xmlns:res="clr-namespace:AppMovilProyecto1.Localization"
-             Title="VentanaConversor">
+             Title="Conversor"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
 
 
     <!--Aqui se definen los estilos de los elementos de la ventena.-->

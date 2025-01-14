@@ -21,7 +21,7 @@
         ContentTemplate="{DataTemplate local:VentanaFavoritos}"
         Route="VentanaFavoritos"/>
 
-    <FlyoutItem Title="{x:Static res:AppResources.Theme_change}" Icon="sol3.jpg">
+    <FlyoutItem x:Name="iconoTema" Title="{x:Static res:AppResources.Theme_change}" Icon="{Binding ThemeIcon}">
         <ShellContent ContentTemplate="{DataTemplate local:Settings}"/>
         
     </FlyoutItem>
